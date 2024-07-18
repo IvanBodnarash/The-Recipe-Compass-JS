@@ -2,12 +2,13 @@
     <div class="page-banner">
         <h1>Login</h1>
         <nav>
-            <a href="index.php">Home</a>
+            <a href="index.html">Home</a>
             <p>&ensp;/&ensp;</p>
             <p>Login</p>
         </nav>
     </div>
-    <form class="login-form" action="index.php" method="post" target="_self">
+    <form class="login-form" action="" method="post" target="_self">
+        <div id="signUpMessage" class="signUpMessage" style="display: none;"></div>
         <div class="login-form-wrapper">
             <span id="loginTxt">User Name</span>
             <input type="text" name="userid" id="userId">
@@ -22,7 +23,7 @@
     
             <div class="new-user-container">
                 <span>New User?</span>
-                <a href="index.php?content=register"><b>Register Now</b></a>
+                <a href="index.html?content=register"><b>Register Now</b></a>
             </div>
         
             <input type="hidden" value="validate" name="content" id="">

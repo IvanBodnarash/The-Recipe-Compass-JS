@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Login - The Recipe Compass</title>
+  </head>
+  <body>
+    <div class="register-block-wrapper">
+      <div class="page-banner">
+        <h1>Register</h1>
+        <nav>
+          <a href="index.html">Home</a>
+          <p>&ensp;/&ensp;</p>
+          <p>Register</p>
+        </nav>
+      </div>
+
+      <form class="register-form" id="registerForm">
+        <div class="register-form-wrapper">
+          <div
+            id="signUpMessage"
+            class="signUpMessage"
+            style="display: none"
+          ></div>
+          <span id="loginTxt">Displayed Nickname</span>
+          <input
+            type="text"
+            name="userid"
+            id="userName"
+            class="input-reg"
+            require
+            maxlength="20"
+          />
+
+          <span id="loginTxt">First Name</span>
+          <input
+            type="text"
+            name="fullname"
+            id="firstName"
+            class="input-reg"
+            require
+            maxlength="30"
+          />
+
+          <span id="loginTxt">Last Name</span>
+          <input
+            type="text"
+            name="fullname"
+            id="lastName"
+            class="input-reg"
+            require
+            maxlength="30"
+          />
+
+          <span id="loginTxt">E-mail address</span>
+          <input
+            type="text"
+            name="email"
+            id="email"
+            class="input-reg"
+            require
+            maxlength="50"
+          />
+
+          <span id="loginTxt">Password</span>
+          <input
+            type="password"
+            name="password"
+            id="password"
+            class="input-reg"
+            require
+            maxlength="30"
+          />
+
+          <span id="loginTxt">Confirm Password</span>
+          <input
+            type="password"
+            name="password2"
+            id="password2"
+            class="input-reg"
+            require
+            maxlength="30"
+          />
+
+          <input
+            type="submit"
+            value="REGISTER"
+            id="registerBtn"
+          />
+
+          <div class="have-acc-block">
+            <span>Have an Account?</span>
+            <a href="index.html?content=login"><b>Login</b></a>
+          </div>
+
+          <input type="hidden" name="content" value="adduser" id="" />
+        </div>
+      </form>
+    </div>
+
+    <script src="https://www.gstatic.com/firebasejs/10.12.3/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.12.3/firebase-auth.js"></script>
+    <!-- <script src="script/firebase.js"></script> -->
+  </body>
+</html>

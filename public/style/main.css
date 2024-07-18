@@ -779,8 +779,8 @@ body ._lock {
     top: 2px;
 }
 
-.register-form-wrapper #inputReg {
-    width: 400px;
+.register-form-wrapper .input-reg {
+    min-width: 400px;
     height: 40px;
     padding-left: 5px;
     color: #555855;
@@ -791,7 +791,7 @@ body ._lock {
     outline: none;
 }
 
-#inputReg:active {
+.input-reg:active {
     color: #555855;
     font-size: 18px;
     /* border: none; */
@@ -804,6 +804,17 @@ body ._lock {
 .have-acc-block a {
     text-decoration: none;
     color: #628961;
+}
+
+.signUpMessage {
+    background-color: rgb(125, 0, 0);
+    color: white;
+    padding: 10px 20px;
+    margin: 10px;
+    border-radius: 5px;
+    font-size: 1rem;
+    opacity: 0;
+    animation: fadeOut 7s forwards;
 }
 
 /* VALIDATION MESSAGES */

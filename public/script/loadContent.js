@@ -1,3 +1,5 @@
+import { initRegister } from './firebase.js';
+
 // Function for loading a page
 function loadPage(containerId, url, callback) {
   fetch(url)
@@ -62,6 +64,8 @@ document.addEventListener("DOMContentLoaded", function () {
       // Call loadNewsletterBlock() if the content is "home"
       if (content === "home") {
           loadNewsletterBlock();
+      } else if (content === "register") {
+          initRegister();
       }
   });
 });

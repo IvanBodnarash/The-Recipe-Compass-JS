@@ -1,79 +1,29 @@
-// import { auth, createUserWithEmailAndPassword, saveUserData } from "./firebase.js";
+// Import the functions you need from the SDKs you need
+import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.3/firebase-app.js";
+import {
+  getAuth,
+  createUserWithEmailAndPassword,
+} from "https://www.gstatic.com/firebasejs/10.12.3/firebase-auth.js";
+import {
+  getFirestore,
+  setDoc,
+  doc,
+  getDoc,
+} from "https://www.gstatic.com/firebasejs/10.12.3/firebase-firestore.js";
 
-import { auth, db } from "./firebase";
+import firebaseConfig from "./config.js";
 
-// export function initRegister() {
-//   const register = document.getElementById("registerBtn");
+const app = initializeApp(firebaseConfig);
+const auth = getAuth();
+const db = getFirestore(app);
 
-//   if (register) {
-//     register.addEventListener("click", function (event) {
-//       event.preventDefault();
-
-//       // Inputs
-//       const userName = document.getElementById("userName").value;
-//       const firstName = document.getElementById("firstName").value;
-//       const lastName = document.getElementById("lastName").value;
-//       const email = document.getElementById("email").value;
-//       const password = document.getElementById("password").value;
-//       const password2 = document.getElementById("password2").value;
-
-//       if (password !== password2) {
-//         alert("Passwords do not match");
-//         return;
-//       }
-
-//       const emailRegex =
-//         /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
-//       if (!emailRegex.test(email)) {
-//         alert("Invalid email format");
-//         return;
-//       }
-
-//       createUserWithEmailAndPassword(auth, email, password)
-//         .then((userCredential) => {
-//           // Signed in
-//           const user = userCredential.user;
-//           alert("Registration successful");
-//           saveUserData(user.uid, userName, firstName, lastName, email);
-//           window.location.href = "index.html";
-//         })
-//         .catch((error) => {
-//           alert("Error: " + errorMessage);
-//         });
-//     });
-//   } else {
-//     console.log("Element not found: registerBtn");
-//   }
-// }
-
-// // function saveUserData(userId, userName, firstName, lastName, email) {
-// //   // Logic to save user data to database(Firestore)
-// //   setDoc(doc(db, "users", userId), {
-// //     userName,
-// //     firstName,
-// //     lastName,
-// //     email,
-// //   })
-// //     .then(() => {
-// //       console.log("User data saved successfully");
-// //     })
-// //     .catch((error) => {
-// //       console.error("Error saving user data: ", error);
-// //     });
-// // }
-
-// document.addEventListener("DOMContentLoaded", function () {
-//   if (
-//     new URLSearchParams(window.location.search).get("content") === "register"
-//   ) {
-//     initRegister();
-//   }
-// });
-
+// Initialize Register
 export default function initRegister() {
-  document
-    .getElementById("registerForm")
-    .addEventListener("submit", (event) => {
+  // Submit Button
+  const register = document.getElementById("registerBtn");
+
+  if (register) {
+    register.addEventListener("click", function (event) {
       event.preventDefault();
 
       // Inputs
@@ -84,26 +34,57 @@ export default function initRegister() {
       const password = document.getElementById("password").value;
       const password2 = document.getElementById("password2").value;
 
-      if (password !== password2) {
+      // Compare Passwords
+      if (password != password2) {
         alert("Passwords do not match");
         return;
       }
 
-      auth.createUserWithEmailAndPassword(email, password)
+      if (!validateEmail(email)) {
+        alert("Please enter a valid email address");
+        return;
+      }
+
+      createUserWithEmailAndPassword(auth, email, password)
         .then((userCredential) => {
-          return db.collection("users").doc(userCredential.user.uid).set({
-            userName,
-            firstName,
-            lastName,
-            email,
-          });
+          // Signed up
+          const user = userCredential.user;
+          alert("Account Creating...");
+          // Saving user data
+          saveUserData(user.uid, userName, firstName, lastName, email);
         })
-        .then(() => {
-          alert("Registration successful");
-          window.location.href = "index.html";
-        })
-        .catch(error => {
-          alert("Error: " + error.message);
+        .catch((error) => {
+          const errorCode = error.code;
+          const errorMessage = error.message;
+          alert("Error: " + errorMessage);
         });
+    });
+  } else {
+    console.error("Element with id 'registerBtn' not found");
+  }
+}
+
+// Validate Email
+function validateEmail(email) {
+  const re =
+    /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+  return re.test(String(email).toLowerCase());
+}
+
+// Save User Data
+function saveUserData(userId, userName, firstName, lastName, email) {
+  // Logic to save user data to database(Firestore)
+  setDoc(doc(db, "users", userId), {
+    userName: userName,
+    firstName: firstName,
+    lastName: lastName,
+    email: email,
+  })
+    .then(() => {
+      console.log("User data saved successfully");
+      window.location.href = "index.html";
+    })
+    .catch((error) => {
+      console.error("Error saving user data: ", error);
     });
 }

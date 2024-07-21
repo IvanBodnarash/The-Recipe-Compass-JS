@@ -1,5 +1,6 @@
-import { initRegister } from './firebase.js';
 import { logIn } from './firebase.js';
+import initRegister from './register.js';
+// import logIn from './login.js';
 // import { logout } from './firebase.js';
 
 // Function for loading a page

@@ -1,4 +1,6 @@
 import { initRegister } from './firebase.js';
+import { logIn } from './firebase.js';
+// import { logout } from './firebase.js';
 
 // Function for loading a page
 function loadPage(containerId, url, callback) {
@@ -66,6 +68,11 @@ document.addEventListener("DOMContentLoaded", function () {
           loadNewsletterBlock();
       } else if (content === "register") {
           initRegister();
+      } else if (content === "login") {
+          logIn();
+      } else if (content === "logout") {
+          // logout();
+          window.location.href = "index.html";
       }
   });
 });

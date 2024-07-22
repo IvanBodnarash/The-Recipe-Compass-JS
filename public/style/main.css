@@ -160,7 +160,7 @@ body ._lock {
     text-align: center;
     color: #ecf4eb;
     font-weight: 400;
-    height: 40vh;
+    height: 90vh;
     display: flex;
     flex-direction: column;
 }
@@ -180,7 +180,9 @@ body ._lock {
 /* Adjust the padding of the search-container to create space for the parallax effect */
 .search-container {
     position: relative;
-    padding: 190px 0 190px 0;
+    display: flex;
+    justify-content: center;
+    /* padding: 190px 0 190px 0; */
     /* Adjust the bottom padding as needed */
     overflow: hidden;
 }
@@ -294,7 +296,7 @@ body ._lock {
 
 .feature-desc {
     text-align: center;
-    padding-bottom: 50px;
+    /* padding-bottom: 50px; */
 }
 
 .feature-desc h2 {

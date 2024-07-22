@@ -1,5 +1,6 @@
-import { logIn } from './firebase.js';
+import logIn from './login.js';
 import initRegister from './register.js';
+import postRecipe from './newRecipe.js';
 // import logIn from './login.js';
 // import { logout } from './firebase.js';
 
@@ -74,6 +75,9 @@ document.addEventListener("DOMContentLoaded", function () {
       } else if (content === "logout") {
           // logout();
           window.location.href = "index.html";
+      } else if (content === "newrecipe") {
+          console.log("This is new recipe");
+          postRecipe();
       }
   });
 });

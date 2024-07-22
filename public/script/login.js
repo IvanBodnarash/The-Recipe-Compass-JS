@@ -1,23 +1,14 @@
 import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.3/firebase-app.js";
 import {
   getAuth,
-  createUserWithEmailAndPassword,
   signInWithEmailAndPassword,
-  onAuthStateChanged,
-  signOut,
 } from "https://www.gstatic.com/firebasejs/10.12.3/firebase-auth.js";
-import {
-  getFirestore,
-  setDoc,
-  doc,
-  getDoc,
-} from "https://www.gstatic.com/firebasejs/10.12.3/firebase-firestore.js";
+import { getFirestore } from "https://www.gstatic.com/firebasejs/10.12.3/firebase-firestore.js";
 
 import firebaseConfig from "./config.js";
 
 const app = initializeApp(firebaseConfig);
 const auth = getAuth();
-const db = getFirestore(app);
 
 // Initialize Login
 export default function logIn() {

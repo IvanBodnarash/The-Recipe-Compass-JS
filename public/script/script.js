@@ -165,19 +165,19 @@ document.querySelector("#commentForm").addEventListener("submit", function (e) {
   xhr.send(formData);
 });
 
-document
-  .getElementById("uploadImgButton")
-  .addEventListener("change", (event) => {
-    console.log("File input changed");
-    const file = event.target.files[0];
-    if (file) {
-      console.log("File selected:", file.name);
-    } else {
-      console.log("No file selected");
-    }
-  });
+// document
+//   .getElementById("uploadImgButton")
+//   .addEventListener("change", (event) => {
+//     console.log("File input changed");
+//     const file = event.target.files[0];
+//     if (file) {
+//       console.log("File selected:", file.name);
+//     } else {
+//       console.log("No file selected");
+//     }
+//   });
 
-// Upload file name
+// // Upload file name
 
 // function displayFileName() {
 //     let fileInput = document.getElementById('uploadImgButton');
@@ -197,3 +197,26 @@ document
 //         }
 //     }, 1500);
 // }
+
+document.getElementById('uploadImgButton').addEventListener('change', displayFileName);
+
+// Upload file name
+
+function displayFileName() {
+  let fileInput = document.getElementById("uploadImgButton");
+  let fileNameDisplay = document.getElementById("fileName");
+
+  setTimeout(() => {
+    if (fileInput.files.length > 0) {
+      let fileName = fileInput.files[0].name;
+
+      if (fileName.length > 25) {
+        fileName = fileName.substring(0, 22) + "...";
+      }
+
+      fileNameDisplay.textContent = fileName;
+    } else {
+      fileNameDisplay.textContent = "";
+    }
+  }, 1500);
+}

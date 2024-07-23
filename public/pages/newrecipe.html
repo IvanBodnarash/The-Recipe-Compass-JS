@@ -90,18 +90,40 @@
             </div>
           </div> -->
 
-          <input type="file" id="uploadImgButton" accept="image/jpeg, image/png, image/gif, image/webp, image/jpg, image/svg" />
+          <div class="picker-wrapper">
+            <label for="uploadImgButton" id="labelUploadBtn" class="custom-upload-button">
+              Upload Photo
+            </label>
+            <input type="file" id="uploadImgButton" class="file-input" accept="image/jpeg, image/png, image/gif, image/webp, image/jpg, image/svg" />
+            <div class="file-name" id="fileName"></div>
+          </div>
 
           <!-- <input class="submit-btn" type="submit" value="Submit" /> -->
           <input
             class="submit-btn"
             type="submit"
-            value="Submit"
+            value="Post"
             id="postRecipeBtn"
           />
-          <input type="hidden" name="content" value="newrecipe" />
+          <!-- <input type="hidden" name="content" value="newrecipe" /> -->
         </form>
       </div>
     </div>
+
+    <script>
+      // const uploadImgButton = document.querySelector(".file-input");
+      // const fileName = document.getElementById("fileName");
+
+      // uploadImgButton.addEventListener("change", (event) => { 
+      //   const file = event.target.files[0];
+      //   if (file) {
+      //     fileName.textContent = file.name;
+      //   } else {
+      //     fileName.textContent = "No file selected";
+      //   }
+
+      //   console.log("sdfsdf")
+      // });
+    </script>
   </body>
 </html>

@@ -1,11 +1,11 @@
-@import url('https://fonts.googleapis.com/css2?family=Varela+Round&display=swap');
-@import url('https://fonts.googleapis.com/css2?family=Pacifico&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Varela+Round&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Pacifico&display=swap");
 
 * {
     padding: 0;
     margin: 0;
-    font-family: 'Varela Round', sans-serif;
-    transition: opacity 1.0s ease;
+    font-family: "Varela Round", sans-serif;
+    transition: opacity 1s ease;
 }
 
 html {
@@ -83,7 +83,7 @@ body ._lock {
 }
 
 .navbar a:hover {
-    color: #618264
+    color: #618264;
 }
 
 .nav-item {
@@ -102,7 +102,7 @@ body ._lock {
 }
 
 .brand-text {
-    font-family: 'Pacifico', cursive;
+    font-family: "Pacifico", cursive;
     font-size: 25px;
 }
 
@@ -122,7 +122,9 @@ body ._lock {
     color: #fff;
     border-radius: 50%;
     cursor: pointer;
-    transition: opacity 0.5s ease-in-out, transform 0.3s ease-in-out;
+    transition:
+        opacity 0.5s ease-in-out,
+        transform 0.3s ease-in-out;
 }
 
 #scroll-to-top a {
@@ -149,8 +151,6 @@ body ._lock {
 .menu-icon {
     display: none;
 }
-
-
 
 /* ------------------------------------- */
 
@@ -183,7 +183,6 @@ body ._lock {
     display: flex;
     justify-content: center;
     /* padding: 190px 0 190px 0; */
-    /* Adjust the bottom padding as needed */
     overflow: hidden;
 }
 
@@ -228,8 +227,10 @@ body ._lock {
     height: 42px;
     width: 120px;
     font-size: 16px;
-    background-color: #79AC78;
-    transition: background-color 0.3s ease, top 0.1s ease;
+    background-color: #79ac78;
+    transition:
+        background-color 0.3s ease,
+        top 0.1s ease;
 }
 
 .input-container button:hover {
@@ -332,7 +333,7 @@ body ._lock {
 .latest-recipes-section .description {
     text-align: center;
     padding: 25px 0 25px 0;
-    color: #D0E7D2;
+    color: #d0e7d2;
     font-size: 22px;
     width: 75%;
     margin: auto;
@@ -364,7 +365,7 @@ body ._lock {
     /* padding: 10px; */
     margin: 15px;
     overflow: hidden;
-    background-color: #D0E7D2;
+    background-color: #d0e7d2;
     transition: transform 0.3s ease;
 }
 
@@ -382,7 +383,7 @@ body ._lock {
 .text-block hr {
     border: none;
     height: 1px;
-    background-color: #79AC78;
+    background-color: #79ac78;
     margin: 10px 0 10px 0;
 }
 
@@ -435,10 +436,12 @@ body ._lock {
     border: none;
     /* height: 50px; */
     width: 250px;
-    background-color: #B0D9B1;
+    background-color: #b0d9b1;
     margin: 15px auto;
     text-align: center;
-    transition: background-color 0.3s ease, box-shadow 0.3s ease;
+    transition:
+        background-color 0.3s ease,
+        box-shadow 0.3s ease;
 }
 
 .show-all-recipes-btn:hover {
@@ -448,7 +451,7 @@ body ._lock {
 }
 
 .show-all-recipes-btn:hover {
-    color: #D0E7D2;
+    color: #d0e7d2;
 }
 
 .show-all-recipes-btn:active {
@@ -474,7 +477,7 @@ body ._lock {
 }
 
 .latest-recipe-btn-block p {
-    color: #D0E7D2;
+    color: #d0e7d2;
     font-size: 20px;
     padding: 22px;
     width: 80%;
@@ -496,7 +499,9 @@ body ._lock {
     align-items: center;
     color: white;
     font-size: 28px;
-    transition: height 0.2s ease-in-out, opacity 0.2s ease-in-out;
+    transition:
+        height 0.2s ease-in-out,
+        opacity 0.2s ease-in-out;
 }
 
 .recipe-block:hover .overlay {
@@ -536,7 +541,7 @@ body ._lock {
 .main-recipe-block .description {
     text-align: center;
     padding: 25px 0 25px 0;
-    color: #D0E7D2;
+    color: #d0e7d2;
     font-size: 22px;
     width: 75%;
     margin: auto;
@@ -556,20 +561,19 @@ body ._lock {
     background-color: #ffffff39;
 }
 
-
 .sort-block a {
     border-radius: 5px;
     text-decoration: none;
     color: #394a3b;
     padding: 10px;
     margin: 2px;
-    background-color: #D0E7D2;
+    background-color: #d0e7d2;
     display: inline-block;
     transition: transform 0.2s ease-in-out;
 }
 
 .sort-block a:hover {
-    background-color: #79AC78;
+    background-color: #79ac78;
     color: white;
     transform: scale(1.05);
 }
@@ -625,11 +629,13 @@ body ._lock {
     color: white;
     font-size: 20px;
     background-color: #618264;
-    transition: background-color 0.3s ease, box-shadow 0.3s ease;
+    transition:
+        background-color 0.3s ease,
+        box-shadow 0.3s ease;
 }
 
 .add-new-recipe-btn:hover {
-    background-color: #79AC78;
+    background-color: #79ac78;
     box-shadow: -1px 4px 12px 0px rgba(0, 0, 0, 0.359);
     cursor: pointer;
 }
@@ -665,7 +671,7 @@ body ._lock {
 }
 
 .page-banner nav a:hover {
-    color: #B0D9B1;
+    color: #b0d9b1;
 }
 
 .page-banner nav p:last-child {
@@ -691,8 +697,10 @@ body ._lock {
     height: 42px;
     width: 120px;
     font-size: 16px;
-    background-color: #79AC78;
-    transition: background-color 0.3s ease, top 0.1s ease;
+    background-color: #79ac78;
+    transition:
+        background-color 0.3s ease,
+        top 0.1s ease;
 }
 
 .login-btn:hover {
@@ -767,8 +775,10 @@ body ._lock {
     height: 42px;
     width: 120px;
     font-size: 16px;
-    background-color: #79AC78;
-    transition: background-color 0.3s ease, top 0.1s ease;
+    background-color: #79ac78;
+    transition:
+        background-color 0.3s ease,
+        top 0.1s ease;
 }
 
 #registerBtn:hover {
@@ -903,7 +913,7 @@ body ._lock {
 .search-block-wrapper .description {
     text-align: center;
     padding: 25px 0 25px 0;
-    color: #D0E7D2;
+    color: #d0e7d2;
     font-size: 22px;
     width: 75%;
     margin: auto;
@@ -965,7 +975,7 @@ body ._lock {
     display: inline-block;
 }
 
-.newsletter-button input[type='email'] {
+.newsletter-button input[type="email"] {
     width: 300px;
     height: 45px;
     font-size: 18px;
@@ -978,7 +988,7 @@ body ._lock {
 }
 
 .form-newsletter button {
-    background-color: #B0D9B1;
+    background-color: #b0d9b1;
     color: #2a382b;
     font-size: 18px;
     width: 120px;
@@ -988,14 +998,14 @@ body ._lock {
 }
 
 .form-newsletter button:hover {
-    background-color: #D0E7D2;
+    background-color: #d0e7d2;
     color: #2a382b;
     cursor: pointer;
     box-shadow: 1px 4px 5px 0px #00000068;
 }
 
 .form-newsletter button:active {
-    background-color: #B0D9B1;
+    background-color: #b0d9b1;
     box-shadow: none;
 }
 
@@ -1003,7 +1013,7 @@ body ._lock {
 
 .page-content {
     padding: 50px 110px;
-    background-color: #B0D9B1;
+    background-color: #b0d9b1;
 }
 
 .recipe-block-single {
@@ -1056,7 +1066,7 @@ body ._lock {
 
 .recipe-sidebar .description {
     font-size: 18px;
-    color: #D0E7D2;
+    color: #d0e7d2;
     text-align: justify;
     line-height: 1.3;
 }
@@ -1098,7 +1108,6 @@ body ._lock {
     /* margin-top: 15px; */
 
     /* align-items: flex-start; */
-
 }
 
 .ingredients-block-inner {
@@ -1243,7 +1252,7 @@ body ._lock {
 }
 
 .date-posted {
-    color: #79AC78;
+    color: #79ac78;
 }
 
 .please-log-in {
@@ -1278,7 +1287,7 @@ body ._lock {
 .print-item:hover,
 .print-item-comments:hover,
 .add-comment-btn:hover {
-    background-color: #79AC78;
+    background-color: #79ac78;
     cursor: pointer;
 }
 
@@ -1362,6 +1371,10 @@ body ._lock {
     flex-direction: column;
 }
 
+/* input[type="file"] {
+    display: none;
+} */
+
 .recipe-form-block {
     padding: 80px;
     display: flex;
@@ -1428,12 +1441,14 @@ body ._lock {
     width: 150px;
     font-size: 16px;
     background-color: #618264;
-    transition: background-color 0.3s ease, top 0.1s ease;
+    transition:
+        background-color 0.3s ease,
+        top 0.1s ease;
 }
 
 .ingredients-container-wrapper button:hover,
 .directions-container-wrapper button:hover {
-    background-color: #79AC78;
+    background-color: #79ac78;
     box-shadow: -1px 4px 12px 0px rgba(0, 0, 0, 0.359);
     cursor: pointer;
 }
@@ -1464,7 +1479,9 @@ body ._lock {
     width: 150px;
     font-size: 16px;
     background-color: rgb(175, 59, 59);
-    transition: background-color 0.3s ease, top 0.1s ease;
+    transition:
+        background-color 0.3s ease,
+        top 0.1s ease;
 }
 
 .ingredient-item button:hover,
@@ -1499,11 +1516,13 @@ body ._lock {
     color: white;
     font-size: 16px;
     background-color: #618264;
-    transition: background-color 0.3s ease, top 0.1s ease;
+    transition:
+        background-color 0.3s ease,
+        top 0.1s ease;
 }
 
 .custom-upload-button:hover {
-    background-color: #79AC78;
+    background-color: #79ac78;
     box-shadow: -1px 4px 12px 0px rgba(0, 0, 0, 0.359);
     cursor: pointer;
 }
@@ -1538,11 +1557,13 @@ body ._lock {
     color: white;
     font-size: 16px;
     background-color: #618264;
-    transition: background-color 0.3s ease, top 0.1s ease;
+    transition:
+        background-color 0.3s ease,
+        top 0.1s ease;
 }
 
 .submit-btn:hover {
-    background-color: #79AC78;
+    background-color: #79ac78;
     box-shadow: -1px 4px 12px 0px rgba(0, 0, 0, 0.359);
     cursor: pointer;
 }
@@ -1583,7 +1604,7 @@ body ._lock {
 }
 
 .item-list li a:hover {
-    color: #B0D9B1;
+    color: #b0d9b1;
     text-decoration: none;
 }
 
@@ -1625,5 +1646,5 @@ body ._lock {
 }
 
 .footer-brand a:hover {
-    color: #B0D9B1;
+    color: #b0d9b1;
 }

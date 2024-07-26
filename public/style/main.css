@@ -297,6 +297,10 @@ body ._lock {
 
 .feature-desc {
     text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
     /* padding-bottom: 50px; */
 }
 
@@ -419,6 +423,7 @@ body ._lock {
 
 .text-inner span {
     color: #618264;
+    margin-left: 5px;
 }
 
 .text-inner p {

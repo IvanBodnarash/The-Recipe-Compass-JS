@@ -1,8 +1,7 @@
 import logIn from './login.js';
 import initRegister from './register.js';
 import postRecipe from './newRecipe.js';
-// import logIn from './login.js';
-// import { logout } from './firebase.js';
+import displayRecipes from './latestRecipes.js';
 
 // Function for loading a page
 function loadPage(containerId, url, callback) {
@@ -68,6 +67,7 @@ document.addEventListener("DOMContentLoaded", function () {
       // Call loadNewsletterBlock() if the content is "home"
       if (content === "home") {
           loadNewsletterBlock();
+          displayRecipes();
       } else if (content === "register") {
           initRegister();
       } else if (content === "login") {

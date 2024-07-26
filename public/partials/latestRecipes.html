@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Latest Recipes</title>
+  </head>
+  <body>
+    <div class="no-user-banner" style="display: none">
+      <h1>
+        Sorry, we cannot process your request at this time, please try again
+        later
+      </h1>
+      <div class="no-user-banner-inner">
+        <a href="index.html?content=login">Try again</a>
+        <p>&ensp;/&ensp;</p>
+        <a href="index.html">Home</a>
+      </div>
+    </div>
+
+    <div class="no-user-banner" style="display: none">
+      <h1>
+        Sorry, there are no recipes posted at this time, please try back later
+      </h1>
+    </div>
+
+    <div class="recipe-block">
+      <a href="index.html?content=showrecipe&id=$recipeid\">
+        <div class="overlay">
+          <p>Open</p>
+        </div>
+        <div class="content-wrapper">
+          <h3>$title</h3>
+          <img src="" alt="Recipe img" />
+          <div class="text-block">
+            <span>$shortdesc</span>
+            <div class="text-inner-block">
+              <hr />
+              <div class="text-inner" style="display: flex">
+                <p>Posted by</p>
+                <span>&nbsp;$poster</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </a>
+    </div>
+  </body>
+</html>

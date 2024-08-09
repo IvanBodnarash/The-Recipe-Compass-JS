@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Show Recipe</title>
+</head>
+<body>
+    <div class="recipe-block-main">
+        <div class="no-user-banner" style="display: none;">
+            <h1>Sorry, we cannot process your request at this time, please try again later</h1>
+            <div class="no-user-banner-inner">
+                <a href="index.html?content=login">Try again</a>
+                <p>&ensp;/&ensp;</p>
+                <a href="index.html">Home</a>
+            </div>
+        </div>
+
+        <div class="page-banner">
+            <h1 id="recipeTitle">Title</h1>
+            <nav>
+                <a href="index.html">Home</a>
+                <p>&ensp;/&ensp;</p>
+                <p id="recipeTitle">Title</p>
+            </nav>
+        </div>
+
+        <div class="page-content">
+            <div class="recipe-block-single">
+                <div class="recipe-block-wrapper">
+                    <div class="img-recipe">
+                        <img src="" alt="img" id="recipeImg">
+                        <div class="print-item">
+                            <i class="fa-solid fa-print"></i>
+                            <a href="print.html?id=$recipeid" target="_blank">Print recipe</a>
+                        </div>
+                    </div>
+                    <div class="sidebar-wrapper">
+                        <div class="recipe-sidebar">
+                            <h1>Author / User</h1>
+                            <div class="author-block">
+                                <div class="author-inner-block">
+                                    <img src="img/cook.jpg" alt="cooking">
+                                    <h2 id="recipeAuthor">Author</h2>
+                                </div>
+                                <span id="timeStamp">Posted On: </span>
+                            </div>
+                        </div>
+
+                        <div class="recipe-sidebar">
+                            <span class="description" id="desc">Description</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- INGREDIENTS BLOCK -->
+                <div class="ingredients-block">
+                    <div class="ingredients-block-container">
+                        <i class="fa-solid fa-seedling"></i>
+                        <h1>Ingredients</h1>
+                    </div>
+                    <div class="ingredients-block-inner">
+                        <div class="form-check">
+                            <input type="checkbox" class="form-check-input" id="ing$" onchange="toggleStrikethrough('ing$i')">
+                            <label for="ing$i" id="label_ing$i">Ingredient</label>
+                        </div>
+                    </div>
+                </div>
+
+                <hr>
+
+                <!-- DIRECTIONS BLOCK -->
+                <div class="directions-block">
+                    <div class="directions-block-container">
+                        <i class="fa-solid fa-layer-group"></i>
+                        <h1>Directions</h1>
+                    </div>
+                    <div class="sequence">
+                        <ol class="directions-list">
+                            <li class="directions-item">$direction</li>
+                        </ol>
+                    </div>
+                </div>
+            </div>
+
+            <!-- COMMENTS -->
+            <div class="comments-section">
+                <div class="comments-block">
+                    <i class="fa-solid fa-comments"></i>
+                    <h1>Comments</h1>
+                </div>
+
+                <span class="please-log-in">No comments posted yet</span>
+
+                <!-- Auth check before adding comments -->
+                <span class="please-log-in">Please <a href="index.php?content=login">log in</a> to leave a comment<span>
+                <div class="comments-section-btns">
+                    <div class="add-comment-btn">
+                        <i class="fa-solid fa-square-plus"></i>
+                        <a href="index.php?content=login">Add a comment</a>
+                    </div>
+                    <div class="print-item-comments">
+                        <i class="fa-solid fa-print"></i>
+                        <a href="print.php?id=$recipeid" target="_blank">Print recipe</a>
+                    </div>
+                </div>
+                <div class="comments-info-section">
+                    <span>$row[0] comments posted</span>
+                </div>
+
+                <div class="comments-section-btns">
+                    <div class="add-comment-btn">
+                        <i class="fa-solid fa-square-plus"></i>
+                        <a href="index.php?content=login">Add a comment</a>
+                    </div>
+                    <div class="print-item-comments">
+                        <i class="fa-solid fa-print"></i>
+                        <a href="print.php?id=$recipeid" target="_blank">Print recipe</a>
+                    </div>
+                </div>
+                <div class="comments-section-btns">
+                    <div class="add-comment-btn">
+                        <i class="fa-solid fa-square-plus"></i>
+                        <a href="#comnt-form">Add a comment</a>
+                    </div>
+                    <div class="print-item-comments">
+                        <i class="fa-solid fa-print"></i>
+                        <a href="print.php?id=$recipeid" target="_blank">Print recipe</a>
+                    </div>
+                </div>
+                <div class="comment-container">
+                    <div class="comment-author">
+                        <h2>$poster</h2>
+                    </div>
+                    <div class="comment-text">
+                        <p>$comment</p>
+                    </div>
+                    <div class="date-posted">
+                        <p>$dateFormatted</p>
+                    </div>
+                </div>
+                <a href="index.php?content=showrecipe&id=$recipeid&page=$page">Prev</a>
+                <a href="index.php?content=showrecipe&id=$recipeid&page=$page">$page</a>
+                <a href="index.php?content=showrecipe&id=$recipeid&page=$page">Next</a>
+
+                <div class="no-user-banner">
+                    <h1>Sorry, you do not have permission to post comments</h1>
+                    <div class="no-user-banner-inner">
+                        <a href="index.php?content=showrecipe&id=$recipeid">Go back to recipe</a>
+                        <p>&ensp;/&ensp;</p>
+                        <a href="index.php?content=login">Please login to post comments</a>
+                    </div>
+                </div>
+                <div id="comnt-form" class="comment-form-block">
+                    <div class="comments-block">
+                        <i class="fa-solid fa-comment"></i>
+                        <h1>Enter your comment</h1>
+                    </div>
+                    <form id="commentForm" class="comment-form" action="index.php" method="post">
+                        <textarea required rows="5" cols="50" name="comment"></textarea><br>
+                        <input type="hidden" name="poster" value="$userid"><br>
+                        <input type="hidden" name="recipeid" value="$recipeid">
+                        <input type="hidden" name="content" value="addcomment">
+                        <label for="submitCommBtn" class="add-comment-btn">
+                            <i class="fa-solid fa-square-plus"></i>
+                            <a>Add a comment</a>
+                        </label>
+                        <input id="submitCommBtn" class="add-btn-input" type="submit" style="display: none;">
+                    </form>
+                </div>
+            </div>
+
+        </div>
+
+        <div class="newsletter-block">
+        </div>
+
+    </div>
+</body>
+</html>

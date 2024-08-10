@@ -3,7 +3,7 @@ import initRegister from "./register.js";
 import postRecipe from "./newRecipe.js";
 import displayRecipes from "./latestRecipes.js";
 import showRecipe from "./showRecipe.js";
-
+import loadRecipes from "./showAllRecipes.js";
 // Function for loading a page
 function loadPage(containerId, url, callback) {
   fetch(url)
@@ -91,6 +91,11 @@ document.addEventListener("DOMContentLoaded", function () {
         showRecipe(recipeId);
         console.log(recipeId);
       }
+    } else if (content === "recipes") {
+      const urlParams = new URLSearchParams(window.location.search);
+      const sortField = urlParams.get("sort") || "recipeTitle";
+      const sortOrder = urlParams.get("order") || "asc";
+      loadRecipes(sortField, sortOrder);
     }
   });
 });

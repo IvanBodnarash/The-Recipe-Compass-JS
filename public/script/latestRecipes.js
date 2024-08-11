@@ -21,9 +21,6 @@ const usersRef = collection(db, "users");
 // Function to create a card element for each recipe using template
 function createCard(recipe, userName, template) {
   const card = template.cloneNode(true);
-  // card.querySelector(
-  //   "a"
-  // ).href = `index.html?content=showrecipe`;
   card.querySelector(
     "a"
   ).href = `index.html?content=showrecipe&id=${recipe.id}`;

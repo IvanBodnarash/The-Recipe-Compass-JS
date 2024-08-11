@@ -4,6 +4,7 @@ import postRecipe from "./newRecipe.js";
 import displayRecipes from "./latestRecipes.js";
 import showRecipe from "./showRecipe.js";
 import loadRecipes from "./showAllRecipes.js";
+import searchRecipes from "./searchRecipes.js";
 // Function for loading a page
 function loadPage(containerId, url, callback) {
   fetch(url)
@@ -96,6 +97,10 @@ document.addEventListener("DOMContentLoaded", function () {
       const sortField = urlParams.get("sort") || "recipeTitle";
       const sortOrder = urlParams.get("order") || "asc";
       loadRecipes(sortField, sortOrder);
+    } else if (content === "searchrecipes") {
+      console.log("search recipes page was opened");
+      searchRecipes();
+      loadNewsletterBlock();
     }
   });
 });

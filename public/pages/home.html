@@ -14,19 +14,20 @@
           friends
         </p>
         <div class="search-box">
-          <form action="index.php" method="get">
+          <form method="get" id="searchForm">
             <div class="input-container">
               <input
                 class="search-input"
                 name="searchFor"
                 type="text"
                 placeholder="Search Recipe"
+                required
               />
               <button type="submit">
                 <i class="fa-solid fa-magnifying-glass"></i>
                 Search
               </button>
-              <input name="content" type="hidden" value="search" />
+              <input name="content" type="hidden" value="searchrecipes" />
             </div>
           </form>
         </div>

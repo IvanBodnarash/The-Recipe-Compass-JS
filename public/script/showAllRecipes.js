@@ -55,7 +55,7 @@ export default async function loadRecipes(
     let recipes = await Promise.all(
         querySnapshot.docs.map(async (doc) => {
             const recipe = doc.data();
-            console.log("Recipe found:", recipe.recipeTitle);
+            console.log("Recipe found:", recipe.recipeTitle, doc.id);
             const userName = await getUserName(recipe.userId);
             return { id: doc.id, ...recipe, userName };
         })
@@ -72,9 +72,10 @@ export default async function loadRecipes(
     }
 
     const recipesHtml = recipes.map((recipe) => {
+        console.log("Recipe:", recipe.recipeTitle, recipe.id);
         return `
                 <div class="recipe-block">
-                    <a href="index.html?content=showrecipe&id=${doc.id}">
+                    <a href="index.html?content=showrecipe&id=${recipe.id}">
                         <div class="overlay">
                             <p>Open</p>
                         </div>

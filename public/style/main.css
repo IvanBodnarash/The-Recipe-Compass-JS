@@ -902,8 +902,17 @@ body ._lock {
     color: #618264;
 }
 
-.no-user-banner-inner a:hover {
+.no-user-banner-inner a:hover,
+.no-user-banner-inner2 a:hover {
     color: #2a382b;
+}
+
+.no-user-banner-inner2 a {
+    padding: 22px;
+    text-decoration: none;
+    font-size: 22px;
+    font-weight: 600;
+    color: rgb(192, 192, 192);
 }
 
 /* SEARCH BLOCK */

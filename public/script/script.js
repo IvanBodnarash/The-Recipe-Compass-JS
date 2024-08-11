@@ -142,28 +142,28 @@ function toggleStrikethrough(checkboxId) {
 
 // COMMENT FORM SUBMIT
 
-document.querySelector("#commentForm").addEventListener("submit", function (e) {
-  e.preventDefault();
+// document.querySelector("#commentForm").addEventListener("submit", function (e) {
+//   e.preventDefault();
 
-  let formData = new FormData(this);
+//   let formData = new FormData(this);
 
-  // Saving of current scroll position
+//   // Saving of current scroll position
 
-  let scrollTop = window.scrollY || document.documentElement.scrollTop;
+//   let scrollTop = window.scrollY || document.documentElement.scrollTop;
 
-  let xhr = new XMLHttpRequest();
-  xhr.onreadystatechange = function () {
-    if (xhr.readyState === 4 && xhr.status === 200) {
-      // Refreshing after sucessfull submit
-      window.location.reload();
+//   let xhr = new XMLHttpRequest();
+//   xhr.onreadystatechange = function () {
+//     if (xhr.readyState === 4 && xhr.status === 200) {
+//       // Refreshing after sucessfull submit
+//       window.location.reload();
 
-      window.scrollTo(0, scrollTop);
-    }
-  };
+//       window.scrollTo(0, scrollTop);
+//     }
+//   };
 
-  xhr.open("post", "index.php", true);
-  xhr.send(formData);
-});
+//   xhr.open("post", "index.php", true);
+//   xhr.send(formData);
+// });
 
 // document
 //   .getElementById("uploadImgButton")
@@ -198,7 +198,7 @@ document.querySelector("#commentForm").addEventListener("submit", function (e) {
 //     }, 1500);
 // }
 
-document.getElementById('uploadImgButton').addEventListener('change', displayFileName);
+// document.getElementById('uploadImgButton').addEventListener('change', displayFileName);
 
 // Upload file name
 
@@ -220,3 +220,5 @@ function displayFileName() {
     }
   }, 1500);
 }
+
+console.log("Script loaded");

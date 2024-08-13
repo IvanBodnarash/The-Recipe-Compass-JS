@@ -105,10 +105,10 @@
                     </div>
                 </div>
                 <div class="comments-info-section">
-                    <span>$row[0] comments posted</span>
+                    <span id="commentCount"></span>
                 </div>
 
-                <div class="comments-section-btns">
+                <!-- <div class="comments-section-btns">
                     <div class="add-comment-btn">
                         <i class="fa-solid fa-square-plus"></i>
                         <a href="index.php?content=login">Add a comment</a>
@@ -127,9 +127,9 @@
                         <i class="fa-solid fa-print"></i>
                         <a href="print.php?id=$recipeid" target="_blank">Print recipe</a>
                     </div>
-                </div>
-                <div class="comment-container">
-                    <div class="comment-author">
+                </div> -->
+                <div class="comment-container-block">
+                    <!-- <div class="comment-author">
                         <h2>$poster</h2>
                     </div>
                     <div class="comment-text">
@@ -137,9 +137,9 @@
                     </div>
                     <div class="date-posted">
                         <p>$dateFormatted</p>
-                    </div>
+                    </div> -->
                 </div>
-                <a href="index.php?content=showrecipe&id=$recipeid&page=$page">Prev</a>
+                <!-- <a href="index.php?content=showrecipe&id=$recipeid&page=$page">Prev</a>
                 <a href="index.php?content=showrecipe&id=$recipeid&page=$page">$page</a>
                 <a href="index.php?content=showrecipe&id=$recipeid&page=$page">Next</a>
 
@@ -150,17 +150,17 @@
                         <p>&ensp;/&ensp;</p>
                         <a href="index.php?content=login">Please login to post comments</a>
                     </div>
-                </div>
+                </div> -->
                 <div id="comnt-form" class="comment-form-block">
                     <div class="comments-block">
                         <i class="fa-solid fa-comment"></i>
                         <h1>Enter your comment</h1>
                     </div>
-                    <form id="commentForm" class="comment-form" action="index.php" method="post">
-                        <textarea required rows="5" cols="50" name="comment"></textarea><br>
-                        <input type="hidden" name="poster" value="$userid"><br>
-                        <input type="hidden" name="recipeid" value="$recipeid">
-                        <input type="hidden" name="content" value="addcomment">
+                    <form id="commentForm" class="comment-form">
+                        <textarea required rows="5" cols="50" id="commentText"></textarea><br>
+                        <!-- <input type="hidden" name="poster" value="$userid"><br> -->
+                        <input type="hidden" id="recipeId" value="$recipeid">
+                        <input type="hidden" id="parentId" value="">
                         <label for="submitCommBtn" class="add-comment-btn">
                             <i class="fa-solid fa-square-plus"></i>
                             <a>Add a comment</a>
@@ -172,9 +172,8 @@
 
         </div>
 
-        <div class="newsletter-block">
-        </div>
-
+        <!-- <div class="newsletter-block">
+        </div> -->
     </div>
 </body>
 </html>

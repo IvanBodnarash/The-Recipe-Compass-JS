@@ -34,6 +34,11 @@ export default function initRegister() {
       const password = document.getElementById("password").value;
       const password2 = document.getElementById("password2").value;
 
+      // if (!validatePassword(password)) {
+      //   alert("Your password must be at least 6 characters long and contain at least one uppercase letter, one lowercase letter, one number, and one special character");
+      //   return;
+      // }
+
       // Compare Passwords
       if (password != password2) {
         alert("Passwords do not match");
@@ -70,6 +75,12 @@ function validateEmail(email) {
     /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
   return re.test(String(email).toLowerCase());
 }
+
+// // Validate Password
+// function validatePassword(password) {
+//   const re = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/;
+//   return re.test(password);
+// }
 
 // Save User Data
 function saveUserData(userId, userName, firstName, lastName, email) {

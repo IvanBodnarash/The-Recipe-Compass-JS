@@ -221,4 +221,7 @@ function displayFileName() {
   }, 1500);
 }
 
-console.log("Script loaded");
+
+console.log("Hello");
+
+

@@ -5,6 +5,7 @@ import displayRecipes from "./latestRecipes.js";
 import showRecipe from "./showRecipe.js";
 import loadRecipes from "./showAllRecipes.js";
 import searchRecipes from "./searchRecipes.js";
+import commentLogic from "./submitComment.js";
 // Function for loading a page
 function loadPage(containerId, url, callback) {
   fetch(url)
@@ -91,6 +92,7 @@ document.addEventListener("DOMContentLoaded", function () {
       if (recipeId) {
         showRecipe(recipeId);
         console.log(recipeId);
+        commentLogic(recipeId);
       }
     } else if (content === "recipes") {
       const urlParams = new URLSearchParams(window.location.search);

@@ -46,7 +46,6 @@ export default async function searchRecipes() {
     console.log(searchTerm);
     descriptionParagraph.textContent = `All search results with keyword "${searchTerm}"`;
   }
-//   descriptionParagraph.textContent = `All search results with keyword ${searchTerm}`;
 
   console.log("Query snapshot:", querySnapshot);
   console.log(`Number of recipes found: ${querySnapshot.size}`);

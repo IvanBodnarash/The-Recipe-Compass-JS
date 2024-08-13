@@ -355,6 +355,7 @@ body ._lock {
     flex-direction: row;
     flex-wrap: wrap;
     justify-content: center;
+    padding: 0 100px;
 }
 
 .recipe-block {
@@ -557,7 +558,8 @@ body ._lock {
     flex-direction: row;
     justify-content: space-between;
     align-items: center;
-    margin: 0 50px;
+    padding: 0 130px;
+    /* margin: 0 50px; */
 }
 
 .sorted-by-block p {
@@ -592,9 +594,9 @@ body ._lock {
     flex-direction: row;
     flex-wrap: wrap;
     justify-content: center;
-    margin-left: 20px;
-    margin-right: 20px;
-    padding: 50px 0;
+    /* margin-left: 20px; */
+    /* margin-right: 20px; */
+    padding: 50px 100px;
     padding-top: 10px;
 }
 
@@ -1241,10 +1243,13 @@ body ._lock {
 
 .comment-container {
     width: fit-content;
+    word-wrap: break-word;
+    overflow-wrap: break-word;
+    white-space: normal;
+    overflow: hidden;
     margin-top: 15px;
     background-color: #ffffff5b;
     padding: 25px;
-    /* margin-bottom: 30px; */
     border-radius: 5px;
     max-width: 100%;
 }
@@ -1272,6 +1277,7 @@ body ._lock {
 
 .date-posted {
     color: #79ac78;
+    font-size: 16px;
 }
 
 .please-log-in {
@@ -1598,7 +1604,7 @@ body ._lock {
 }
 
 .short-inf-block {
-    padding: 70px 50px;
+    padding: 70px 100px;
     display: flex;
     flex-direction: row;
     flex-wrap: wrap;

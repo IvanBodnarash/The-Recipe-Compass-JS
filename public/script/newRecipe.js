@@ -23,123 +23,136 @@ const db = getFirestore(app);
 const storage = getStorage(app);
 
 export default function postRecipe() {
-  console.log("postRecipe called");
+  console.log("postRecipe page function called");
 
-  document.getElementById("uploadImgButton").addEventListener("change", (event) => {
-    console.log("File input changed");
-    const fileNameDisplay = document.getElementById("fileName");
-    const file = event.target.files[0].name;
-    console.log(file);
+  const spinner = document.querySelector("#loadingSpinner");
+  const pageContent = document.querySelector(".new-recipe-page");
+  spinner.style.display = "flex";
+  pageContent.style.display = "none";
 
-    const fileNameParts = file.split(".");
-    const name = fileNameParts.slice(0, -1).join(".");
-    const extension = fileNameParts.pop();
+  try {
+    document
+      .getElementById("uploadImgButton")
+      .addEventListener("change", (event) => {
+        console.log("File input changed");
+        const fileNameDisplay = document.getElementById("fileName");
+        const file = event.target.files[0].name;
+        console.log(file);
 
-    if (file.length > 20) {
-      const shortenedFileName = name.substring(0, 22) + "..." + extension;
-      fileNameDisplay.textContent = shortenedFileName;
-      console.log("Shortened file name:", shortenedFileName);
-    } else {
-      fileNameDisplay.textContent = file;
-    }
+        const fileNameParts = file.split(".");
+        const name = fileNameParts.slice(0, -1).join(".");
+        const extension = fileNameParts.pop();
 
-    console.log("File name length:", file.length);
-  });
-
-
-  // Add new recipe to database and get image URL
-  document
-    .getElementById("newRecipeForm")
-    .addEventListener("submit", async function (event) {
-      event.preventDefault();
-      console.log("button clicked");
-
-      const userId = auth.currentUser.uid;
-      const recipeTitle = document.getElementById("recipeTitle").value;
-      const shortDescription = document.getElementById(
-        "recipeShortDescription"
-      ).value;
-      const ingredients = Array.from(
-        document.querySelectorAll("input[name='ingredients[]']")
-      ).map((input) => input.value);
-      const directions = Array.from(
-        document.querySelectorAll("textarea[name='directions[]']")
-      ).map((textarea) => textarea.value);
-      
-      const fileInput = document.getElementById("uploadImgButton");
-      const img = fileInput ? fileInput.files[0] : null;
-
-      console.log("recipeTitle:", recipeTitle);
-      console.log("shortDescription:", shortDescription);
-      console.log("ingredients:", ingredients);
-      console.log("directions:", directions);
-      console.log("userId:", userId);
-      console.log("img:", img);
-
-      let imageUrl = null;
-
-      if (img) {
-        const validFileTypes = [
-          "image/jpeg",
-          "image/png",
-          "image/gif",
-          "image/webp",
-          "image/jpg",
-          "image/svg",
-        ];
-        const maxFileSize = 2 * 1024 * 1024; // 2 MB in bytes
-
-        if (!validFileTypes.includes(img.type)) {
-          console.log(
-            "Please select a valid image file (JPEG, PNG, GIF, WEBP, JPG, SVG)."
-          );
-          return;
+        if (file.length > 20) {
+          const shortenedFileName = name.substring(0, 22) + "..." + extension;
+          fileNameDisplay.textContent = shortenedFileName;
+          console.log("Shortened file name:", shortenedFileName);
+        } else {
+          fileNameDisplay.textContent = file;
         }
 
-        if (img.size > maxFileSize) {
-          console.log("Please select an image smaller than 2 MB.");
-          return;
+        console.log("File name length:", file.length);
+      });
+
+    // Add new recipe to database and get image URL
+    document
+      .getElementById("newRecipeForm")
+      .addEventListener("submit", async function (event) {
+        event.preventDefault();
+        console.log("button clicked");
+
+        const userId = auth.currentUser.uid;
+        const recipeTitle = document.getElementById("recipeTitle").value;
+        const shortDescription = document.getElementById(
+          "recipeShortDescription"
+        ).value;
+        const ingredients = Array.from(
+          document.querySelectorAll("input[name='ingredients[]']")
+        ).map((input) => input.value);
+        const directions = Array.from(
+          document.querySelectorAll("textarea[name='directions[]']")
+        ).map((textarea) => textarea.value);
+
+        const fileInput = document.getElementById("uploadImgButton");
+        const img = fileInput ? fileInput.files[0] : null;
+
+        console.log("recipeTitle:", recipeTitle);
+        console.log("shortDescription:", shortDescription);
+        console.log("ingredients:", ingredients);
+        console.log("directions:", directions);
+        console.log("userId:", userId);
+        console.log("img:", img);
+
+        let imageUrl = null;
+
+        if (img) {
+          const validFileTypes = [
+            "image/jpeg",
+            "image/png",
+            "image/gif",
+            "image/webp",
+            "image/jpg",
+            "image/svg",
+          ];
+          const maxFileSize = 2 * 1024 * 1024; // 2 MB in bytes
+
+          if (!validFileTypes.includes(img.type)) {
+            console.log(
+              "Please select a valid image file (JPEG, PNG, GIF, WEBP, JPG, SVG)."
+            );
+            return;
+          }
+
+          if (img.size > maxFileSize) {
+            console.log("Please select an image smaller than 2 MB.");
+            return;
+          }
+
+          try {
+            // Upload image to Firebase Storage
+            const storageRef = ref(storage, `recipes/${userId}/${img.name}`);
+            await uploadBytes(storageRef, img);
+            imageUrl = await getDownloadURL(storageRef);
+            console.log("File available at", imageUrl);
+          } catch (error) {
+            console.error("Error uploading image:", error);
+            return;
+          }
+        } else {
+          console.log("No image selected, searching Unsplash...");
+          imageUrl = await searchImagesOnUnsplash(recipeTitle);
+
+          if (!imageUrl) {
+            console.log("No image found on Unsplash");
+            return;
+          }
         }
 
         try {
-          // Upload image to Firebase Storage
-          const storageRef = ref(storage, `recipes/${userId}/${img.name}`);
-          await uploadBytes(storageRef, img);
-          imageUrl = await getDownloadURL(storageRef);
-          console.log("File available at", imageUrl);
+          // Create new recipe document in Firestore
+          const docRef = await addDoc(collection(db, "recipes"), {
+            userId,
+            recipeTitle,
+            shortDescription,
+            ingredients,
+            directions,
+            imageUrl,
+            timestamp: serverTimestamp(),
+          });
+
+          console.log("Recipe document written with ID: ", docRef.id);
         } catch (error) {
-          console.error("Error uploading image:", error);
-          return;
+          console.error("Error adding document: ", error);
         }
-      } else {
-        console.log("No image selected, searching Unsplash...");
-        imageUrl = await searchImagesOnUnsplash(recipeTitle);
 
-        if (!imageUrl) {
-          console.log("No image found on Unsplash");
-          return;
-        }
-      }
-
-      try {
-        // Create new recipe document in Firestore
-        const docRef = await addDoc(collection(db, "recipes"), {
-          userId,
-          recipeTitle,
-          shortDescription,
-          ingredients,
-          directions,
-          imageUrl,
-          timestamp: serverTimestamp(),
-        });
-
-        console.log("Recipe document written with ID: ", docRef.id);
-      } catch (error) {
-        console.error("Error adding document: ", error);
-      }
-
-      window.location.href = "index.html";
-    });
+        window.location.href = "index.html";
+      });
+  } catch (error) {
+    console.log(error);
+  } finally {
+    spinner.style.display = "none";
+    pageContent.style.display = "block";
+  }
 }
 
 // Function for searching image with Unsplash API

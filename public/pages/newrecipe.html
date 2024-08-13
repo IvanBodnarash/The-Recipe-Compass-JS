@@ -6,7 +6,12 @@
     <title>New Recipe</title>
   </head>
   <body>
-    <div class="">
+    <!-- SPINNER -->
+    <div class="spinner-wrapper" id="loadingSpinner">
+      <div class="spinner"></div>
+    </div>
+
+    <div class="new-recipe-page">
       <div class="page-banner">
         <h1>Add Recipe</h1>
         <nav>
@@ -91,10 +96,19 @@
           </div> -->
 
           <div class="picker-wrapper">
-            <label for="uploadImgButton" id="labelUploadBtn" class="custom-upload-button">
+            <label
+              for="uploadImgButton"
+              id="labelUploadBtn"
+              class="custom-upload-button"
+            >
               Upload Photo
             </label>
-            <input type="file" id="uploadImgButton" class="file-input" accept="image/jpeg, image/png, image/gif, image/webp, image/jpg, image/svg" />
+            <input
+              type="file"
+              id="uploadImgButton"
+              class="file-input"
+              accept="image/jpeg, image/png, image/gif, image/webp, image/jpg, image/svg"
+            />
             <div class="file-name" id="fileName">No File Choosen</div>
           </div>
 
@@ -114,7 +128,7 @@
       // const uploadImgButton = document.querySelector(".file-input");
       // const fileName = document.getElementById("fileName");
 
-      // uploadImgButton.addEventListener("change", (event) => { 
+      // uploadImgButton.addEventListener("change", (event) => {
       //   const file = event.target.files[0];
       //   if (file) {
       //     fileName.textContent = file.name;

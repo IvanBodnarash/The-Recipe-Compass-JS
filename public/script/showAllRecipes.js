@@ -34,6 +34,11 @@ export default async function loadRecipes(
   sortOrder = "asc"
 ) {
   console.log("Loading recipes...");
+  const spinner = document.querySelector("#loadingSpinner");
+  const pageContent = document.querySelector(".main-recipe-block");
+  spinner.style.display = "flex";
+  pageContent.style.display = "none";
+
   try {
     let recipesQuery;
     if (sortField === "userName") {
@@ -102,6 +107,9 @@ export default async function loadRecipes(
     recipesWrapper.innerHTML += recipesHtml.join("");
   } catch (error) {
     console.error("Error loading recipes:", error);
+  } finally {
+    spinner.style.display = "none";
+    pageContent.style.display = "block";
   }
 }
 

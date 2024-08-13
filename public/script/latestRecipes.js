@@ -75,6 +75,9 @@ export default async function displayRecipes() {
         const recipe = doc.data();
         recipe.id = doc.id; // Add doc id to the recipe object
 
+        const spinner = document.querySelector("#loadingSpinner");
+        spinner.style.display = "flex";
+
         try {
           const userName = await getUserName(recipe.userId);
           const card = createCard(recipe, userName, template);
@@ -83,6 +86,8 @@ export default async function displayRecipes() {
           console.log("Card appended successfully");
         } catch (error) {
           console.error("Error creating card or appending ", error);
+        } finally {
+          spinner.style.display = "none";
         }
       });
     })

@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Admin Panel</title>
+    <style>
+      .admin-container {
+        width: 80%;
+        margin: 0 auto;
+      }
+
+      .tabs {
+        display: flex;
+        justify-content: space-around;
+        margin-bottom: 20px;
+      }
+
+      .tab-button {
+        padding: 10px 20px;
+        cursor: pointer;
+      }
+
+      .admin-table {
+        width: 100%;
+        border-collapse: collapse;
+      }
+
+      .admin-table th,
+      .admin-table td {
+        border: 1px solid #ddd;
+        padding: 8px;
+        text-align: left;
+      }
+
+      .admin-table th {
+        background-color: #f4f4f4;
+      }
+
+    </style>
+  </head>
+  <body>
+    <div class="admin-container">
+      <h1>Admin Panel</h1>
+      <div class="tabs">
+        <button class="tab-button" onclick="showTab('recipes')">Recipes</button>
+        <button class="tab-button" onclick="showTab('comments')">
+          Comments
+        </button>
+        <button class="tab-button" onclick="showTab('users')">Users</button>
+      </div>
+
+      <div class="tab-content" id="recipes">
+        <h2>Recipes</h2>
+        <table class="admin-table">
+          <thead>
+            <tr>
+              <th>Recipe Title</th>
+              <th>Author</th>
+              <th>Date Created</th>
+              <th>Actions</th>
+            </tr>
+          </thead>
+          <tbody id="recipeTableBody">
+            <!-- Table rows will be dynamically added here -->
+          </tbody>
+        </table>
+      </div>
+
+      <div class="tab-content" id="comments" style="display: none">
+        <h2>Comments</h2>
+        <table class="admin-table">
+          <thead>
+            <tr>
+              <th>Comment</th>
+              <th>Author</th>
+              <th>Date Created</th>
+              <th>Actions</th>
+            </tr>
+          </thead>
+          <tbody id="commentsTableBody">
+            <!-- Table rows will be dynamically added here -->
+          </tbody>
+        </table>
+      </div>
+
+      <div class="tab-content" id="users" style="display: none">
+        <h2>Users</h2>
+        <table class="admin-table">
+          <thead>
+            <tr>
+              <th>User Name</th>
+              <th>Email</th>
+              <th>Role</th>
+              <th>Actions</th>
+            </tr>
+          </thead>
+          <tbody id="usersTableBody">
+            <!-- Table rows will be dynamically added here -->
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </body>
+</html>

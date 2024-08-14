@@ -2,13 +2,19 @@ import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.3/fireba
 import {
   getAuth,
   signInWithEmailAndPassword,
+  onAuthStateChanged,
 } from "https://www.gstatic.com/firebasejs/10.12.3/firebase-auth.js";
 import { getFirestore } from "https://www.gstatic.com/firebasejs/10.12.3/firebase-firestore.js";
+import {
+  doc,
+  getDoc,
+} from "https://www.gstatic.com/firebasejs/10.12.3/firebase-firestore.js";
 
 import firebaseConfig from "./config.js";
 
 const app = initializeApp(firebaseConfig);
 const auth = getAuth();
+const db = getFirestore(app);
 
 // Initialize Login
 export default function logIn() {
@@ -32,7 +38,7 @@ export default function logIn() {
         .catch((error) => {
           const errorCode = error.code;
           const errorMessage = error.message;
-          alert("Error: " + errorMessage);
+          alert("Error: " + errorMessage + "\n" + errorCode);
         });
     });
   } else {

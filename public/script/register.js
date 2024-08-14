@@ -33,6 +33,7 @@ export default function initRegister() {
       const email = document.getElementById("email").value;
       const password = document.getElementById("password").value;
       const password2 = document.getElementById("password2").value;
+      const role = "user";
 
       // if (!validatePassword(password)) {
       //   alert("Your password must be at least 6 characters long and contain at least one uppercase letter, one lowercase letter, one number, and one special character");
@@ -56,12 +57,12 @@ export default function initRegister() {
           const user = userCredential.user;
           alert("Account Creating...");
           // Saving user data
-          saveUserData(user.uid, userName, firstName, lastName, email);
+          saveUserData(user.uid, userName, firstName, lastName, email, role);
         })
         .catch((error) => {
           const errorCode = error.code;
           const errorMessage = error.message;
-          alert("Error: " + errorMessage);
+          alert("Error: " + errorMessage + " " + errorCode);
         });
     });
   } else {
@@ -83,13 +84,14 @@ function validateEmail(email) {
 // }
 
 // Save User Data
-function saveUserData(userId, userName, firstName, lastName, email) {
+function saveUserData(userId, userName, firstName, lastName, email, role) {
   // Logic to save user data to database(Firestore)
   setDoc(doc(db, "users", userId), {
     userName: userName,
     firstName: firstName,
     lastName: lastName,
     email: email,
+    role: role,
   })
     .then(() => {
       console.log("User data saved successfully");

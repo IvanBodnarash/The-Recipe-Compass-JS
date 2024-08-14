@@ -6,6 +6,7 @@ import showRecipe from "./showRecipe.js";
 import loadRecipes from "./showAllRecipes.js";
 import searchRecipes from "./searchRecipes.js";
 import commentLogic from "./submitComment.js";
+import adminPanelLogic from "./adminPanel.js";
 // Function for loading a page
 function loadPage(containerId, url, callback) {
   fetch(url)
@@ -68,7 +69,9 @@ function loadNewsletterBlock() {
 
 // Call loadPage() when the DOM content is loaded
 document.addEventListener("DOMContentLoaded", function () {
-  loadPage("header", "partials/header.html");
+  loadPage("header", "partials/header.html", function () {
+    adminPanelLogic();
+  });
   loadPage("footer", "partials/footer.html");
   const content =
     new URLSearchParams(window.location.search).get("content") || "home";
@@ -82,7 +85,6 @@ document.addEventListener("DOMContentLoaded", function () {
     } else if (content === "login") {
       logIn();
     } else if (content === "logout") {
-      // logout();
       window.location.href = "index.html";
     } else if (content === "newrecipe") {
       console.log("This is new recipe");
@@ -103,6 +105,8 @@ document.addEventListener("DOMContentLoaded", function () {
       console.log("search recipes page was opened");
       searchRecipes();
       loadNewsletterBlock();
+    } else if (content === "adminpanel") {
+      console.log("adminpanel");
     }
   });
 });

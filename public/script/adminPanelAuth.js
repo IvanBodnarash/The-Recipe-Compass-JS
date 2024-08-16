@@ -22,7 +22,7 @@ const adminNavItem = `
     </li>
 `;
 
-export default async function adminPanelLogic() {
+export default async function adminPanelAuth() {
     const headerNavContainer = document.querySelector(".navbar-nav");
     if (!headerNavContainer) {
       console.error("Element with class 'navbar-nav' not found.");
@@ -34,31 +34,15 @@ export default async function adminPanelLogic() {
     if (user) {
       const userDoc = await getDoc(doc(db, "users", user.uid));
       console.log(userDoc);
-      if (userDoc.exists()) {
-        const userData = userDoc.data();
-        console.log(userData);
-        if (userData.role === "admin") {
-          console.log("Welcome admin!");
-          console.log(adminNavItem);
-          headerNavContainer.insertAdjacentHTML("afterbegin", adminNavItem);
-        } else {
-          console.log("Hello user!");
-        }
+      if (userDoc.exists() && userDoc.data().role === "admin") {
+        console.log("Welcome admin!");
+        console.log(adminNavItem);
+        headerNavContainer.insertAdjacentHTML("afterbegin", adminNavItem);
+      } else {
+        console.log("Hello user!");
       }
     }
   });
-
-  showTab(tabId);
-}
-
-// Function to show the selected tab
-function showTab(tabId) {
-    console.log("showTab func was called");
-    // const tabs = document.querySelectorAll(".tab-content");
-    // tabs.forEach((tab) => {
-    //     tab.style.display = "none";
-    // });
-    // document.getElementById(tabId).style.display = "block";
 }
 
 // // Loading of recipes

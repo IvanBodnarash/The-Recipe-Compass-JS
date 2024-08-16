@@ -8,49 +8,78 @@
       .admin-container {
         width: 80%;
         margin: 0 auto;
+        padding: 50px 0;
       }
 
       .tabs {
         display: flex;
-        justify-content: space-around;
+        justify-content: start;
         margin-bottom: 20px;
       }
 
       .tab-button {
-        padding: 10px 20px;
+        margin-right: 10px;
+        padding: 5px 20px;
+        font-size: 16px;
         cursor: pointer;
       }
 
       .admin-table {
+        margin-top: 20px;
         width: 100%;
         border-collapse: collapse;
+        word-wrap: break-word;
+        overflow-wrap: break-word;
+        white-space: normal;
+        overflow: hidden;
       }
 
       .admin-table th,
       .admin-table td {
         border: 1px solid #ddd;
         padding: 8px;
-        text-align: left;
+        max-width: 500px;
       }
 
       .admin-table th {
+        text-align: left;
         background-color: #f4f4f4;
       }
 
+      .action-btn {
+        padding: 10px 15px;
+        background-color: #618264;
+        color: #fff;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+      }
+
+      .delete {
+        background-color: #a51919;
+        color: #fff;
+        border: none;
+        cursor: pointer;
+      }
     </style>
   </head>
   <body>
-    <div class="admin-container">
+    <div class="page-banner">
       <h1>Admin Panel</h1>
+      <nav>
+        <a href="index.html">Home</a>
+        <p>&ensp;/&ensp;</p>
+        <p>Admin Panel</p>
+      </nav>
+    </div>
+    <div class="admin-container">
       <div class="tabs">
-        <button class="tab-button" onclick="showTab('recipes')">Recipes</button>
-        <button class="tab-button" onclick="showTab('comments')">
-          Comments
-        </button>
-        <button class="tab-button" onclick="showTab('users')">Users</button>
+        <button class="tab-button" id="recipesTab">Recipes</button>
+        <button class="tab-button" id="commentsTab">Comments</button>
+        <button class="tab-button" id="usersTab">Users</button>
       </div>
 
-      <div class="tab-content" id="recipes">
+      <div class="tab-content" id="recipes-content">
         <h2>Recipes</h2>
         <table class="admin-table">
           <thead>
@@ -67,7 +96,7 @@
         </table>
       </div>
 
-      <div class="tab-content" id="comments" style="display: none">
+      <div class="tab-content" id="comments-content" style="display: none">
         <h2>Comments</h2>
         <table class="admin-table">
           <thead>
@@ -84,7 +113,7 @@
         </table>
       </div>
 
-      <div class="tab-content" id="users" style="display: none">
+      <div class="tab-content" id="users-content" style="display: none">
         <h2>Users</h2>
         <table class="admin-table">
           <thead>

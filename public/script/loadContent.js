@@ -6,7 +6,8 @@ import showRecipe from "./showRecipe.js";
 import loadRecipes from "./showAllRecipes.js";
 import searchRecipes from "./searchRecipes.js";
 import commentLogic from "./submitComment.js";
-import adminPanelLogic from "./adminPanel.js";
+import adminPanelAuth from "./adminPanelAuth.js";
+import adminPanelLogic from "./adminPanelLogic.js";
 // Function for loading a page
 function loadPage(containerId, url, callback) {
   fetch(url)
@@ -70,7 +71,7 @@ function loadNewsletterBlock() {
 // Call loadPage() when the DOM content is loaded
 document.addEventListener("DOMContentLoaded", function () {
   loadPage("header", "partials/header.html", function () {
-    adminPanelLogic();
+    adminPanelAuth();
   });
   loadPage("footer", "partials/footer.html");
   const content =
@@ -107,6 +108,7 @@ document.addEventListener("DOMContentLoaded", function () {
       loadNewsletterBlock();
     } else if (content === "adminpanel") {
       console.log("adminpanel");
+      adminPanelLogic();
     }
   });
 });

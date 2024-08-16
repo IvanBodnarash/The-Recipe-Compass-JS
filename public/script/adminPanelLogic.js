@@ -39,26 +39,26 @@ export default async function adminPanelLogic() {
 
   recipeTabButton.addEventListener("click", () => {
     console.log("Recipe button clicked!");
-    loadingRecipesTab();
     commentsContent.style.display = "none";
     usersContent.style.display = "none";
+    loadingRecipesTab();
     recipesContent.style.display = "block";
   });
 
   commentTabButton.addEventListener("click", () => {
     console.log("Comments button clicked!");
-    loadingCommentsTab();
     recipesContent.style.display = "none";
     usersContent.style.display = "none";
+    loadingCommentsTab();
     commentsContent.style.display = "block";
   });
 
   usersTabButton.addEventListener("click", () => {
     console.log("Users button clicked!");
-    loadingUsersTab();
     recipesContent.style.display = "none";
-    usersContent.style.display = "block";
     commentsContent.style.display = "none";
+    loadingUsersTab();
+    usersContent.style.display = "block";
   });
 }
 
@@ -94,8 +94,8 @@ async function loadingRecipesTab() {
         <td>${userName}</td>
         <td>${dateFormater(recipe)}</td>
         <td>
-        <button class="action-btn delete" onclick="deleteRecipe('${doc.id}')">Delete</button>
-        <button class="action-btn" onclick="viewRecipe('${doc.id}')">View</button>
+        <button class="action-btn delete">Delete</button>
+        <button class="action-btn">View</button>
         </td>
         </tr>
         `;
@@ -109,7 +109,9 @@ async function loadingCommentsTab() {
   const commentsRef = collection(db, "comments");
   const commentsSnapshot = await getDocs(commentsRef);
   const commentsTableBody = document.querySelector("#commentsTableBody");
-  commentsTableBody.innerHTML = "";
+//   commentsTableBody.innerHTML = "";
+    const newCommentsTableBody = commentsTableBody.cloneNode(false);
+    commentsTableBody.replaceWith(newCommentsTableBody);
 
   let rows = [];
 
@@ -123,30 +125,44 @@ async function loadingCommentsTab() {
     // const userName = await getUserName(comment.userId);
 
     const row = `
-        <tr>
+        <tr data-id="${doc.id}">
         <td>${comment.text}</td>
         <td>${userName}</td>
         <td>${dateFormater(comment)}</td>
         <td>
-        <button class="action-btn delete" onclick="deleteComment('${doc.id}')">Delete</button>
-        <button class="action-btn" onclick="viewComment('${doc.id}')">View</button>
+        <button id="commentDeleteBtn" class="action-btn delete">Delete</button>
         </td>
         </tr>
         `;
 
     rows.push(row);
   }
-  commentsTableBody.innerHTML += rows.join("");
-  rows = [];
+  newCommentsTableBody.innerHTML += rows.join("");
+//   rows = [];
+
+  newCommentsTableBody.addEventListener("click", (event) => {
+    const target = event.target;
+
+    // Getting id of the comment wrom data-id from parent element
+    const commentId = target.closest("tr").dataset.id;
+
+    console.log(commentId);
+
+    if (target.classList.contains("delete")) {
+      deleteComment(commentId);
+    }
+  });
 }
 
 // Functioon to delete comment
 function deleteComment(commentId) {
+  console.log("deleteComment func was called");
+  console.log(commentId);
   const commentRef = doc(db, "comments", commentId);
   if (confirm("Are you sure you want to delete this comment?")) {
     deleteDoc(commentRef).then(() => {
-        alert("Comment deleted");
-        loadingCommentsTab();
+      alert("Comment deleted");
+      loadingCommentsTab();
     });
   }
 }

@@ -1,5 +1,8 @@
 import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.3/firebase-app.js";
-import { getAuth } from "https://www.gstatic.com/firebasejs/10.12.3/firebase-auth.js";
+import {
+  getAuth,
+  deleteUser,
+} from "https://www.gstatic.com/firebasejs/10.12.3/firebase-auth.js";
 import {
   getFirestore,
   collection,
@@ -79,7 +82,9 @@ async function loadingRecipesTab() {
   const recipesRef = collection(db, "recipes");
   const recipesSnapshot = await getDocs(recipesRef);
   const recipesTableBody = document.querySelector("#recipeTableBody");
-  recipesTableBody.innerHTML = "";
+
+  const newRecipesTableBody = recipesTableBody.cloneNode(false);
+  recipesTableBody.replaceWith(newRecipesTableBody);
 
   let rows = [];
 
@@ -89,7 +94,7 @@ async function loadingRecipesTab() {
     const userName = await getUserName(recipe.userId);
 
     const row = `
-        <tr>
+        <tr data-id="${doc.id}">
         <td>${recipe.recipeTitle}</td>
         <td>${userName}</td>
         <td>${dateFormater(recipe)}</td>
@@ -101,17 +106,36 @@ async function loadingRecipesTab() {
         `;
     rows.push(row);
   }
-  recipesTableBody.innerHTML = rows.join("");
-  rows = [];
+  newRecipesTableBody.innerHTML = rows.join("");
+  newRecipesTableBody.addEventListener("click", (event) => {
+    const target = event.target;
+    const recipeId = target.closest("tr").dataset.id;
+    if (target.classList.contains("delete")) {
+      deleteRecipe(recipeId);
+    }
+  });
+}
+
+// Functioon to delete recipe
+function deleteRecipe(recipeId) {
+  console.log("deleteRecipe func was called");
+  console.log(recipeId);
+  const recipeRef = doc(db, "recipes", recipeId);
+  if (confirm("Are you sure you want to delete this recipe?")) {
+    deleteDoc(recipeRef).then(() => {
+      alert("Recipe deleted");
+      loadingRecipesTab();
+    });
+  }
 }
 
 async function loadingCommentsTab() {
   const commentsRef = collection(db, "comments");
   const commentsSnapshot = await getDocs(commentsRef);
   const commentsTableBody = document.querySelector("#commentsTableBody");
-//   commentsTableBody.innerHTML = "";
-    const newCommentsTableBody = commentsTableBody.cloneNode(false);
-    commentsTableBody.replaceWith(newCommentsTableBody);
+  //   commentsTableBody.innerHTML = "";
+  const newCommentsTableBody = commentsTableBody.cloneNode(false);
+  commentsTableBody.replaceWith(newCommentsTableBody);
 
   let rows = [];
 
@@ -137,9 +161,7 @@ async function loadingCommentsTab() {
 
     rows.push(row);
   }
-  newCommentsTableBody.innerHTML += rows.join("");
-//   rows = [];
-
+  newCommentsTableBody.innerHTML = rows.join("");
   newCommentsTableBody.addEventListener("click", (event) => {
     const target = event.target;
 
@@ -154,7 +176,7 @@ async function loadingCommentsTab() {
   });
 }
 
-// Functioon to delete comment
+// Function to delete comment
 function deleteComment(commentId) {
   console.log("deleteComment func was called");
   console.log(commentId);
@@ -171,7 +193,9 @@ async function loadingUsersTab() {
   const usersRef = collection(db, "users");
   const usesSnapshot = await getDocs(usersRef);
   const usersTableBody = document.querySelector("#usersTableBody");
-  usersTableBody.innerHTML = "";
+
+  const newUsersTableBody = usersTableBody.cloneNode(false);
+  usersTableBody.replaceWith(newUsersTableBody);
 
   let rows = [];
 
@@ -181,20 +205,37 @@ async function loadingUsersTab() {
     // const userName = await getUserName(comment.userId);
 
     const row = `
-            <tr>
+            <tr data-id="${doc.id}">
                 <td>${user.userName}</td>
                 <td>${user.email}</td>
                 <td>${user.role}</td>
                 <td>
-                    <button class="action-btn delete" onclick="deleteUserFromAdminPanel('${doc.id}')">Delete</button>
+                    <button class="action-btn delete">Delete</button>
                 </td>
             </tr>
         `;
 
     rows.push(row);
   }
-  usersTableBody.innerHTML += rows.join("");
-  rows = [];
+  newUsersTableBody.innerHTML = rows.join("");
+  newUsersTableBody.addEventListener("click", (event) => {
+    const target = event.target;
+    const userId = target.closest("tr").dataset.id;
+    if (target.classList.contains("delete")) {
+      deleteUserFromDB(userId);
+    }
+  });
 }
 
-// const usersTableBody = document.querySelector("#usersTableBody");
+// Function to delete user
+function deleteUserFromDB(userId) {
+  console.log("deleteUser func was called");
+  console.log(userId);
+  const usersRef = doc(db, "users", userId);
+  if (confirm("Are you sure you want to delete this user profile from db?")) {
+    deleteDoc(usersRef).then(() => {
+      alert("User profile deleted");
+      loadingUsersTab();
+    });
+  }
+}

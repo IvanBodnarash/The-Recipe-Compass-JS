@@ -78,7 +78,6 @@ async function submitComment(recipeId, commentText) {
       userId: user.uid,
       timestamp: serverTimestamp(),
     });
-    alert("Comment added!");
     document.querySelector("#commentText").value = "";
     loadComments(recipeId);
   } catch (error) {

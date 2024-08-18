@@ -15,6 +15,8 @@ import {
 
 import firebaseConfig from "./config.js";
 
+import adminPanelModal from "./adminPanelModal.js";
+
 const app = initializeApp(firebaseConfig);
 const auth = getAuth(app);
 const db = getFirestore(app);
@@ -98,9 +100,9 @@ async function loadingRecipesTab() {
         <td>${recipe.recipeTitle}</td>
         <td>${userName}</td>
         <td>${dateFormater(recipe)}</td>
-        <td>
+        <td class="actions-btns">
         <button class="action-btn delete">Delete</button>
-        <button class="action-btn">View</button>
+        <button class="action-btn view">View</button>
         </td>
         </tr>
         `;
@@ -109,9 +111,15 @@ async function loadingRecipesTab() {
   newRecipesTableBody.innerHTML = rows.join("");
   newRecipesTableBody.addEventListener("click", (event) => {
     const target = event.target;
+    console.log(target);
     const recipeId = target.closest("tr").dataset.id;
     if (target.classList.contains("delete")) {
       deleteRecipe(recipeId);
+    } else if (target.classList.contains("view")) {
+        console.log("View");
+        const recipe = recipesSnapshot.docs.find((doc) => doc.id === recipeId).data();
+        adminPanelModal({ ...recipe, id: recipeId });
+        // adminPanelModal(recipeId);
     }
   });
 }
@@ -153,7 +161,7 @@ async function loadingCommentsTab() {
         <td>${comment.text}</td>
         <td>${userName}</td>
         <td>${dateFormater(comment)}</td>
-        <td>
+        <td class="actions-btns">
         <button id="commentDeleteBtn" class="action-btn delete">Delete</button>
         </td>
         </tr>
@@ -209,7 +217,7 @@ async function loadingUsersTab() {
                 <td>${user.userName}</td>
                 <td>${user.email}</td>
                 <td>${user.role}</td>
-                <td>
+                <td class="actions-btns">
                     <button class="action-btn delete">Delete</button>
                 </td>
             </tr>

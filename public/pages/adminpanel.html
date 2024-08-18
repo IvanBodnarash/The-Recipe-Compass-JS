@@ -4,64 +4,7 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Admin Panel</title>
-    <style>
-      .admin-container {
-        width: 80%;
-        margin: 0 auto;
-        padding: 50px 0;
-      }
-
-      .tabs {
-        display: flex;
-        justify-content: start;
-        margin-bottom: 20px;
-      }
-
-      .tab-button {
-        margin-right: 10px;
-        padding: 5px 20px;
-        font-size: 16px;
-        cursor: pointer;
-      }
-
-      .admin-table {
-        margin-top: 20px;
-        width: 100%;
-        border-collapse: collapse;
-        word-wrap: break-word;
-        overflow-wrap: break-word;
-        white-space: normal;
-        overflow: hidden;
-      }
-
-      .admin-table th,
-      .admin-table td {
-        border: 1px solid #ddd;
-        padding: 8px;
-        max-width: 500px;
-      }
-
-      .admin-table th {
-        text-align: left;
-        background-color: #f4f4f4;
-      }
-
-      .action-btn {
-        padding: 10px 15px;
-        background-color: #618264;
-        color: #fff;
-        border: none;
-        border-radius: 5px;
-        cursor: pointer;
-      }
-
-      .delete {
-        background-color: #a51919;
-        color: #fff;
-        border: none;
-        cursor: pointer;
-      }
-    </style>
+    <link rel="stylesheet" type="text/css" href="style/adminpanel.css" />
   </head>
   <body>
     <div class="page-banner">
@@ -79,6 +22,42 @@
         <button class="tab-button" id="usersTab">Users</button>
       </div>
 
+      <!-- Modal tab -->
+
+      <div id="recipeModal" class="modal">
+        <div class="modal-content">
+            <div class="heading-modal-row">                
+                <h2>Edit Recipe</h2>
+                <span class="close">&times;</span>
+            </div>
+            <form id="editRecipeForm">
+                <div class="form-cell">
+                    <label for="recipeTitle">Recipe Title:</label>
+                    <input type="text" id="recipeTitle" name="recipeTitle" required>
+                </div>
+
+                <div class="form-cell">
+                    <label for="shortDescription">Short Description:</label>
+                    <textarea id="shortDescription" name="shortDescription" rows="5" required></textarea>
+                </div>
+                
+                <div class="form-cell">
+                    <label for="ingredients">Ingredients:</label>
+                    <div id="ingredientsContainer"></div>
+                    <button type="button" id="addIngredientBtn">Add Ingredient</button>
+                </div>
+                
+                <div class="form-cell">
+                    <label for="directions">Directions:</label>
+                    <div id="directionsContainer"></div>
+                    <button type="button" id="addDirectionBtn">Add Direction</button>
+                </div>
+
+                <button class="modal-submit-btn" type="submit">Save</button>
+            </form>
+        </div>
+      </div>
+
       <div class="tab-content" id="recipes-content">
         <h2>Recipes</h2>
         <table class="admin-table">
@@ -87,7 +66,7 @@
               <th>Recipe Title</th>
               <th>Author</th>
               <th>Date Created</th>
-              <th>Actions</th>
+              <th class="actions-col">Actions</th>
             </tr>
           </thead>
           <tbody id="recipeTableBody">

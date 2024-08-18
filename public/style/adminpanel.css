@@ -1,0 +1,206 @@
+.admin-container {
+    width: 80%;
+    margin: 0 auto;
+    padding: 50px 0;
+}
+
+.tabs {
+    display: flex;
+    justify-content: start;
+    margin-bottom: 20px;
+}
+
+.tab-button {
+    margin-right: 10px;
+    padding: 10px 20px;
+    font-size: 16px;
+    cursor: pointer;
+    width: 150px;
+    
+    background-color: #618264;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+}
+
+.tab-button:hover {
+    background-color: #86a788;
+}
+
+.admin-table {
+    margin-top: 20px;
+    width: 100%;
+    border-collapse: crgb(113, 143, 116);
+    word-wrap: break-word;
+    overflow-wrap: break-word;
+    white-space: normal;
+    overflow: hidden;
+}
+
+.admin-table th,
+.admin-table td {
+    border: 1px solid #ddd;
+    padding: 8px;
+    max-width: 500px;
+}
+
+.admin-table th {
+    text-align: left;
+    background-color: #f4f4f4;
+}
+
+.action-btn {
+    padding: 10px 15px;
+    background-color: #618264;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.view:hover {
+    background-color: rgb(114, 151, 117);
+}
+
+.delete {
+    background-color: #a51919;
+    color: #fff;
+    border: none;
+    cursor: pointer;
+}
+
+.delete:hover {
+    background-color: #ba3d3d;
+}
+
+.actions-btns {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    align-items: center;
+}
+
+.actions-col {
+    width: 15%;
+}
+
+/* MODAL */
+
+.modal {
+    display: none;
+    position: fixed;
+    z-index: 1;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    background-color: rgba(0, 0, 0, 0.4);
+}
+
+.modal-content {
+    background-color: #fefefe;
+    margin: 15% auto;
+    padding: 30px;
+    border: 1px solid #888;
+    width: 80%;
+    max-width: 800px;
+    display: flex;
+    flex-direction: column;
+}
+
+.close {
+    color: #aaa;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+}
+
+.close:hover,
+.close:focus {
+    color: black;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+.heading-modal-row {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.form-cell {
+    display: flex;
+    flex-direction: column;
+    margin-top: 10px;
+}
+
+.form-cell label {
+    margin-bottom: 5px;
+}
+
+#recipeTitle,
+#shortDescription,
+.ingredient-field>input,
+.direction-field>textarea {
+    padding: 8px;
+    border-radius: 5px;
+}
+
+.ingredient-field {
+    display: flex;
+    flex-direction: row;
+    align-items: start;
+    justify-content: space-between;
+}
+
+.direction-field {
+    display: flex;
+    flex-direction: row;
+    align-items: start;
+    justify-content: space-between;
+}
+
+.ingredient-field>input,
+.direction-field>textarea {
+    width: 85%;
+    margin-bottom: 10px;
+}
+
+.ingredient-field>button,
+.direction-field>button {
+    padding: 8px;
+    border-radius: 5px;
+    background-color: #a51919;
+    color: #fff;
+    border: none;
+    cursor: pointer;
+}
+
+.ingredient-field>button:hover,
+.direction-field>button:hover {
+    background-color: #c42727;
+}
+
+#addIngredientBtn,
+#addDirectionBtn {
+    width: 120px;
+    padding: 8px;
+    border-radius: 5px;
+    background-color: #618264;
+    color: #fff;
+    border: none;
+    cursor: pointer;
+}
+
+.modal-submit-btn {
+    margin-top: 10px;
+    width: 120px;
+    padding: 8px;
+    border-radius: 5px;
+    background-color: #618264;
+    color: #fff;
+    border: none;
+    cursor: pointer;
+}

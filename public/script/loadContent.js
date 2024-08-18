@@ -8,6 +8,7 @@ import searchRecipes from "./searchRecipes.js";
 import commentLogic from "./submitComment.js";
 import adminPanelAuth from "./adminPanelAuth.js";
 import adminPanelLogic from "./adminPanelLogic.js";
+import currentYear from "./footer.js";
 // Function for loading a page
 function loadPage(containerId, url, callback) {
   fetch(url)
@@ -73,7 +74,9 @@ document.addEventListener("DOMContentLoaded", function () {
   loadPage("header", "partials/header.html", function () {
     adminPanelAuth();
   });
-  loadPage("footer", "partials/footer.html");
+  loadPage("footer", "partials/footer.html", () => {
+    currentYear();
+  });
   const content =
     new URLSearchParams(window.location.search).get("content") || "home";
   loadPage("main", `pages/${content}.html`, function () {

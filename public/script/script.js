@@ -93,7 +93,7 @@ function addIngredient() {
   container.appendChild(div);
 }
 
-function removeIngredient(input, button) {
+function removeIngredient(input) {
   let container = document.querySelector("#ingredients-container");
   container.removeChild(input.parentNode);
 }
@@ -140,68 +140,6 @@ function toggleStrikethrough(checkboxId) {
   }
 }
 
-// COMMENT FORM SUBMIT
-
-// document.querySelector("#commentForm").addEventListener("submit", function (e) {
-//   e.preventDefault();
-
-//   let formData = new FormData(this);
-
-//   // Saving of current scroll position
-
-//   let scrollTop = window.scrollY || document.documentElement.scrollTop;
-
-//   let xhr = new XMLHttpRequest();
-//   xhr.onreadystatechange = function () {
-//     if (xhr.readyState === 4 && xhr.status === 200) {
-//       // Refreshing after sucessfull submit
-//       window.location.reload();
-
-//       window.scrollTo(0, scrollTop);
-//     }
-//   };
-
-//   xhr.open("post", "index.php", true);
-//   xhr.send(formData);
-// });
-
-// document
-//   .getElementById("uploadImgButton")
-//   .addEventListener("change", (event) => {
-//     console.log("File input changed");
-//     const file = event.target.files[0];
-//     if (file) {
-//       console.log("File selected:", file.name);
-//     } else {
-//       console.log("No file selected");
-//     }
-//   });
-
-// // Upload file name
-
-// function displayFileName() {
-//     let fileInput = document.getElementById('uploadImgButton');
-//     let fileNameDisplay = document.getElementById('fileName');
-
-//     setTimeout(() => {
-//         if (fileInput.files.length > 0) {
-//             let fileName = fileInput.files[0].name;
-
-//             if (fileName.length > 25) {
-//                 fileName = fileName.substring(0, 22) + '...';
-//             }
-
-//             fileNameDisplay.textContent = fileName;
-//         } else {
-//             fileNameDisplay.textContent = '';
-//         }
-//     }, 1500);
-// }
-
-// document.getElementById('uploadImgButton').addEventListener('change', displayFileName);
-
-// Upload file name
-
 function displayFileName() {
   let fileInput = document.getElementById("uploadImgButton");
   let fileNameDisplay = document.getElementById("fileName");
@@ -220,8 +158,3 @@ function displayFileName() {
     }
   }, 1500);
 }
-
-
-console.log("Hello");
-
-

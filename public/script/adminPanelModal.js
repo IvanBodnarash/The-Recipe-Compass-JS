@@ -15,6 +15,8 @@ import {
 
 import firebaseConfig from "./config.js";
 
+import { updateRecipeInDB } from './adminPanelLogic.js';
+
 const app = initializeApp(firebaseConfig);
 const auth = getAuth(app);
 const db = getFirestore(app);
@@ -47,13 +49,6 @@ export default function adminPanelModal(recipe) {
 
   // Display the modal
   modal.style.display = "block";
-
-  // Close the modal when the user clicks outside the modal or button
-  window.onclick = (event) => {
-    if (event.target === modal) {
-      modal.style.display = "none";
-    }
-  };
 
   closeBtn.addEventListener("click", (event) => {
     if (event.target === modal) {
@@ -152,15 +147,15 @@ function addDirectionField(container, value = "", index = null) {
 }
 
 // Function to update the recipe in Firestore
-async function updateRecipeInDB(recipeId, updatedRecipe) {
-  try {
-    await updateDoc(doc(db, "recipes", recipeId), updatedRecipe);
-    alert(`Recipe with ID: ${recipeId} has been updated.`);
-    // Reload the recipes tab
-    location.reload();
-  } catch (error) {
-    console.log("Error updating recipe: ", error);
-  }
-}
+// async function updateRecipeInDB(recipeId, updatedRecipe) {
+//   try {
+//     await updateDoc(doc(db, "recipes", recipeId), updatedRecipe);
+//     alert(`Recipe with ID: ${recipeId} has been updated.`);
+//     // Reload the recipes tab
+//     location.reload();
+//   } catch (error) {
+//     console.log("Error updating recipe: ", error);
+//   }
+// }
 
 // Function to open the modal with recipe data when "View" is clicked

@@ -42,9 +42,9 @@ export default async function loadRecipes(
   try {
     let recipesQuery;
     if (sortField === "userName") {
-        recipesQuery = query(recipesRef);
+      recipesQuery = query(recipesRef);
     } else {
-        recipesQuery = query(recipesRef, orderBy(sortField, sortOrder));
+      recipesQuery = query(recipesRef, orderBy(sortField, sortOrder));
     }
 
     // const q = query(recipesRef, orderBy(sortField, sortOrder));
@@ -58,27 +58,31 @@ export default async function loadRecipes(
     recipesWrapper.innerHTML = "";
 
     let recipes = await Promise.all(
-        querySnapshot.docs.map(async (doc) => {
-            const recipe = doc.data();
-            console.log("Recipe found:", recipe.recipeTitle, doc.id);
-            const userName = await getUserName(recipe.userId);
-            return { id: doc.id, ...recipe, userName };
-        })
+      querySnapshot.docs.map(async (doc) => {
+        const recipe = doc.data();
+        console.log("Recipe found:", recipe.recipeTitle, doc.id);
+        const userName = await getUserName(recipe.userId);
+        return { id: doc.id, ...recipe, userName };
+      })
     );
 
     if (sortOrder === "userName") {
-        recipes.sort((a, b) => {
-            if (sortOrder === "asc") {
-                return a.userName.localeCompare(b.userName);
-            } else {
-                return b.userName.localeCompare(a.userName);
-            }
-        });
+      recipes.sort((a, b) => {
+        if (sortOrder === "asc") {
+          return a.userName.localeCompare(b.userName);
+        } else {
+          return b.userName.localeCompare(a.userName);
+        }
+      });
     }
 
     const recipesHtml = recipes.map((recipe) => {
-        console.log("Recipe:", recipe.recipeTitle, recipe.id);
-        return `
+      const shortenedDescription =
+        recipe.shortDescription.length > 50
+          ? recipe.shortDescription.substring(0, 100) + "..."
+          : recipe.shortDescription;
+      console.log("Recipe:", recipe.recipeTitle, recipe.id);
+      return `
                 <div class="recipe-block">
                     <a href="index.html?content=showrecipe&id=${recipe.id}">
                         <div class="overlay">
@@ -88,7 +92,7 @@ export default async function loadRecipes(
                             <h3>${recipe.recipeTitle}</h3>
                             <img src="${recipe.imageUrl}" alt="Recipe img" />
                             <div class="text-block">
-                                <span>${recipe.shortDescription}</span>
+                                <span>${shortenedDescription}</span>
                                 <div class="text-inner-block">
                                     <hr />
                                     <div class="text-inner" style="display: flex">
@@ -101,7 +105,7 @@ export default async function loadRecipes(
                     </a>
                 </div>
             `;
-      });
+    });
 
     // Adding recipe to the page
     recipesWrapper.innerHTML += recipesHtml.join("");

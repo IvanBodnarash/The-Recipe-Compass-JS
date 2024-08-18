@@ -20,13 +20,18 @@ const usersRef = collection(db, "users");
 
 // Function to create a card element for each recipe using template
 function createCard(recipe, userName, template) {
+  const shortenedDescription =
+  recipe.shortDescription.length > 50
+    ? recipe.shortDescription.substring(0, 100) + "..."
+    : recipe.shortDescription;
+
   const card = template.cloneNode(true);
   card.querySelector(
     "a"
   ).href = `index.html?content=showrecipe&id=${recipe.id}`;
   card.querySelector("h3").textContent = recipe.recipeTitle;
   card.querySelector("img").src = recipe.imageUrl;
-  card.querySelector(".text-block span").textContent = recipe.shortDescription;
+  card.querySelector(".text-block span").textContent = shortenedDescription;
   card.querySelector(".text-inner span").textContent = userName;
 
   return card;

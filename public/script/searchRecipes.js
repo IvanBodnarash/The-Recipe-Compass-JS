@@ -60,6 +60,10 @@ export default async function searchRecipes() {
       const recipe = doc.data();
       console.log("Recipe found:", recipe.recipeTitle, doc.id);
       const userName = await getUserName(recipe.userId);
+      const shortenedDescription =
+      recipe.shortDescription.length > 50
+        ? recipe.shortDescription.substring(0, 100) + "..."
+        : recipe.shortDescription;
       // return { id: doc.id, ...recipe, userName };
       if (recipe.recipeTitle.toLowerCase().includes(searchTerm.toLowerCase())) {
         foundRecipes = true;
@@ -73,7 +77,7 @@ export default async function searchRecipes() {
                             <h3>${recipe.recipeTitle}</h3>
                             <img src="${recipe.imageUrl}" alt="Recipe img" />
                             <div class="text-block">
-                                <span>${recipe.shortDescription}</span>
+                                <span>${shortenedDescription}</span>
                                 <div class="text-inner-block">
                                     <hr />
                                     <div class="text-inner" style="display: flex">

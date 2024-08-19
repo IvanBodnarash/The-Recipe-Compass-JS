@@ -246,7 +246,7 @@ body ._lock {
 /* FEATURE BLOCK */
 
 .feature {
-    height: 100vh;
+    height: 50vh;
     padding-top: 15px;
     position: relative;
     z-index: 2;
@@ -534,14 +534,16 @@ body ._lock {
 /* SPINNERS */
 
 .spinner-wrapper {
-    top: 0;
-    left: 0;
     width: 100%;
     height: 50vh;
     display: flex;
     justify-content: center;
     align-items: center;
     display: none;
+}
+
+.admin-panel {
+    height: 20vh;
 }
 
 .spinner {

@@ -69,6 +69,10 @@
     cursor: pointer;
 }
 
+.active {
+    background-color: #3d503e;
+}
+
 .delete:hover {
     background-color: #ba3d3d;
 }

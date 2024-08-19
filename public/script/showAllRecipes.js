@@ -118,18 +118,18 @@ export default async function loadRecipes(
 }
 
 // Adding sorting handlers
-document.addEventListener("DOMContentLoaded", function () {
-  document
-    .querySelector(".sort-block")
-    .addEventListener("click", function (event) {
-      if (event.target.tagName === "A") {
-        event.preventDefault();
-        const sortField = event.target
-          .getAttribute("href")
-          .split("sort")[1]
-          .split("&")[0];
-        const sortOrder = event.target.getAttribute("href").split("order")[1];
-        loadRecipes(sortField, sortOrder);
-      }
-    });
-});
+// document.addEventListener("DOMContentLoaded", function () {
+//   document
+//     .querySelector(".sort-block")
+//     .addEventListener("click", function (event) {
+//       if (event.target.tagName === "A") {
+//         event.preventDefault();
+//         const sortField = event.target
+//           .getAttribute("href")
+//           .split("sort")[1]
+//           .split("&")[0];
+//         const sortOrder = event.target.getAttribute("href").split("order")[1];
+//         loadRecipes(sortField, sortOrder);
+//       }
+//     });
+// });

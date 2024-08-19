@@ -26,30 +26,46 @@ let cachedRecipes = null;
 let cachedComments = null;
 let cachedUsers = null;
 
-// Function to get user name
-async function getUserName(userId) {
-// Check if userId exists
-if (!userId) {
-    console.log("User ID is undefined or null.");
-  return "Unknown";
+// Function to show spinner
+function showSpinner() {
+  const spinner = document.querySelector("#loadingSpinner");
+  spinner.style.display = "flex";
+  console.log("showSpinner");
+  console.log(spinner);
 }
 
-try {
-  const userDoc = await getDoc(doc(db, "users", userId));
-  if (userDoc.exists()) {
-    return userDoc.data().userName;
-  } else {
-    console.log(`User with ID ${userId} not found.`);
+// Function to hide spinner
+function hideSpinner() {
+    const spinner = document.querySelector("#loadingSpinner");
+    spinner.style.display = "none";
+    console.log("hideSpinner");
+    console.log(spinner);
+}
+
+// Function to get user name
+async function getUserName(userId) {
+  // Check if userId exists
+  if (!userId) {
+    console.log("User ID is undefined or null.");
     return "Unknown";
   }
-} catch (error) {
+
+  try {
+    const userDoc = await getDoc(doc(db, "users", userId));
+    if (userDoc.exists()) {
+      return userDoc.data().userName;
+    } else {
+      console.log(`User with ID ${userId} not found.`);
+      return "Unknown";
+    }
+  } catch (error) {
     console.error("Error fetching user name:", error);
     return "Unknown";
-}
+  }
 }
 
 export default async function adminPanelLogic() {
-    // Primary recipes tabs loading
+  // Primary recipes tabs loading
   loadingRecipesTab();
 
   const recipeTabButton = document.querySelector("#recipesTab");
@@ -62,44 +78,101 @@ export default async function adminPanelLogic() {
 
   recipeTabButton.addEventListener("click", () => {
     console.log("Recipe button clicked!");
-    commentsContent.style.display = "none";
-    usersContent.style.display = "none";
-    // loadingRecipesTab();
-    recipesContent.style.display = "block";
+    // [recipeTabButton, commentTabButton, usersTabButton].forEach((button) =>
+    //   button.classList.remove("active")
+    // );
+    // recipeTabButton.classList.add("active");
 
-    // Load if it hasn't in cache
-    if (!cachedRecipes) {
-      loadingRecipesTab();
-    }
+    // [commentsContent, usersContent].forEach(
+    //   (content) => (content.style.display = "none")
+    // );
+    // recipesContent.style.display = "block";
+
+    // // Load if it hasn't in cache
+    // if (!cachedRecipes) {
+    //   loadingRecipesTab();
+    // }
+
+    setActiveTab(
+      recipeTabButton,
+      recipesContent,
+      loadingRecipesTab,
+      cachedRecipes
+    );
   });
 
   commentTabButton.addEventListener("click", () => {
     console.log("Comments button clicked!");
-    recipesContent.style.display = "none";
-    usersContent.style.display = "none";
-    loadingCommentsTab();
-    commentsContent.style.display = "block";
+    // [recipeTabButton, commentTabButton, usersTabButton].forEach((button) =>
+    //   button.classList.remove("active")
+    // );
+    // commentTabButton.classList.add("active");
+
+    // [recipesContent, usersContent].forEach(
+    //   (content) => (content.style.display = "none")
+    // );
+    // commentsContent.style.display = "block";
+
+    // // Load if it hasn't in cache
+    // if (!cachedComments) {
+    //   loadingCommentsTab();
+    // }
+    setActiveTab(
+      commentTabButton,
+      commentsContent,
+      loadingCommentsTab,
+      cachedComments
+    );
   });
 
   usersTabButton.addEventListener("click", () => {
     console.log("Users button clicked!");
-    recipesContent.style.display = "none";
-    commentsContent.style.display = "none";
-    loadingUsersTab();
-    usersContent.style.display = "block";
+    // [recipeTabButton, commentTabButton, usersTabButton].forEach((button) =>
+    //   button.classList.remove("active")
+    // );
+    // usersTabButton.classList.add("active");
+
+    // [recipesContent, commentsContent].forEach(
+    //   (content) => (content.style.display = "none")
+    // );
+    // usersContent.style.display = "block";
+
+    // // Load if it hasn't in cache
+    // if (!cachedUsers) {
+    //   loadingUsersTab();
+    // }
+    setActiveTab(usersTabButton, usersContent, loadingUsersTab, cachedUsers);
   });
+}
+
+function setActiveTab(button, content, loadFunction, cache) {
+  document
+    .querySelectorAll(".tab-button")
+    .forEach((btn) => btn.classList.remove("active"));
+  button.classList.add("active");
+
+  document
+    .querySelectorAll(".tab-content")
+    .forEach((cont) => (cont.style.display = "none"));
+  content.style.display = "block";
+
+  if (!cache) {
+    loadFunction().catch((error) => {
+        console.error("Error loading tab content:", error);
+    })
+  }
 }
 
 function dateFormater(table) {
   // Date formatting
   const timestamp = table.timestamp;
   if (timestamp && typeof timestamp.toDate === "function") {
-      const date = timestamp.toDate();
-      return date.toLocaleString("us", {
-        day: "2-digit",
-        month: "long",
-        year: "numeric",
-      });
+    const date = timestamp.toDate();
+    return date.toLocaleString("us", {
+      day: "2-digit",
+      month: "long",
+      year: "numeric",
+    });
   } else {
     return "Invalid Date";
   }
@@ -112,41 +185,27 @@ async function loadingRecipesTab(forceReload = false) {
     return;
   }
 
-  console.log("Fetcheng recipes from Firestore");
-  const recipesRef = collection(db, "recipes");
-  const recipesSnapshot = await getDocs(recipesRef);
-  cachedRecipes = recipesSnapshot.docs.map((doc) => ({
-    id: doc.id,
-    data: doc.data(),
-  }));
-  renderRecipesTable(cachedRecipes);
+  try {
+      console.log("Fetching recipes from Firestore");
+      const recipesRef = collection(db, "recipes");
+      const recipesSnapshot = await getDocs(recipesRef);
+      cachedRecipes = recipesSnapshot.docs.map((doc) => ({
+        id: doc.id,
+        data: doc.data(),
+      }));
+      renderRecipesTable(cachedRecipes);
+  } catch (error) {
+    console.error("Error fetching recipes: ", error);
+  }
 }
 
 async function renderRecipesTable(recipes) {
+
+showSpinner();
+
   const recipesTableBody = document.querySelector("#recipeTableBody");
   const newRecipesTableBody = recipesTableBody.cloneNode(false);
   recipesTableBody.replaceWith(newRecipesTableBody);
-
-  //   let rows = [];
-
-  //   for (const doc of recipesSnapshot.docs) {
-  //     const recipe = doc.data();
-
-  //     const userName = await getUserName(recipe.userId);
-
-  //     const row = `
-  //         <tr data-id="${doc.id}">
-  //         <td>${recipe.recipeTitle}</td>
-  //         <td>${userName}</td>
-  //         <td>${dateFormater(recipe)}</td>
-  //         <td class="actions-btns">
-  //         <button class="action-btn delete">Delete</button>
-  //         <button class="action-btn view">View</button>
-  //         </td>
-  //         </tr>
-  //         `;
-  //     rows.push(row);
-  //   }
 
   let rows = [];
 
@@ -166,6 +225,8 @@ async function renderRecipesTable(recipes) {
     rows.push(row);
   }
 
+  hideSpinner();
+
   newRecipesTableBody.innerHTML = rows.join("");
   newRecipesTableBody.addEventListener("click", (event) => {
     const target = event.target;
@@ -177,54 +238,9 @@ async function renderRecipesTable(recipes) {
       console.log("View");
       const recipe = cachedRecipes.find((r) => r.id === recipeId).data;
       adminPanelModal({ ...recipe, id: recipeId });
-      // adminPanelModal(recipeId);
     }
   });
 }
-
-// async function loadingRecipesTab() {
-//   const recipesRef = collection(db, "recipes");
-//   const recipesSnapshot = await getDocs(recipesRef);
-//   const recipesTableBody = document.querySelector("#recipeTableBody");
-
-//   const newRecipesTableBody = recipesTableBody.cloneNode(false);
-//   recipesTableBody.replaceWith(newRecipesTableBody);
-
-//   let rows = [];
-
-//   for (const doc of recipesSnapshot.docs) {
-//     const recipe = doc.data();
-
-//     const userName = await getUserName(recipe.userId);
-
-//     const row = `
-//         <tr data-id="${doc.id}">
-//         <td>${recipe.recipeTitle}</td>
-//         <td>${userName}</td>
-//         <td>${dateFormater(recipe)}</td>
-//         <td class="actions-btns">
-//         <button class="action-btn delete">Delete</button>
-//         <button class="action-btn view">View</button>
-//         </td>
-//         </tr>
-//         `;
-//     rows.push(row);
-//   }
-//   newRecipesTableBody.innerHTML = rows.join("");
-//   newRecipesTableBody.addEventListener("click", (event) => {
-//     const target = event.target;
-//     console.log(target);
-//     const recipeId = target.closest("tr").dataset.id;
-//     if (target.classList.contains("delete")) {
-//       deleteRecipe(recipeId);
-//     } else if (target.classList.contains("view")) {
-//         console.log("View");
-//         const recipe = recipesSnapshot.docs.find((doc) => doc.id === recipeId).data();
-//         adminPanelModal({ ...recipe, id: recipeId });
-//         // adminPanelModal(recipeId);
-//     }
-//   });
-// }
 
 // Functioon to delete recipe
 function deleteRecipe(recipeId) {
@@ -239,18 +255,6 @@ function deleteRecipe(recipeId) {
     });
   }
 }
-// // Functioon to delete recipe
-// function deleteRecipe(recipeId) {
-//   console.log("deleteRecipe func was called");
-//   console.log(recipeId);
-//   const recipeRef = doc(db, "recipes", recipeId);
-//   if (confirm("Are you sure you want to delete this recipe?")) {
-//     deleteDoc(recipeRef).then(() => {
-//       alert("Recipe deleted");
-//       loadingRecipesTab();
-//     });
-//   }
-// }
 
 export async function updateRecipeInDB(recipeId, updatedRecipe) {
   try {
@@ -260,46 +264,56 @@ export async function updateRecipeInDB(recipeId, updatedRecipe) {
       (recipe) => recipe.id === recipeId
     );
     if (recipeIndex !== -1) {
-        cachedRecipes[recipeIndex].data = updatedRecipe;
+      cachedRecipes[recipeIndex].data = updatedRecipe;
     }
-    loadingRecipesTab(); // Заново завантажуємо таб з актуальними даними
+    loadingRecipesTab();
   } catch (error) {
     console.log("Error updating recipe: ", error);
   }
 }
 
-async function loadingCommentsTab() {
+async function loadingCommentsTab(forceReload = false) {
+  if (!forceReload && cachedComments) {
+    console.log("loading comments from cache");
+    renderCommentsTable(cachedComments);
+    return;
+  }
+
+  console.log("Fetching comments from Firestore");
   const commentsRef = collection(db, "comments");
   const commentsSnapshot = await getDocs(commentsRef);
+  cachedComments = commentsSnapshot.docs.map((doc) => ({
+    id: doc.id,
+    data: doc.data(),
+  }));
+  renderCommentsTable(cachedComments);
+}
+
+async function renderCommentsTable(comments) {
+  showSpinner();
   const commentsTableBody = document.querySelector("#commentsTableBody");
-  //   commentsTableBody.innerHTML = "";
   const newCommentsTableBody = commentsTableBody.cloneNode(false);
   commentsTableBody.replaceWith(newCommentsTableBody);
 
   let rows = [];
 
-  for (const doc of commentsSnapshot.docs) {
-    const comment = doc.data();
-
-    const userName = await getUserName(comment.userId);
-
-    console.log(doc.id);
-
-    // const userName = await getUserName(comment.userId);
-
+  for (const { id, data } of comments) {
+    const userName = await getUserName(data.userId);
     const row = `
-        <tr data-id="${doc.id}">
-        <td>${comment.text}</td>
-        <td>${userName}</td>
-        <td>${dateFormater(comment)}</td>
-        <td class="actions-btns">
-        <button id="commentDeleteBtn" class="action-btn delete">Delete</button>
-        </td>
-        </tr>
-        `;
+          <tr data-id="${id}">
+          <td>${data.text}</td>
+          <td>${userName}</td>
+          <td>${dateFormater(data)}</td>
+          <td class="actions-btns">
+          <button id="commentDeleteBtn" class="action-btn delete">Delete</button>
+          </td>
+          </tr>
+          `;
 
     rows.push(row);
   }
+
+  hideSpinner();
   newCommentsTableBody.innerHTML = rows.join("");
   newCommentsTableBody.addEventListener("click", (event) => {
     const target = event.target;
@@ -323,37 +337,71 @@ function deleteComment(commentId) {
   if (confirm("Are you sure you want to delete this comment?")) {
     deleteDoc(commentRef).then(() => {
       alert("Comment deleted");
+      cachedComments = cachedComments.filter(
+        (comment) => comment.id !== commentId
+      );
       loadingCommentsTab();
     });
   }
 }
 
-async function loadingUsersTab() {
+// export async function updateCommentInDB(commentId, updatedComment) {
+//   try {
+//     await updateDoc(doc(db, "comments", commentId), updatedComment);
+//     alert(`Comment with ID: ${commentId} has been updated.`);
+//     const commentIndex = cachedComments.findIndex(
+//       (comment) => comment.id === commentId
+//     );
+//     if (commentIndex !== -1) {
+//       cachedComments[commentIndex].data = updatedComment;
+//     }
+//     loadingCommentsTab();
+//   } catch (error) {
+//     console.log("Error updating comment ", error);
+//   }
+// }
+
+async function loadingUsersTab(forceReload = false) {
+  if (!forceReload && cachedUsers) {
+    console.log("Loading users from cache");
+    renderUsersTable(cachedUsers);
+    return;
+  }
+
+  console.log("Fetching users from Firestore");
   const usersRef = collection(db, "users");
   const usesSnapshot = await getDocs(usersRef);
-  const usersTableBody = document.querySelector("#usersTableBody");
+  cachedUsers = usesSnapshot.docs.map((doc) => ({
+    id: doc.id,
+    data: doc.data(),
+  }));
+  renderUsersTable(cachedUsers);
+}
 
+async function renderUsersTable(users) {
+showSpinner();
+  const usersTableBody = document.querySelector("#usersTableBody");
   const newUsersTableBody = usersTableBody.cloneNode(false);
   usersTableBody.replaceWith(newUsersTableBody);
 
   let rows = [];
 
-  for (const doc of usesSnapshot.docs) {
-    const user = doc.data();
-
+  for (const { id, data } of users) {
     const row = `
-            <tr data-id="${doc.id}">
-                <td>${user.userName}</td>
-                <td>${user.email}</td>
-                <td>${user.role}</td>
-                <td class="actions-btns">
-                    <button class="action-btn delete">Delete</button>
-                </td>
-            </tr>
-        `;
+              <tr data-id="${id}">
+                  <td>${data.userName}</td>
+                  <td>${data.email}</td>
+                  <td>${data.role}</td>
+                  <td class="actions-btns">
+                      <button class="action-btn delete">Delete</button>
+                  </td>
+              </tr>
+          `;
 
     rows.push(row);
   }
+
+  hideSpinner();
   newUsersTableBody.innerHTML = rows.join("");
   newUsersTableBody.addEventListener("click", (event) => {
     const target = event.target;
@@ -372,7 +420,12 @@ function deleteUserFromDB(userId) {
   if (confirm("Are you sure you want to delete this user profile from db?")) {
     deleteDoc(usersRef).then(() => {
       alert("User profile deleted");
+      cachedUsers = cachedUsers.filter((user) => user.id !== userId);
       loadingUsersTab();
     });
   }
 }
+
+// TODO: Add spinner while loading tabs // DONE
+// TODO: Add cache logic to another tabs // DONE
+// TODO: Refactor the code and separate logic from ui generation logic

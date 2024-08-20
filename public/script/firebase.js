@@ -18,7 +18,8 @@ import {
 } from "https://www.gstatic.com/firebasejs/10.12.3/firebase-firestore.js";
 import { getStorage, ref, uploadBytes, getDownloadURL } from "https://www.gstatic.com/firebasejs/10.12.3/firebase-storage.js";
 
-import firebaseConfig from "./config.js";
+import firebaseConfig from "./firebaseConfig.js";
+// import firebaseConfig from "./config.js";
 import displayUsername from "./displayUser.js";
 import initRegister from "./register.js";
 import logIn from "./login.js";

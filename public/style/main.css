@@ -72,7 +72,7 @@ body ._lock {
 }
 
 .navbar-nav a {
-    font-size: 18px;
+    font-size: 16px;
     font-weight: 500;
 }
 
@@ -88,7 +88,7 @@ body ._lock {
 
 .nav-item {
     list-style-type: none;
-    padding-left: 25px;
+    padding-left: 20px;
 }
 
 .navbar-brand {
@@ -97,13 +97,13 @@ body ._lock {
 }
 
 .navbar-brand img {
-    height: 60px;
-    width: 60px;
+    height: 50px;
+    width: 50px;
 }
 
 .brand-text {
     font-family: "Pacifico", cursive;
-    font-size: 25px;
+    font-size: 20px;
 }
 
 /* ARROW */
@@ -247,14 +247,15 @@ body ._lock {
 
 .feature {
     /* height: 50vh; */
-    padding-top: 15px;
+    /* padding-top: 15px; */
+    padding: 5rem 0;
+    /* margin: 70px 0; */
     position: relative;
     z-index: 2;
     background-color: white;
 }
 
 .feature-block {
-    margin: 70px 0;
     display: flex;
     flex-direction: row;
     /* flex-wrap: wrap; */
@@ -289,10 +290,6 @@ body ._lock {
 .text p {
     color: #476147;
     line-height: 1.4;
-}
-
-.feature {
-    height: 100vh;
 }
 
 .feature-desc {

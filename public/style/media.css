@@ -1,5 +1,4 @@
 @media (max-width: 1150px) {
-
     /* NAVIGATION */
 
     .navbar {
@@ -10,11 +9,14 @@
         height: 40px;
         width: 40px;
     }
+    
+    .nav-item {
+        padding-left: 10px;
+    }
 
     .brand-text {
         font-size: 20px;
     }
-
 
     /* NEWSLETTER */
 
@@ -26,11 +28,14 @@
         padding: 100px 50px;
     }
 
-
     /* HOME PAGE MAIN */
 
     .recipe-block {
         width: 28%;
+    }
+
+    .recipe-container {
+        padding: 0 10px;
     }
 
     .home-section h2 {
@@ -58,6 +63,10 @@
 
     /* ALL RECIPES BLOCK */
 
+    .recipes-wrapper {
+        padding: 50px 15px;
+    }
+
     .main-recipe-block .header-text,
     .add-new-recipe-block h1 {
         padding-top: 50px;
@@ -70,7 +79,8 @@
     }
 
     .sort-block-wrapper {
-        margin: 0 75px;
+        /* margin: 0 75px; */
+        padding: 0 4rem;
     }
 
     .add-new-recipe-btn {
@@ -194,8 +204,6 @@
         width: 500px;
     }
 
-
-
     /* FOOTER */
 
     .inf-item {
@@ -279,7 +287,7 @@
     }
 
     .sort-block-wrapper {
-        margin: 0 90px;
+        padding: 0 5.5rem;
     }
 
     .add-new-recipe-btn {
@@ -393,11 +401,9 @@
     .newsletter-text p {
         font-size: 18px;
     }
-
 }
 
 @media (max-width: 910px) {
-
     /* NAVIGATION */
 
     .navbar {
@@ -421,11 +427,7 @@
 
     .navbar-nav a,
     .navbar-nav span h3 {
-        font-size: 16px;
-    }
-
-    .nav-item {
-        padding-left: 20px;
+        font-size: 14px;
     }
 
     /* SEARCH BLOCK */
@@ -482,12 +484,9 @@
     }
 
     /* REGISTER PAGE */
-
-
 }
 
 @media (max-width: 800px) {
-
     /* NAVIGATION */
 
     .navbar {
@@ -495,7 +494,7 @@
     }
 
     .nav-item {
-        padding-left: 15px;
+        padding-left: 8px;
     }
 
     .feature-block {
@@ -506,7 +505,7 @@
     }
 
     .feature-item {
-        width: 80%;
+        width: 70%;
     }
 
     .latest-recipes-section .description {
@@ -516,7 +515,7 @@
     /* ALL RECIPES BLOCK */
 
     .sort-block-wrapper {
-        margin: 0 75px;
+        padding: 0 4.8rem;
     }
 
     .sort-block a,
@@ -686,11 +685,9 @@
     .no-user-banner-inner p {
         font-size: 16px;
     }
-
 }
 
 @media (max-width: 767px) {
-
     /* NAVIGATION */
 
     .navbar-area {
@@ -699,8 +696,8 @@
     }
 
     .navbar-brand img {
-        height: 50px;
-        width: 50px;
+        height: 40px;
+        width: 40px;
     }
 
     .navbar {
@@ -794,7 +791,7 @@
     .nav-item span h3 {
         position: relative;
         font-size: 20px;
-        padding-right: 15px;
+        /* padding-right: 15px; */
     }
 
     .nav-item a::after {
@@ -816,13 +813,18 @@
 
     /* MAIN */
 
+    .search-container {
+        /* height: 40vh; */
+        justify-content: center;
+        align-items: center;
+    }
+
     .search-container h1 {
         font-size: 32px;
     }
 
     .search-container p {
         font-size: 16px;
-
     }
 
     .latest-recipes-section h1:first-child {
@@ -841,7 +843,6 @@
 }
 
 @media (max-width: 729px) {
-
     .short-inf-block {
         display: flex;
     }
@@ -853,6 +854,10 @@
     }
 
     /* HOME */
+
+    .feature {
+        padding: 0.1rem 0;
+    }
 
     /* RECIPE */
 
@@ -883,7 +888,6 @@
 }
 
 @media (max-width: 680px) {
-
     /* HOME PAGE RECIPES */
 
     .recipe-block {
@@ -938,7 +942,7 @@
         font-size: 24px;
     }
 
-    .newsletter-button input[type='email'] {
+    .newsletter-button input[type="email"] {
         width: 230px;
         height: 35px;
         font-size: 16px;
@@ -955,7 +959,6 @@
     .form-newsletter {
         padding: 15px;
     }
-
 
     /* ALL RECIPES BLOCK */
 
@@ -1131,16 +1134,19 @@
 }
 
 @media (max-width: 550px) {
-
     .navbar {
         padding: 8px 20px;
     }
 
-
     /* HOME */
 
     .search-container {
-        padding: 170px 0 170px 0;
+        padding: 300px 0;
+        height: 30vh;
+        /* display: flex; */
+        /* flex-direction: column; */
+        /* justify-content: center; */
+        /* align-items: center; */
     }
 
     .search-container h1 {
@@ -1236,7 +1242,7 @@
 
     .recipe-sidebar .description {
         font-size: 12px;
-        line-height: 1.0;
+        line-height: 1;
     }
 
     .ingredients-block h1,
@@ -1333,7 +1339,7 @@
         padding: 50px 20px;
     }
 
-    .newsletter-button input[type='email'] {
+    .newsletter-button input[type="email"] {
         width: 80%;
         height: 30px;
         font-size: 14px;
@@ -1400,7 +1406,7 @@
     /* FOOTER */
 
     .short-inf-block {
-        padding: 50px 25px;
+        padding: 50px;
     }
 
     .inf-item h2 {
@@ -1413,7 +1419,6 @@
 }
 
 @media (max-width: 468px) {
-
     /* HOME */
 
     .search-container h1 {
@@ -1436,7 +1441,7 @@
     }
 
     .feature-item {
-        width: 70%;
+        width: 60%;
     }
 
     .latest-recipes-section p,
@@ -1476,7 +1481,7 @@
     /* RECIPES ALL */
 
     .sort-block-wrapper {
-        margin: 0 60px;
+        padding: 0 4rem;
     }
 
     .page-content {
@@ -1493,7 +1498,7 @@
     .sort-block {
         display: flex;
         margin-bottom: 15px;
-        justify-content: space-between;
+        /* justify-content: space-between; */
     }
 
     .main-recipe-block .header-text,
@@ -1559,7 +1564,6 @@
 }
 
 @media (max-width: 380px) {
-
     /* NAVIGATION */
 
     .navbar {
@@ -1578,7 +1582,7 @@
     /* HOMEPAGE */
 
     .search-container {
-        padding: 130px 0 130px 0;
+        padding: 100px 0;
     }
 
     .search-container h1 {
@@ -1607,9 +1611,9 @@
         padding-bottom: 20px;
     }
 
-    .feature-item {
-        width: 65%;
-    }
+    /* .feature-item {
+        width: 60%;
+    } */
 
     .icon {
         font-size: 25px;
@@ -1715,7 +1719,7 @@
 
     .recipe-sidebar .description {
         font-size: 10px;
-        line-height: 1.0;
+        line-height: 1;
     }
 
     .ingredients-block .form-check {
@@ -1762,7 +1766,7 @@
 
     .comment-container {
         padding: 8px;
-        margin-top: 0;
+        margin-top: 5px;
         margin-bottom: 10px;
     }
 
@@ -1793,7 +1797,7 @@
 
     /* NEWSLETTER */
 
-    .newsletter-button input[type='email'] {
+    .newsletter-button input[type="email"] {
         width: 100px;
         height: 30px;
         font-size: 12px;
@@ -1833,5 +1837,4 @@
     .no-user-banner-inner p {
         font-size: 10px;
     }
-
 }

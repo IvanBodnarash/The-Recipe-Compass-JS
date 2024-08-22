@@ -160,7 +160,7 @@ body ._lock {
     text-align: center;
     color: #ecf4eb;
     font-weight: 400;
-    height: 90vh;
+    height: 100vh;
     display: flex;
     flex-direction: column;
 }
@@ -246,7 +246,7 @@ body ._lock {
 /* FEATURE BLOCK */
 
 .feature {
-    height: 50vh;
+    /* height: 50vh; */
     padding-top: 15px;
     position: relative;
     z-index: 2;

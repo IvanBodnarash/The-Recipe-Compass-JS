@@ -13,8 +13,8 @@ import {
   updateDoc,
 } from "https://www.gstatic.com/firebasejs/10.12.3/firebase-firestore.js";
 
-import firebaseConfig from "./firebaseConfig.js";
-// import firebaseConfig from "./config.js";
+// import firebaseConfig from "./firebaseConfig.js";
+import firebaseConfig from "./config.js";
 
 import adminPanelModal from "./adminPanelModal.js";
 
@@ -79,21 +79,6 @@ export default async function adminPanelLogic() {
 
   recipeTabButton.addEventListener("click", () => {
     console.log("Recipe button clicked!");
-    // [recipeTabButton, commentTabButton, usersTabButton].forEach((button) =>
-    //   button.classList.remove("active")
-    // );
-    // recipeTabButton.classList.add("active");
-
-    // [commentsContent, usersContent].forEach(
-    //   (content) => (content.style.display = "none")
-    // );
-    // recipesContent.style.display = "block";
-
-    // // Load if it hasn't in cache
-    // if (!cachedRecipes) {
-    //   loadingRecipesTab();
-    // }
-
     setActiveTab(
       recipeTabButton,
       recipesContent,
@@ -104,20 +89,6 @@ export default async function adminPanelLogic() {
 
   commentTabButton.addEventListener("click", () => {
     console.log("Comments button clicked!");
-    // [recipeTabButton, commentTabButton, usersTabButton].forEach((button) =>
-    //   button.classList.remove("active")
-    // );
-    // commentTabButton.classList.add("active");
-
-    // [recipesContent, usersContent].forEach(
-    //   (content) => (content.style.display = "none")
-    // );
-    // commentsContent.style.display = "block";
-
-    // // Load if it hasn't in cache
-    // if (!cachedComments) {
-    //   loadingCommentsTab();
-    // }
     setActiveTab(
       commentTabButton,
       commentsContent,
@@ -128,20 +99,6 @@ export default async function adminPanelLogic() {
 
   usersTabButton.addEventListener("click", () => {
     console.log("Users button clicked!");
-    // [recipeTabButton, commentTabButton, usersTabButton].forEach((button) =>
-    //   button.classList.remove("active")
-    // );
-    // usersTabButton.classList.add("active");
-
-    // [recipesContent, commentsContent].forEach(
-    //   (content) => (content.style.display = "none")
-    // );
-    // usersContent.style.display = "block";
-
-    // // Load if it hasn't in cache
-    // if (!cachedUsers) {
-    //   loadingUsersTab();
-    // }
     setActiveTab(usersTabButton, usersContent, loadingUsersTab, cachedUsers);
   });
 }
@@ -345,22 +302,6 @@ function deleteComment(commentId) {
     });
   }
 }
-
-// export async function updateCommentInDB(commentId, updatedComment) {
-//   try {
-//     await updateDoc(doc(db, "comments", commentId), updatedComment);
-//     alert(`Comment with ID: ${commentId} has been updated.`);
-//     const commentIndex = cachedComments.findIndex(
-//       (comment) => comment.id === commentId
-//     );
-//     if (commentIndex !== -1) {
-//       cachedComments[commentIndex].data = updatedComment;
-//     }
-//     loadingCommentsTab();
-//   } catch (error) {
-//     console.log("Error updating comment ", error);
-//   }
-// }
 
 async function loadingUsersTab(forceReload = false) {
   if (!forceReload && cachedUsers) {

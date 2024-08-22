@@ -599,12 +599,12 @@
     .sidebar-wrapper {
         margin-top: 15px;
         flex-direction: row;
-        width: fit-content;
+        /* width: fit-content; */
         margin-left: 0;
     }
 
     .recipe-sidebar:first-child {
-        width: 30%;
+        /* max-width: 50%; */
         margin-right: 10px;
     }
 
@@ -771,10 +771,12 @@
         position: fixed;
         top: 0;
         right: 0;
-        width: 100%;
+        width: 50%;
         height: 50%;
-        background-color: #D0E7D2;
+        background-color: #d0e7d2ee;
+        border-bottom-left-radius: 15px;
         padding: 100px 30px 30px;
+        box-shadow: 5px 0 15px rgba(0, 0, 0, 0.15);
         transform: translate(100%, 0px);
         transition: left 0.3s ease 0s;
         display: flex;
@@ -914,7 +916,7 @@
 
     .search-container p {
         width: 70%;
-        margin: auto;
+        /* margin: auto; */
         margin-bottom: 15px;
     }
 

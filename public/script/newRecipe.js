@@ -14,10 +14,10 @@ import {
   getDownloadURL,
 } from "https://www.gstatic.com/firebasejs/10.12.3/firebase-storage.js";
 
-import firebaseConfig from "./firebaseConfig.js";
-// import firebaseConfig from "./config.js";
-import unsplashAPIKey from "./unsplashConfig.js";
-// import unsplashAPIKey from "./unsplashAuth.js";
+// import firebaseConfig from "./firebaseConfig.js";
+import firebaseConfig from "./config.js";
+// import unsplashAPIKey from "./unsplashConfig.js";
+import unsplashAPIKey from "./unsplashAuth.js";
 
 const app = initializeApp(firebaseConfig);
 const auth = getAuth();

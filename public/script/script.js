@@ -29,26 +29,31 @@ const isMobile = {
 
 if (isMobile.any()) {
   document.body.classList.add("_touch");
+  console.log("added class _touch");
 } else {
   document.body.classList.add("_pc");
+  console.log("added class _pc");
 }
 
 // Menu
 
-const iconMenu = document.querySelector(".menu-icon");
+// const iconMenu = document.querySelector(".menu-icon");
 
-if (iconMenu) {
-  const navbarMenu = document.querySelector(".navbar-nav");
-  iconMenu.addEventListener("click", function (e) {
-    document.body.classList.toggle("_lock");
-    iconMenu.classList.toggle("_active");
-    navbarMenu.classList.toggle("_active");
-  });
-}
+// console.log(iconMenu);
+// if (iconMenu) {
+//   const navbarMenu = document.querySelector(".navbar-nav");
+//   iconMenu.addEventListener("click", function (e) {
+//     console.log("clicked");
+//     document.body.classList.toggle("_lock");
+//     iconMenu.classList.toggle("_active");
+//     navbarMenu.classList.toggle("_active");
+//   });
+// }
 
-// Scroll arrow
 
 document.addEventListener("DOMContentLoaded", function () {
+  
+  // Scroll arrow
   let scrollButton = document.getElementById("scroll-to-top");
 
   window.onscroll = function () {

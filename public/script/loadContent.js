@@ -73,6 +73,18 @@ function loadNewsletterBlock() {
 document.addEventListener("DOMContentLoaded", function () {
   loadPage("header", "partials/header.html", function () {
     adminPanelAuth();
+    const iconMenu = document.querySelector(".menu-icon");
+
+    console.log(iconMenu);
+    if (iconMenu) {
+      const navbarMenu = document.querySelector(".navbar-nav");
+      iconMenu.addEventListener("click", function (e) {
+        console.log("clicked");
+        document.body.classList.toggle("_lock");
+        iconMenu.classList.toggle("_active");
+        navbarMenu.classList.toggle("_active");
+      });
+    }
   });
   loadPage("footer", "partials/footer.html", () => {
     currentYear();

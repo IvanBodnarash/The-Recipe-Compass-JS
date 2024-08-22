@@ -11,8 +11,8 @@ import {
   getDoc,
 } from "https://www.gstatic.com/firebasejs/10.12.3/firebase-firestore.js";
 
-import firebaseConfig from "./firebaseConfig.js";
-// import firebaseConfig from "./config.js";
+// import firebaseConfig from "./firebaseConfig.js";
+import firebaseConfig from "./config.js";
 
 const app = initializeApp(firebaseConfig);
 const auth = getAuth();
@@ -35,11 +35,6 @@ export default function initRegister() {
       const password = document.getElementById("password").value;
       const password2 = document.getElementById("password2").value;
       const role = "user";
-
-      // if (!validatePassword(password)) {
-      //   alert("Your password must be at least 6 characters long and contain at least one uppercase letter, one lowercase letter, one number, and one special character");
-      //   return;
-      // }
 
       // Compare Passwords
       if (password != password2) {

@@ -1,22 +1,11 @@
 import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.3/firebase-app.js";
-import {
-  getAuth,
-  deleteUser,
-} from "https://www.gstatic.com/firebasejs/10.12.3/firebase-auth.js";
-import {
-  getFirestore,
-  collection,
-  getDocs,
-  doc,
-  getDoc,
-  deleteDoc,
-  updateDoc,
-} from "https://www.gstatic.com/firebasejs/10.12.3/firebase-firestore.js";
+import { getAuth } from "https://www.gstatic.com/firebasejs/10.12.3/firebase-auth.js";
+import { getFirestore } from "https://www.gstatic.com/firebasejs/10.12.3/firebase-firestore.js";
 
-import firebaseConfig from "./firebaseConfig.js";
-// import firebaseConfig from "./config.js";
+// import firebaseConfig from "./firebaseConfig.js";
+import firebaseConfig from "./config.js";
 
-import { updateRecipeInDB } from './adminPanelLogic.js';
+import { updateRecipeInDB } from "./adminPanelLogic.js";
 
 const app = initializeApp(firebaseConfig);
 const auth = getAuth(app);
@@ -91,7 +80,7 @@ export default function adminPanelModal(recipe) {
   };
 
   closeBtn.addEventListener("click", () => {
-      modal.style.display = "none";
+    modal.style.display = "none";
   });
 }
 
@@ -146,17 +135,3 @@ function addDirectionField(container, value = "", index = null) {
   fieldWrapper.appendChild(deleteButton);
   container.appendChild(fieldWrapper);
 }
-
-// Function to update the recipe in Firestore
-// async function updateRecipeInDB(recipeId, updatedRecipe) {
-//   try {
-//     await updateDoc(doc(db, "recipes", recipeId), updatedRecipe);
-//     alert(`Recipe with ID: ${recipeId} has been updated.`);
-//     // Reload the recipes tab
-//     location.reload();
-//   } catch (error) {
-//     console.log("Error updating recipe: ", error);
-//   }
-// }
-
-// Function to open the modal with recipe data when "View" is clicked

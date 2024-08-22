@@ -1,3 +1,4 @@
 .env
 public/script/config.js
 public/script/unsplashAuth.js
+node_modules

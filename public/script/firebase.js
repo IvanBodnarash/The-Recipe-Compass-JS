@@ -66,11 +66,11 @@ function toggleAddRecipeButton(isEnabled) {
 }
 
 // DOM Content Loaded
-// document.addEventListener("DOMContentLoaded", function () {
-//   const content = new URLSearchParams(window.location.search).get("content");
-//   if (content === "register") {
-//     initRegister();
-//   } else if (content === "login") {
-//     logIn();
-//   }
-// });
+document.addEventListener("DOMContentLoaded", function () {
+  const content = new URLSearchParams(window.location.search).get("content");
+  if (content === "register") {
+    initRegister();
+  } else if (content === "login") {
+    logIn();
+  }
+});

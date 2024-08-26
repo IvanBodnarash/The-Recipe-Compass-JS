@@ -19,8 +19,8 @@ import {
 // import firebaseConfig from "./config/firebaseConfig.js";
 // import firebaseConfig from "./config.js";
 // import unsplashAPIKey from "./unsplashConfig.js";
-import unsplashAPIKey from "./unsplashAuth.js";
-// import unsplashAPIKey from "./config/unsplashConfig.js";
+// import unsplashAPIKey from "./unsplashAuth.js";
+import unsplashAPIKey from "./config/unsplashAuth.js";
 
 
 // const app = initializeApp(firebaseConfig);

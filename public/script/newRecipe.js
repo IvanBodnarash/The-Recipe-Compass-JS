@@ -20,7 +20,7 @@ import {
 // import firebaseConfig from "./config.js";
 // import unsplashAPIKey from "./unsplashConfig.js";
 // import unsplashAPIKey from "./unsplashAuth.js";
-import unsplashAPIKey from "./config/unsplashAuth.js";
+// import unsplashAPIKey from "./config/unsplashAuth.js";
 
 
 // const app = initializeApp(firebaseConfig);
@@ -155,7 +155,7 @@ export default async function postRecipe() {
 
 // Function for searching image with Unsplash API
 async function searchImagesOnUnsplash(query, unsplashAPIKey) {
-  const url = `https://api.unsplash.com/search/photos?query=${query}&client_id=${unsplashAPIKey}`;
+  const url = `https://api.unsplash.com/search/photos?query=${query}&client_id=JRHCGjiEKiwH6NJOTS4GxfGm2K0TvJ5gS-ze_6eJJzg`;
   try {
     const response = await fetch(url);
     const data = await response.json();

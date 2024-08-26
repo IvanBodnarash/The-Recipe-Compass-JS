@@ -1,5 +1,6 @@
 // import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.3/firebase-app.js";
-import { getFirebaseFirestore } from "./firebaseInit.js";
+// import { getFirebaseFirestore } from "./firebaseInit.js";
+import { db } from "./config/firebaseConfig.js";
 import {
   getFirestore,
   doc,
@@ -14,7 +15,7 @@ import {
 
 export default async function displayUsername(userId) {
   try {
-    const db = await getFirebaseFirestore();
+    // const db = await getFirebaseFirestore();
     const docRef = doc(db, "users", userId);
     const docSnapshot = await getDoc(docRef);
 

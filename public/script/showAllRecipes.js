@@ -1,5 +1,6 @@
 // import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.3/firebase-app.js";
-import { getFirebaseFirestore } from "./firebaseInit.js"; 
+// import { getFirebaseFirestore } from "./firebaseInit.js"; 
+import { db } from "./config/firebaseConfig.js";
 import {
   getFirestore,
   collection,
@@ -40,7 +41,7 @@ export default async function loadRecipes(
   pageContent.style.display = "none";
   
   try {
-    const db = await getFirebaseFirestore();
+    // const db = await getFirebaseFirestore();
 
     const recipesRef = collection(db, "recipes");
     const usersRef = collection(db, "users");

@@ -1,4 +1,5 @@
-import { getFirebaseAuth, getFirebaseFirestore } from "./firebaseInit.js";
+// import { getFirebaseAuth, getFirebaseFirestore } from "./firebaseInit.js";
+import { auth, db } from "./config/firebaseConfig.js";
 import {
   getAuth,
   onAuthStateChanged,
@@ -30,8 +31,8 @@ export default async function adminPanelAuth() {
   }
 
   try {
-    const auth = await getFirebaseAuth();
-    const db = await getFirebaseFirestore();
+    // const auth = await getFirebaseAuth();
+    // const db = await getFirebaseFirestore();
 
     onAuthStateChanged(auth, async (user) => {
       console.log(user);

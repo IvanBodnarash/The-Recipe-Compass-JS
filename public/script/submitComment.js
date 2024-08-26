@@ -1,5 +1,6 @@
 // import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.3/firebase-app.js";
-import { getFirebaseFirestore, getFirebaseAuth } from "./firebaseInit.js";
+// import { getFirebaseFirestore, getFirebaseAuth } from "./firebaseInit.js";
+import { auth, db } from "./config/firebaseConfig.js";
 import {
   getFirestore,
   collection,
@@ -34,8 +35,8 @@ async function getUserName(usersRef, userId) {
 
 export default async function commentLogic(recipeId) {
   try {
-    const auth = await getFirebaseAuth();
-    const db = await getFirebaseFirestore();
+    // const auth = await getFirebaseAuth();
+    // const db = await getFirebaseFirestore();
     
     const usersRef = collection(db, "users");
     const commentsRef = collection(db, "comments");

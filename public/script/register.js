@@ -1,5 +1,5 @@
 // Import the functions you need from the SDKs you need
-import { getFirebaseAuth, getFirebaseFirestore } from "./firebaseInit.js";
+// import { getFirebaseAuth, getFirebaseFirestore } from "./firebaseInit.js";
 // import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.3/firebase-app.js";
 import {
   getAuth,
@@ -11,6 +11,7 @@ import {
   doc,
   getDoc,
 } from "https://www.gstatic.com/firebasejs/10.12.3/firebase-firestore.js";
+import { auth, db } from "./config/firebaseConfig.js";
 
 // import firebaseConfig from "./config.js";
 // import firebaseConfig from "./config/firebaseConfig.js";
@@ -22,8 +23,8 @@ import {
 // Initialize Register
 export default async function initRegister() {
   try {
-    const auth = await getFirebaseAuth();
-    const db = await getFirebaseFirestore();
+    // const auth = await getFirebaseAuth();
+    // const db = await getFirebaseFirestore();
     // Submit Button
     const register = document.getElementById("registerBtn");
   

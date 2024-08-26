@@ -8,7 +8,7 @@ import {
 import { getFirestore } from "https://www.gstatic.com/firebasejs/10.12.3/firebase-firestore.js";
 
 // import firebaseConfig from "./config.js";
-// import firebaseConfig from "./config/firebaseConfig.js";
+import { auth } from "./config/firebaseConfig.js";
 
 // const app = initializeApp(firebaseConfig);
 // const auth = getAuth();
@@ -20,7 +20,7 @@ export default async function logIn() {
   
   try {
     const login = document.getElementById("loginBtn");
-    const auth = await getFirebaseAuth();
+    // const auth = await getFirebaseAuth();
 
     login.addEventListener("click", function (event) {
       event.preventDefault();

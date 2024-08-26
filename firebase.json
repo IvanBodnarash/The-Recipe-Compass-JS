@@ -17,10 +17,17 @@
       {
         "source": "**",
         "destination": "/index.html"
+      },
+      {
+        "source": "/api//**",
+        "function": "apiHandler"
       }
     ]
   },
   "storage": {
     "rules": "storage.rules"
+  },
+  "functions": {
+    "source": "functions"
   }
 }

@@ -1,6 +1,7 @@
 // Import the functions you need from the SDKs you need
 // import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.3/firebase-app.js";
 import { getFirebaseAuth, getFirebaseFirestore, getFirebaseStorage, getUnsplashApiKey } from "./firebaseInit.js";
+import { auth, db, storage } from "./config/firebaseConfig.js";
 import { getAuth } from "https://www.gstatic.com/firebasejs/10.12.3/firebase-auth.js";
 import {
   getFirestore,
@@ -18,7 +19,7 @@ import {
 // import firebaseConfig from "./config/firebaseConfig.js";
 // import firebaseConfig from "./config.js";
 // import unsplashAPIKey from "./unsplashConfig.js";
-// import unsplashAPIKey from "./unsplashAuth.js";
+import unsplashAPIKey from "./unsplashAuth.js";
 // import unsplashAPIKey from "./config/unsplashConfig.js";
 
 
@@ -30,10 +31,10 @@ import {
 export default async function postRecipe() {
   console.log("postRecipe page function called");
 
-  const auth = await getFirebaseAuth();
-  const db = await getFirebaseFirestore();
-  const storage = await getFirebaseStorage();
-  const unsplashAPIKey = await getUnsplashApiKey();
+  // const auth = await getFirebaseAuth();
+  // const db = await getFirebaseFirestore();
+  // const storage = await getFirebaseStorage();
+  // const unsplashAPIKey = await getUnsplashApiKey();
 
   document.getElementById("uploadImgButton").addEventListener("change", (event) => {
     console.log("File input changed");

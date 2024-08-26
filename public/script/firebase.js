@@ -1,6 +1,7 @@
 // Import the functions you need from the SDKs you need
 // import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.3/firebase-app.js";
-import { getFirebaseAuth } from "./firebaseInit.js";
+// import { getFirebaseAuth } from "./firebaseInit.js";
+import { auth } from "./config/firebaseConfig.js";
 import {
   getAuth,
   createUserWithEmailAndPassword,
@@ -33,7 +34,7 @@ import logIn from "./login.js";
 // Check if user is logged in
 window.onload = async function () {
   try {
-    const auth = await getFirebaseAuth();
+    // const auth = await getFirebaseAuth();
 
     onAuthStateChanged(auth, async function (user) {
       if (user) {

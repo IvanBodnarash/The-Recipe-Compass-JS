@@ -103,7 +103,7 @@
     }
 
     .page-banner h1 {
-        font-size: 32px;
+        font-size: 1.4rem;
     }
 
     .page-banner nav {
@@ -111,11 +111,11 @@
     }
 
     .recipe-sidebar h1 {
-        font-size: 30px;
+        font-size: 1.4rem;
     }
 
     .author-inner-block h2 {
-        font-size: 22px;
+        font-size: 1.4rem;
     }
 
     .author-block span {
@@ -130,13 +130,13 @@
     .ingredients-block h1,
     .directions-block h1,
     .comments-block h1 {
-        font-size: 30px;
+        font-size: 1.4rem;
     }
 
     .ingredients-block-container i,
     .directions-block-container i,
     .comments-block i {
-        font-size: 26px;
+        font-size: 1.4rem;
     }
 
     .form-check label,
@@ -306,7 +306,7 @@
     }
 
     .recipe-sidebar h1 {
-        font-size: 24px;
+        font-size: 1.4rem;
     }
 
     .author-inner-block h2 {
@@ -526,7 +526,7 @@
     /* RECIPE */
 
     .page-banner h1 {
-        font-size: 28px;
+        font-size: 1.3rem;
     }
 
     .page-banner nav {
@@ -1125,7 +1125,7 @@
     /* FOOTER */
 
     .inf-item h2 {
-        font-size: 18px;
+        font-size: 16px;
     }
 
     .copyright {

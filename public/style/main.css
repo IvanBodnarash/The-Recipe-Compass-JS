@@ -187,7 +187,7 @@ body ._lock {
 }
 
 .search-container h1 {
-    font-size: 38px;
+    font-size: 34px;
     letter-spacing: 3px;
     margin-bottom: 20px;
 }
@@ -303,14 +303,14 @@ body ._lock {
 
 .feature-desc h2 {
     color: #555855;
-    font-size: 32px;
+    font-size: 28px;
     /* text-align: center; */
     margin: 15px 0;
 }
 
 .feature-desc p {
     color: #627662;
-    font-size: 22px;
+    font-size: 18px;
     /* text-align: center; */
     margin: 25px auto;
     line-height: 1.4;
@@ -328,20 +328,20 @@ body ._lock {
     text-align: center;
     padding-top: 70px;
     color: #f2f7f3;
-    font-size: 34px;
+    font-size: 28px;
 }
 
 .latest-recipes-section .description {
     text-align: center;
     padding: 25px 0 25px 0;
     color: #d0e7d2;
-    font-size: 22px;
+    font-size: 18px;
     width: 75%;
     margin: auto;
 }
 
 .latest-recipe-btn-block h1 {
-    font-size: 28px;
+    font-size: 26px;
     color: white;
     padding-top: 25px;
     padding-bottom: 15px;
@@ -481,7 +481,7 @@ body ._lock {
 
 .latest-recipe-btn-block p {
     color: #d0e7d2;
-    font-size: 20px;
+    font-size: 18px;
     padding: 22px;
     width: 80%;
     margin: auto;
@@ -571,14 +571,14 @@ body ._lock {
     text-align: center;
     padding-top: 70px;
     color: #f2f7f3;
-    font-size: 34px;
+    font-size: 1.6rem;
 }
 
 .main-recipe-block .description {
     text-align: center;
     padding: 25px 0 25px 0;
     color: #d0e7d2;
-    font-size: 22px;
+    font-size: 1.2rem;
     width: 75%;
     margin: auto;
 }
@@ -638,7 +638,7 @@ body ._lock {
 
 .add-new-recipe-block h1 {
     color: #555855;
-    font-size: 32px;
+    font-size: 1.6rem;
 }
 
 .add-new-recipe-btn-block {
@@ -648,7 +648,7 @@ body ._lock {
 
 .add-new-recipe-block p {
     color: #627662;
-    font-size: 22px;
+    font-size: 1.3rem;
     /* text-align: center; */
     margin: 25px auto;
     line-height: 1.4;
@@ -682,6 +682,7 @@ body ._lock {
     box-shadow: none;
 }
 
+
 /* LOGIN PAGE */
 
 .page-banner {
@@ -693,6 +694,10 @@ body ._lock {
     align-items: center;
     background-color: #618264;
     color: white;
+}
+
+.page-banner h1 {
+    font-size: 1.6rem;
 }
 
 .page-banner nav {
@@ -993,14 +998,14 @@ body ._lock {
 
 .newsletter-text h2 {
     color: #555855;
-    font-size: 32px;
+    font-size: 28px;
     /* text-align: center; */
     margin: 15px 0;
 }
 
 .newsletter-text p {
     color: #627662;
-    font-size: 22px;
+    font-size: 18px;
     /* text-align: center; */
     margin: 25px auto;
     padding-bottom: 15px;
@@ -1108,7 +1113,7 @@ body ._lock {
 }
 
 .recipe-sidebar h1 {
-    font-size: 32px;
+    font-size: 1.6rem;
     color: white;
     margin-bottom: 15px;
     padding-bottom: 10px;
@@ -1181,7 +1186,7 @@ body ._lock {
 .directions-block-container i,
 .comments-block i {
     color: #3c513e;
-    font-size: 28px;
+    font-size: 1.6rem;
     padding-right: 15px;
 }
 
@@ -1189,7 +1194,7 @@ body ._lock {
 .directions-block h1,
 .comments-block h1 {
     color: #3c513e;
-    font-size: 32px;
+    font-size: 1.6rem;
     padding: 15px 0;
 }
 
@@ -1647,10 +1652,12 @@ body ._lock {
 
 .inf-item h2 {
     padding-bottom: 15px;
+    font-size: 18px;
 }
 
 .item-list li {
     padding-bottom: 8px;
+    /* font-size: 16px; */
 }
 
 .item-list li a {

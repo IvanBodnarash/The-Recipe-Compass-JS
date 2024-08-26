@@ -28,6 +28,6 @@ export default async function displayUsername(userId) {
       document.getElementById("displayUserName").textContent = "";
     }
   } catch (error) {
-    console.log("Error getting document:", error);
+    console.error("Error getting document:", error);
   }
 }

@@ -38,10 +38,10 @@ function showSpinner() {
 
 // Function to hide spinner
 function hideSpinner() {
-    const spinner = document.querySelector("#loadingSpinner");
-    spinner.style.display = "none";
-    console.log("hideSpinner");
-    console.log(spinner);
+  const spinner = document.querySelector("#loadingSpinner");
+  spinner.style.display = "none";
+  console.log("hideSpinner");
+  console.log(spinner);
 }
 
 // Function to get user name
@@ -125,8 +125,8 @@ function setActiveTab(button, content, loadFunction, cache) {
 
   if (!cache) {
     loadFunction().catch((error) => {
-        console.error("Error loading tab content:", error);
-    })
+      console.error("Error loading tab content:", error);
+    });
   }
 }
 
@@ -153,22 +153,21 @@ async function loadingRecipesTab(forceReload = false) {
   }
 
   try {
-      console.log("Fetching recipes from Firestore");
-      const recipesRef = collection(db, "recipes");
-      const recipesSnapshot = await getDocs(recipesRef);
-      cachedRecipes = recipesSnapshot.docs.map((doc) => ({
-        id: doc.id,
-        data: doc.data(),
-      }));
-      renderRecipesTable(cachedRecipes);
+    console.log("Fetching recipes from Firestore");
+    const recipesRef = collection(db, "recipes");
+    const recipesSnapshot = await getDocs(recipesRef);
+    cachedRecipes = recipesSnapshot.docs.map((doc) => ({
+      id: doc.id,
+      data: doc.data(),
+    }));
+    renderRecipesTable(cachedRecipes);
   } catch (error) {
     console.error("Error fetching recipes: ", error);
   }
 }
 
 async function renderRecipesTable(recipes) {
-
-showSpinner();
+  showSpinner();
 
   const recipesTableBody = document.querySelector("#recipeTableBody");
   const newRecipesTableBody = recipesTableBody.cloneNode(false);
@@ -330,7 +329,7 @@ async function loadingUsersTab(forceReload = false) {
 }
 
 async function renderUsersTable(users) {
-showSpinner();
+  showSpinner();
   const usersTableBody = document.querySelector("#usersTableBody");
   const newUsersTableBody = usersTableBody.cloneNode(false);
   usersTableBody.replaceWith(newUsersTableBody);

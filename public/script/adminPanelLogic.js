@@ -1,4 +1,4 @@
-import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.3/firebase-app.js";
+import { getFirebaseAuth, getFirebaseFirestore } from "./firebaseInit.js";
 import {
   getAuth,
   deleteUser,
@@ -13,14 +13,14 @@ import {
   updateDoc,
 } from "https://www.gstatic.com/firebasejs/10.12.3/firebase-firestore.js";
 
-import firebaseConfig from "./config.js";
+// import firebaseConfig from "./config.js";
 // import firebaseConfig from "./config/firebaseConfig.js";
 
 import adminPanelModal from "./adminPanelModal.js";
 
-const app = initializeApp(firebaseConfig);
-const auth = getAuth(app);
-const db = getFirestore(app);
+// const app = initializeApp(firebaseConfig);
+// const auth = getAuth(app);
+let db = null;
 
 // Storing data in memory after first loading
 let cachedRecipes = null;
@@ -66,6 +66,14 @@ async function getUserName(userId) {
 }
 
 export default async function adminPanelLogic() {
+  // Firestore initialization
+  db = await getFirebaseFirestore();
+
+  // If db is not initialized
+  if (!db) {
+    console.log("Firestore instance is not initialized.");
+    return;
+  }
   // Primary recipes tabs loading
   loadingRecipesTab();
 

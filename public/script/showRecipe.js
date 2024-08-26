@@ -1,4 +1,6 @@
-import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.3/firebase-app.js";
+// import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.3/firebase-app.js";
+
+import { getFirebaseFirestore } from "./firebaseInit.js";
 import {
   getFirestore,
   collection,
@@ -10,20 +12,20 @@ import {
   getDoc,
 } from "https://www.gstatic.com/firebasejs/10.12.3/firebase-firestore.js";
 
-import firebaseConfig from "./config.js";
+// import firebaseConfig from "./config.js";
 // import firebaseConfig from "./config/firebaseConfig.js";
 
-const app = initializeApp(firebaseConfig);
-const db = getFirestore(app);
+// const app = initializeApp(firebaseConfig);
+// const db = getFirestore(app);
 
-const recipesRef = collection(db, "recipes");
-const usersRef = collection(db, "users");
+// const recipesRef = collection(db, "recipes");
+// const usersRef = collection(db, "users");
 
 // Function to creade full recipe page
 // function createRecipeLayout()
 
 // Function to get the user name from the database
-async function getUserName(userId) {
+async function getUserName(usersRef, userId) {
   const userDoc = await getDoc(doc(usersRef, userId));
   if (userDoc.exists()) {
     return userDoc.data().userName;
@@ -40,7 +42,13 @@ export default async function showRecipe(recipeId) {
   pageContent.style.display = "none";
 
   try {
+    const db = await getFirebaseFirestore();
+
+    const recipesRef = collection(db, "recipes");
+    const usersRef = collection(db, "users");
+
     const recipeDoc = await getDoc(doc(recipesRef, recipeId));
+
     console.log(recipesRef);
     if (!recipesRef) {
       console.log("Recipe Not Found!");
@@ -48,7 +56,8 @@ export default async function showRecipe(recipeId) {
     }
 
     const recipe = recipeDoc.data();
-    const userName = await getUserName(recipe.userId);
+    console.log(recipe);
+    const userName = await getUserName(usersRef, recipe.userId);
 
     // Getting ingredient and direction arrays
     const ingredients = recipe.ingredients;
@@ -87,6 +96,7 @@ export default async function showRecipe(recipeId) {
     const title = document.querySelectorAll("#recipeTitle");
     title.forEach((element) => {
       element.textContent = recipe.recipeTitle;
+      console.log(recipe.recipeTitle);
     });
     document.getElementById("recipeAuthor").textContent = userName;
     document.getElementById("recipeImg").src = recipe.imageUrl;

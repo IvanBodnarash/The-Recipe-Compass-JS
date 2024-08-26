@@ -1,5 +1,6 @@
 // Import the functions you need from the SDKs you need
-import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.3/firebase-app.js";
+// import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.3/firebase-app.js";
+import { getFirebaseAuth, getFirebaseFirestore, getFirebaseStorage, getUnsplashApiKey } from "./firebaseInit.js";
 import { getAuth } from "https://www.gstatic.com/firebasejs/10.12.3/firebase-auth.js";
 import {
   getFirestore,
@@ -15,18 +16,24 @@ import {
 } from "https://www.gstatic.com/firebasejs/10.12.3/firebase-storage.js";
 
 // import firebaseConfig from "./config/firebaseConfig.js";
-import firebaseConfig from "./config.js";
+// import firebaseConfig from "./config.js";
 // import unsplashAPIKey from "./unsplashConfig.js";
-import unsplashAPIKey from "./unsplashAuth.js";
+// import unsplashAPIKey from "./unsplashAuth.js";
 // import unsplashAPIKey from "./config/unsplashConfig.js";
 
-const app = initializeApp(firebaseConfig);
-const auth = getAuth();
-const db = getFirestore(app);
-const storage = getStorage(app);
 
-export default function postRecipe() {
+// const app = initializeApp(firebaseConfig);
+// const auth = getAuth();
+// const db = getFirestore(app);
+// const storage = getStorage(app);
+
+export default async function postRecipe() {
   console.log("postRecipe page function called");
+
+  const auth = await getFirebaseAuth();
+  const db = await getFirebaseFirestore();
+  const storage = await getFirebaseStorage();
+  const unsplashAPIKey = await getUnsplashApiKey();
 
   document.getElementById("uploadImgButton").addEventListener("change", (event) => {
     console.log("File input changed");
@@ -116,7 +123,7 @@ export default function postRecipe() {
         }
       } else {
         console.log("No image selected, searching Unsplash...");
-        imageUrl = await searchImagesOnUnsplash(recipeTitle);
+        imageUrl = await searchImagesOnUnsplash(recipeTitle, unsplashAPIKey);
 
         if (!imageUrl) {
           console.log("No image found on Unsplash");
@@ -146,15 +153,20 @@ export default function postRecipe() {
 }
 
 // Function for searching image with Unsplash API
-async function searchImagesOnUnsplash(query) {
+async function searchImagesOnUnsplash(query, unsplashAPIKey) {
   const url = `https://api.unsplash.com/search/photos?query=${query}&client_id=${unsplashAPIKey}`;
-  const response = await fetch(url);
-  const data = await response.json();
-  console.log(data);
-  if (data.results && data.results.length > 0) {
-    console.log(data.results[0].urls.regular);
-    return data.results[0].urls.regular; // Return the first image URL
-  } else {
-    return null; // Return null if no image is found
+  try {
+    const response = await fetch(url);
+    const data = await response.json();
+    console.log(data);
+    if (data.results && data.results.length > 0) {
+      console.log(data.results[0].urls.regular);
+      return data.results[0].urls.regular; // Return the first image URL
+    } else {
+      return null; // Return null if no image is found
+    }
+  } catch (error) {
+    console.error("Error searching Unsplash:", error);
+    return null;
   }
 }

@@ -1,4 +1,5 @@
-import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.3/firebase-app.js";
+// import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.3/firebase-app.js";
+import { getFirebaseFirestore } from "./firebaseInit.js"; 
 import {
   getFirestore,
   collection,
@@ -9,17 +10,15 @@ import {
   getDoc,
 } from "https://www.gstatic.com/firebasejs/10.12.3/firebase-firestore.js";
 
-import firebaseConfig from "./config.js";
+// import firebaseConfig from "./config.js";
 // import firebaseConfig from "./config/firebaseConfig.js";
 
-const app = initializeApp(firebaseConfig);
-const db = getFirestore(app);
+// const app = initializeApp(firebaseConfig);
+// const db = getFirestore(app);
 
-const recipesRef = collection(db, "recipes");
-const usersRef = collection(db, "users");
 
 // Function to get user name
-async function getUserName(userId) {
+async function getUserName(usersRef, userId) {
   const userDoc = await getDoc(doc(usersRef, userId));
   if (userDoc.exists()) {
     return userDoc.data().userName;
@@ -39,8 +38,13 @@ export default async function loadRecipes(
   const pageContent = document.querySelector(".main-recipe-block");
   spinner.style.display = "flex";
   pageContent.style.display = "none";
-
+  
   try {
+    const db = await getFirebaseFirestore();
+
+    const recipesRef = collection(db, "recipes");
+    const usersRef = collection(db, "users");
+
     let recipesQuery;
     if (sortField === "userName") {
       recipesQuery = query(recipesRef);
@@ -62,7 +66,7 @@ export default async function loadRecipes(
       querySnapshot.docs.map(async (doc) => {
         const recipe = doc.data();
         console.log("Recipe found:", recipe.recipeTitle, doc.id);
-        const userName = await getUserName(recipe.userId);
+        const userName = await getUserName(usersRef, recipe.userId);
         return { id: doc.id, ...recipe, userName };
       })
     );

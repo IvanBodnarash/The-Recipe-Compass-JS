@@ -1,4 +1,5 @@
-import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.3/firebase-app.js";
+// import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.3/firebase-app.js";
+import { getFirebaseAuth, getFirebaseFirestore, getUnsplashApiKey } from "./firebaseInit.js";
 import {
   getAuth,
   signInWithEmailAndPassword,
@@ -6,20 +7,21 @@ import {
 } from "https://www.gstatic.com/firebasejs/10.12.3/firebase-auth.js";
 import { getFirestore } from "https://www.gstatic.com/firebasejs/10.12.3/firebase-firestore.js";
 
-
-import firebaseConfig from "./config.js";
+// import firebaseConfig from "./config.js";
 // import firebaseConfig from "./config/firebaseConfig.js";
 
-const app = initializeApp(firebaseConfig);
-const auth = getAuth();
-const db = getFirestore(app);
+// const app = initializeApp(firebaseConfig);
+// const auth = getAuth();
+// const db = getFirestore(app);
 
 // Initialize Login
-export default function logIn() {
+export default async function logIn() {
   // Submit Button
-  const login = document.getElementById("loginBtn");
+  
+  try {
+    const login = document.getElementById("loginBtn");
+    const auth = await getFirebaseAuth();
 
-  if (login) {
     login.addEventListener("click", function (event) {
       event.preventDefault();
       // Inputs
@@ -39,7 +41,7 @@ export default function logIn() {
           alert("Error: " + errorMessage + "\n" + errorCode);
         });
     });
-  } else {
-    console.error("Element with id 'loginBtn' not found");
+  } catch (error) {
+    console.error("Error in logIn:", error);
   }
-}
+};

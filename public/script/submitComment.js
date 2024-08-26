@@ -1,4 +1,5 @@
-import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.3/firebase-app.js";
+// import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.3/firebase-app.js";
+import { getFirebaseFirestore, getFirebaseAuth } from "./firebaseInit.js";
 import {
   getFirestore,
   collection,
@@ -16,19 +17,12 @@ import {
   onAuthStateChanged,
 } from "https://www.gstatic.com/firebasejs/10.12.3/firebase-auth.js";
 
-import firebaseConfig from "./config.js";
+// import firebaseConfig from "./config.js";
 // import firebaseConfig from "./config/firebaseConfig.js";
 
-const app = initializeApp(firebaseConfig);
-const db = getFirestore(app);
-const auth = getAuth();
-
-// const recipesRef = collection(db, "recipes");
-const usersRef = collection(db, "users");
-const commentsRef = collection(db, "comments");
 
 // Function to get the user name from the database
-async function getUserName(userId) {
+async function getUserName(usersRef, userId) {
   const userDoc = await getDoc(doc(usersRef, userId));
   if (userDoc.exists()) {
     return userDoc.data().userName;
@@ -39,29 +33,39 @@ async function getUserName(userId) {
 }
 
 export default async function commentLogic(recipeId) {
-  onAuthStateChanged(auth, (user) => {
-    if (!user) {
-      document.querySelector(
-        ".please-log-in"
-      ).innerHTML = `Please <a href="index.html?content=login">log in</a> to leave a comment`;
-    }
-    document
-      .querySelector("#commentForm")
-      .addEventListener("submit", async (e) => {
-        e.preventDefault();
+  try {
+    const auth = await getFirebaseAuth();
+    const db = await getFirebaseFirestore();
+    
+    const usersRef = collection(db, "users");
+    const commentsRef = collection(db, "comments");
 
-        const commentText = document.getElementById("commentText").value;
-        //   const parentId = document.getElementById("parentId").value || null;
-
-        console.log(recipeId, commentText);
-
-        await submitComment(recipeId, commentText);
-      });
-
-    loadComments(recipeId);
-  });
+    onAuthStateChanged(auth, (user) => {
+      if (!user) {
+        document.querySelector(
+          ".please-log-in"
+        ).innerHTML = `Please <a href="index.html?content=login">log in</a> to leave a comment`;
+      }
+      document
+        .querySelector("#commentForm")
+        .addEventListener("submit", async (e) => {
+          e.preventDefault();
+  
+          const commentText = document.getElementById("commentText").value;
+          //   const parentId = document.getElementById("parentId").value || null;
+  
+          console.log(recipeId, commentText);
+  
+          await submitComment(usersRef, commentsRef, recipeId, commentText, auth);
+        });
+  
+      loadComments(usersRef, commentsRef, recipeId);
+    });
+  } catch (error) {
+    console.error("Error in commentLogic:", error);
+  }
 }
-async function submitComment(recipeId, commentText) {
+async function submitComment(usersRef, commentsRef, recipeId, commentText, auth) {
   console.log(recipeId, commentText);
   console.log("submitComment func was called");
   const user = auth.currentUser;
@@ -80,14 +84,14 @@ async function submitComment(recipeId, commentText) {
       timestamp: serverTimestamp(),
     });
     document.querySelector("#commentText").value = "";
-    loadComments(recipeId);
+    loadComments(usersRef, commentsRef, recipeId);
   } catch (error) {
     console.error("Error while adding a comment");
     alert("Failed to add comment. Please try again later.");
   }
 }
 
-async function loadComments(recipeId) {
+async function loadComments(usersRef, commentsRef, recipeId) {
   console.log("loadComments func was called");
 
   const commentsQuery = query(
@@ -108,7 +112,7 @@ async function loadComments(recipeId) {
     const comment = commentDoc.data();
     const commentId = commentDoc.id;
 
-    const userName = await getUserName(comment.userId);
+    const userName = await getUserName(usersRef, comment.userId);
     console.log("userName:", userName);
 
     return {
@@ -120,7 +124,7 @@ async function loadComments(recipeId) {
 
   console.log("commentPromises:", commentPromises);
 
-  // Виконання всіх промісів одночасно
+  // Executing all promises in parallel using Promise.all
   const commentsData = await Promise.all(commentPromises);
 
   console.log("commentsData:", commentsData);

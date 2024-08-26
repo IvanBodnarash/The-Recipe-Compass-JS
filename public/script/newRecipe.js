@@ -1,6 +1,6 @@
 // Import the functions you need from the SDKs you need
 // import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.3/firebase-app.js";
-import { getFirebaseAuth, getFirebaseFirestore, getFirebaseStorage, getUnsplashApiKey } from "./firebaseInit.js";
+// import { getFirebaseAuth, getFirebaseFirestore, getFirebaseStorage, getUnsplashApiKey } from "./firebaseInit.js";
 import { auth, db, storage } from "./config/firebaseConfig.js";
 import { getAuth } from "https://www.gstatic.com/firebasejs/10.12.3/firebase-auth.js";
 import {

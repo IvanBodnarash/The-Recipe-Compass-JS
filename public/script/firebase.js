@@ -3,28 +3,16 @@
 // import { getFirebaseAuth } from "./firebaseInit.js";
 import { auth } from "./config/firebaseConfig.js";
 import {
-  getAuth,
-  createUserWithEmailAndPassword,
-  signInWithEmailAndPassword,
   onAuthStateChanged,
-  signOut,
+  signOut
 } from "https://www.gstatic.com/firebasejs/10.12.3/firebase-auth.js";
-import {
-  getFirestore,
-  collection,
-  addDoc,
-  serverTimestamp,
-  setDoc,
-  doc,
-  getDoc,
-} from "https://www.gstatic.com/firebasejs/10.12.3/firebase-firestore.js";
-import { getStorage, ref, uploadBytes, getDownloadURL } from "https://www.gstatic.com/firebasejs/10.12.3/firebase-storage.js";
 
 // import firebaseConfig from "./config.js";
 // import firebaseConfig from "./config/firebaseConfig.js";
 import displayUsername from "./displayUser.js";
 import initRegister from "./register.js";
 import logIn from "./login.js";
+import logOut from "./logout.js";
 
 // const app = initializeApp(firebaseConfig);
 // const auth = getAuth();
@@ -44,19 +32,19 @@ window.onload = async function () {
         toggleAddRecipeButton(false);
       }
     });
-    
+
     // Initialize Logout
-    const logout = document.getElementById("logoutBtn");
-    if (logout) {
-      logout.addEventListener("click", function () {
-        signOut(auth);
-        alert("Logout Successful");
-        localStorage.removeItem("valid_recipe_user");
-        window.location.href = "index.html";
-      });
-    } else {
-      console.error("Element with id 'logoutBtn' not found");
-    }
+    // const logout = document.getElementById("logoutBtn");
+    // if (logout) {
+    //   logout.addEventListener("click", function () {
+    //     signOut(auth);
+    //     alert("Logout Successful");
+    //     localStorage.removeItem("valid_recipe_user");
+    //     window.location.href = "index.html";
+    //   });
+    // } else {
+    //   console.error("Element with id 'logoutBtn' not found");
+    // }
   } catch (error) {
     console.log("Error getting data from firebase:", error);
   }
@@ -80,5 +68,12 @@ document.addEventListener("DOMContentLoaded", function () {
     initRegister();
   } else if (content === "login") {
     logIn();
+  } else if (content === "logout") {
+    console.log(localStorage);
+    // Initialize Logout
+    signOut(auth);
+    alert("Logout Successful");
+    localStorage.removeItem("valid_recipe_user");
+    window.location.href = "index.html";
   }
 });

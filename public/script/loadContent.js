@@ -101,7 +101,19 @@ document.addEventListener("DOMContentLoaded", function () {
     } else if (content === "login") {
       logIn();
     } else if (content === "logout") {
-      window.location.href = "index.html";
+      // window.location.href = "index.html";
+      const logout = document.getElementById("logoutBtn");
+      if (logout) {
+        logout.addEventListener("click", function () {
+          console.log("Logout button clicked");
+          //   signOut(auth);
+          //   alert("Logout Successful");
+          //   localStorage.removeItem("valid_recipe_user");
+          //   window.location.href = "index.html";
+        });
+      } else {
+        console.error("Element with id 'logoutBtn' not found");
+      }
     } else if (content === "newrecipe") {
       console.log("This is new recipe");
       postRecipe();

@@ -12,7 +12,6 @@ import {
 import displayUsername from "./displayUser.js";
 import initRegister from "./register.js";
 import logIn from "./login.js";
-import logOut from "./logout.js";
 
 // const app = initializeApp(firebaseConfig);
 // const auth = getAuth();

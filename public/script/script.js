@@ -145,21 +145,27 @@ function toggleStrikethrough(checkboxId) {
   }
 }
 
-function displayFileName() {
-  let fileInput = document.getElementById("uploadImgButton");
-  let fileNameDisplay = document.getElementById("fileName");
+// RECIPE PRINTING
 
-  setTimeout(() => {
-    if (fileInput.files.length > 0) {
-      let fileName = fileInput.files[0].name;
-
-      if (fileName.length > 25) {
-        fileName = fileName.substring(0, 22) + "...";
-      }
-
-      fileNameDisplay.textContent = fileName;
-    } else {
-      fileNameDisplay.textContent = "";
-    }
-  }, 1500);
+function printRecipe() {
+  window.print();
 }
+
+// function displayFileName() {
+//   let fileInput = document.getElementById("uploadImgButton");
+//   let fileNameDisplay = document.getElementById("fileName");
+
+//   setTimeout(() => {
+//     if (fileInput.files.length > 0) {
+//       let fileName = fileInput.files[0].name;
+
+//       if (fileName.length > 25) {
+//         fileName = fileName.substring(0, 22) + "...";
+//       }
+
+//       fileNameDisplay.textContent = fileName;
+//     } else {
+//       fileNameDisplay.textContent = "";
+//     }
+//   }, 1500);
+// }

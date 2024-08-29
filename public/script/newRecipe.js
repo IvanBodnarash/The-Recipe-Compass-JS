@@ -2,7 +2,6 @@
 // import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.3/firebase-app.js";
 // import { getFirebaseAuth, getFirebaseFirestore, getFirebaseStorage, getUnsplashApiKey } from "./firebaseInit.js";
 import { auth, db, storage } from "./config/firebaseConfig.js";
-import { getAuth } from "https://www.gstatic.com/firebasejs/10.12.3/firebase-auth.js";
 import {
   getFirestore,
   collection,
@@ -124,7 +123,7 @@ export default async function postRecipe() {
         }
       } else {
         console.log("No image selected, searching Unsplash...");
-        imageUrl = await searchImagesOnUnsplash(recipeTitle, unsplashAPIKey);
+        imageUrl = await searchImagesOnUnsplash(recipeTitle);
 
         if (!imageUrl) {
           console.log("No image found on Unsplash");
@@ -154,7 +153,7 @@ export default async function postRecipe() {
 }
 
 // Function for searching image with Unsplash API
-async function searchImagesOnUnsplash(query, unsplashAPIKey) {
+async function searchImagesOnUnsplash(query) {
   const url = `https://api.unsplash.com/search/photos?query=${query}&client_id=JRHCGjiEKiwH6NJOTS4GxfGm2K0TvJ5gS-ze_6eJJzg`;
   try {
     const response = await fetch(url);

@@ -419,9 +419,16 @@ body ._lock {
     width: 90%;
 }
 
+.text-inner-block>.text-inner {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    font-size: 1.2rem;
+}
+
 .text-inner span {
     color: #618264;
-    margin-left: 5px;
+    margin-left: 10px;
 }
 
 .text-inner p {

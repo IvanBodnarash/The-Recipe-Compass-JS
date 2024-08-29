@@ -12,40 +12,6 @@
     </script>
 </head>
 <body>
-    <?php
-
-    require 'config.php';
-
-    // // Connecting to db
-    
-    if ($conn->connect_error) {
-        echo "<h2>Sorry, we cannot process your request at this time, please try again later</h2>\n";
-        echo "<a href="index.html">Return to Home</a>\n";
-        exit;
-    }
-    
-    $recipeid = $_GET['id'];
-    
-    $query = "SELECT title, poster, shortdesc, ingredients, directions, image_path, date FROM recipes WHERE recipeid = $recipeid";
-
-    $result = $conn->query($query);
-    $row = $result->fetch_array(MYSQLI_ASSOC);
-
-    $title = $row['title'];
-    $poster = $row['poster'];
-    $shortdesc = $row['shortdesc'];
-    $ingredients = $row['ingredients'];
-    $directions = $row['directions'];
-    $image = $row['image_path'];
-    $ingredients = nl2br($ingredients);
-    $directions = nl2br($directions);
-
-    $datePost = $row['date'];
-    $datePostFormatted = date("d F, Y", strtotime($datePost));
-
-    if($image == null) {
-        $image = 'img/default.jpg';
-    }
 
     echo "<div class=\"page-banner\">
             <h1>$title</h1>

@@ -33,14 +33,14 @@ window.onload = async function () {
     });
 
     // Initialize Logout
-    const logout = document.getElementById("logoutBtn");
-    if (logout) {
-      logout.addEventListener("click", function () {
-        handleLogout();
-      });
-    } else {
-      console.error("Element with id 'logoutBtn' not found");
-    }
+    // const logout = document.getElementById("logoutBtn");
+    // if (logout) {
+    //   logout.addEventListener("click", function () {
+    //     handleLogout();
+    //   });
+    // } else {
+    //   console.error("Element with id 'logoutBtn' not found");
+    // }
   } catch (error) {
     console.log("Error getting data from firebase:", error);
   }
@@ -75,5 +75,7 @@ document.addEventListener("DOMContentLoaded", function () {
     initRegister();
   } else if (content === "login") {
     logIn();
+  } else if (content === "logout") {
+    handleLogout();
   }
 });

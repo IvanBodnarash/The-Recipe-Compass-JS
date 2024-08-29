@@ -3,10 +3,11 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="../style/printmedia.css" type="text/css" media="print" />
     <title>Show Recipe</title>
   </head>
   <body>
-    <!-- SPINNER -->
+    <!-- LOADING SPINNER -->
     <div class="spinner-wrapper" id="loadingSpinner">
       <div class="spinner"></div>
     </div>
@@ -38,9 +39,9 @@
           <div class="recipe-block-wrapper">
             <div class="img-recipe">
               <img src="" alt="img" id="recipeImg" />
-              <div class="print-item">
+              <div class="print-item" id="printRecipe">
                 <i class="fa-solid fa-print"></i>
-                <a href="print.html?id=$recipeid" target="_blank"
+                <a href="#" onclick="printRecipe()"
                   >Print recipe</a
                 >
               </div>
@@ -98,74 +99,37 @@
           </div>
         </div>
 
-        <!-- COMMENTS -->
+        <!-- COMMENTS BLOCK -->
         <div class="comments-section">
           <div class="comments-block">
             <i class="fa-solid fa-comments"></i>
             <h1>Comments</h1>
           </div>
 
-          <span class="please-log-in"></span>
+          <span class="please-log-in">
+            <!-- Auth check before adding comments -->
+          </span>
 
-          <!-- Auth check before adding comments -->
-          <!-- <span class="please-log-in"><span> -->
           <div class="comments-section-btns">
             <div class="add-comment-btn">
               <i class="fa-solid fa-square-plus"></i>
-              <a href="index.php?content=login">Add a comment</a>
+              <a href="#comnt-form">Add a comment</a>
             </div>
-            <div class="print-item-comments">
+            <div class="print-item-comments" onclick="printRecipe()">
               <i class="fa-solid fa-print"></i>
-              <a href="print.php?id=$recipeid" target="_blank">Print recipe</a>
+              <a href="#">Print recipe</a>
             </div>
           </div>
           <div class="comments-info-section">
-            <span id="commentCount"></span>
+            <span id="commentCount">
+              <!-- # Of comments -->
+            </span>
           </div>
 
-          <!-- <div class="comments-section-btns">
-                    <div class="add-comment-btn">
-                        <i class="fa-solid fa-square-plus"></i>
-                        <a href="index.php?content=login">Add a comment</a>
-                    </div>
-                    <div class="print-item-comments">
-                        <i class="fa-solid fa-print"></i>
-                        <a href="print.php?id=$recipeid" target="_blank">Print recipe</a>
-                    </div>
-                </div>
-                <div class="comments-section-btns">
-                    <div class="add-comment-btn">
-                        <i class="fa-solid fa-square-plus"></i>
-                        <a href="#comnt-form">Add a comment</a>
-                    </div>
-                    <div class="print-item-comments">
-                        <i class="fa-solid fa-print"></i>
-                        <a href="print.php?id=$recipeid" target="_blank">Print recipe</a>
-                    </div>
-                </div> -->
           <div class="comment-container-block">
-            <!-- <div class="comment-author">
-                        <h2>$poster</h2>
-                    </div>
-                    <div class="comment-text">
-                        <p>$comment</p>
-                    </div>
-                    <div class="date-posted">
-                        <p>$dateFormatted</p>
-                    </div> -->
+            <!-- Comments will be displayed here -->
           </div>
-          <!-- <a href="index.php?content=showrecipe&id=$recipeid&page=$page">Prev</a>
-                <a href="index.php?content=showrecipe&id=$recipeid&page=$page">$page</a>
-                <a href="index.php?content=showrecipe&id=$recipeid&page=$page">Next</a>
 
-                <div class="no-user-banner">
-                    <h1>Sorry, you do not have permission to post comments</h1>
-                    <div class="no-user-banner-inner">
-                        <a href="index.php?content=showrecipe&id=$recipeid">Go back to recipe</a>
-                        <p>&ensp;/&ensp;</p>
-                        <a href="index.php?content=login">Please login to post comments</a>
-                    </div>
-                </div> -->
           <div id="comnt-form" class="comment-form-block">
             <div class="comments-block">
               <i class="fa-solid fa-comment"></i>
@@ -191,9 +155,6 @@
           </div>
         </div>
       </div>
-
-      <!-- <div class="newsletter-block">
-        </div> -->
     </div>
   </body>
 </html>

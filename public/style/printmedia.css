@@ -1,0 +1,46 @@
+@media print {
+    body {
+        font-family: Arial, sans-serif;
+    }
+    .comments-section {
+        display: none;
+    }
+    /* .spinner-wrapper,
+    .no-user-banner,
+    .comments-section,
+    .comments-block,
+    .print-item-comments {
+        display: none;
+    }
+    .recipe-block-main {
+        width: 100%;
+        margin: 0;
+        padding: 0;
+    }
+    .page-banner,
+    .page-content,
+    .ingredients-block,
+    .directions-block {
+        margin-bottom: 20px;
+        page-break-inside: avoid;
+    }
+    h1 {
+        font-size: 24px;
+        margin-bottom: 10px;
+    }
+    p,
+    span {
+        font-size: 14px;
+    }
+    .ingredients-block-inner .form-check {
+        display: block;
+        margin-bottom: 5px;
+    }
+    .directions-list {
+        list-style-position: inside;
+        padding-left: 0;
+    }
+    .directions-item {
+        margin-bottom: 10px;
+    } */
+}

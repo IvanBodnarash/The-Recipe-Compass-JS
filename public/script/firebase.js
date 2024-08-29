@@ -33,21 +33,29 @@ window.onload = async function () {
     });
 
     // Initialize Logout
-    // const logout = document.getElementById("logoutBtn");
-    // if (logout) {
-    //   logout.addEventListener("click", function () {
-    //     signOut(auth);
-    //     alert("Logout Successful");
-    //     localStorage.removeItem("valid_recipe_user");
-    //     window.location.href = "index.html";
-    //   });
-    // } else {
-    //   console.error("Element with id 'logoutBtn' not found");
-    // }
+    const logout = document.getElementById("logoutBtn");
+    if (logout) {
+      logout.addEventListener("click", function () {
+        handleLogout();
+      });
+    } else {
+      console.error("Element with id 'logoutBtn' not found");
+    }
   } catch (error) {
     console.log("Error getting data from firebase:", error);
   }
 };
+
+async function handleLogout() {
+  try {
+    await signOut(auth);
+    alert("Logout Successful");
+    localStorage.removeItem("valid_recipe_user");
+    window.location.href = "index.html";
+  } catch (error) {
+    console.log("Error logging out:", error);
+  }
+}
 
 function toggleAddRecipeButton(isEnabled) {
   const addRecipeButton = document.getElementById("addRecipeBtn");
@@ -67,12 +75,5 @@ document.addEventListener("DOMContentLoaded", function () {
     initRegister();
   } else if (content === "login") {
     logIn();
-  } else if (content === "logout") {
-    console.log(localStorage);
-    // Initialize Logout
-    signOut(auth);
-    alert("Logout Successful");
-    localStorage.removeItem("valid_recipe_user");
-    window.location.href = "index.html";
   }
 });

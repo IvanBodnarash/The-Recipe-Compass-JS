@@ -3,7 +3,13 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="stylesheet" href="../style/printmedia.css" type="text/css" media="print" />
+    <!-- <link
+      rel="stylesheet"
+      href="../style/printmedia.css"
+      type="text/css"
+      media="print"
+    /> -->
+    <link rel="stylesheet" type="text/css" href="style/adminpanel.css" />
     <title>Show Recipe</title>
   </head>
   <body>
@@ -35,15 +41,117 @@
       </div>
 
       <div class="page-content">
+
+        <!-- RECIPE EDITING MODAL -->
+        <div class="edit-container">
+          <div id="recipeModal" class="edit-modal">
+            <div class="modal-content">
+              <div class="heading-modal-row">
+                <h2>Edit Recipe</h2>
+                <span class="close">&times;</span>
+              </div>
+
+              <div class="form-cell">
+                <label>Current Recipe Image:</label>
+                <img
+                  id="currentRecipeImage"
+                  src=""
+                  alt="Recipe Image"
+                  class="recipe-image-preview"
+                />
+              </div>
+
+              <form id="editRecipeForm">
+                <div class="form-cell">
+                  <label for="recipeTitle">Recipe Title:</label>
+                  <input
+                    type="text"
+                    id="recipeTitle"
+                    name="recipeTitle"
+                    required
+                  />
+                </div>
+
+                <div class="form-cell">
+                  <label for="shortDescription">Description:</label>
+                  <textarea
+                    id="shortDescription"
+                    name="shortDescription"
+                    rows="5"
+                    required
+                  ></textarea>
+                </div>
+
+                <div class="form-cell">
+                  <label for="ingredients">Ingredients:</label>
+                  <div id="ingredientsContainer"></div>
+                  <button type="button" id="addIngredientBtn">
+                    Add Ingredient
+                  </button>
+                </div>
+
+                <div class="form-cell">
+                  <label for="directions">Directions:</label>
+                  <div id="directionsContainer"></div>
+                  <button type="button" id="addDirectionBtn">
+                    Add Direction
+                  </button>
+                </div>
+
+                <div class="form-cell">
+                  <label for="uploadNewImg">Upload New Image:</label>
+                  <input
+                    type="file"
+                    id="uploadNewImg"
+                    name="uploadNewImg"
+                    accept="image/jpeg, image/png, image/gif, image/webp, image/jpg, image/svg"
+                  />
+                </div>
+
+                <div class="form-cell">
+                  <label for="unsplashSearchInput"
+                    >Or Search Unsplash for an Image:</label
+                  >
+                  <div class="unsplash-search">
+                    <input
+                      type="text"
+                      id="unsplashSearchInput"
+                      placeholder="Search Unsplash"
+                    />
+                    <button type="button" id="unsplashSearchBtn">Search</button>
+                  </div>
+                  <div id="imageGallery" class="image-gallery"></div>
+                  <img id="selectedImage" src="" alt="Selected Image" />
+                  <input
+                    type="hidden"
+                    id="selectedImageUrl"
+                    name="selectedImageUrl"
+                  />
+                </div>
+
+                <!-- Delete Recipe Button -->
+                <button
+                  type="button"
+                  id="deleteRecipeButton"
+                  class="delete-btn"
+                  style="color: red"
+                >
+                  Delete Recipe
+                </button>
+
+                <button class="modal-submit-btn" type="submit">Save</button>
+              </form>
+            </div>
+          </div>
+        </div>
+
         <div class="recipe-block-single">
           <div class="recipe-block-wrapper">
             <div class="img-recipe">
               <img src="" alt="img" id="recipeImg" />
               <div class="print-item" id="printRecipe">
                 <i class="fa-solid fa-print"></i>
-                <a href="#" onclick="printRecipe()"
-                  >Print recipe</a
-                >
+                <a href="#" onclick="printRecipe()">Print recipe</a>
               </div>
             </div>
             <div class="sidebar-wrapper">
@@ -51,8 +159,15 @@
                 <h1>Author / User</h1>
                 <div class="author-block">
                   <div class="author-inner-block">
-                    <img src="img/cook.jpg" alt="cooking" />
-                    <h2 id="recipeAuthor">Author</h2>
+                    <div class="author-img">
+                      <img src="img/cook.jpg" alt="cooking" />
+                      <h2 id="recipeAuthor">Author</h2>
+                    </div>
+                    <div id="editBtnContainer" style="display: none">
+                      <button id="editRecipeBtn" class="edit-btn">
+                        Edit Recipe
+                      </button>
+                    </div>
                   </div>
                   <span id="timeStamp">Posted On: </span>
                 </div>

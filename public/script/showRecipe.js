@@ -1,7 +1,7 @@
 // import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.3/firebase-app.js";
 
 // import { getFirebaseFirestore } from "./firebaseInit.js";
-import { db } from "./config/firebaseConfig.js";
+import { auth, db } from "./config/firebaseConfig.js";
 import {
   getFirestore,
   collection,
@@ -12,6 +12,7 @@ import {
   doc,
   getDoc,
 } from "https://www.gstatic.com/firebasejs/10.12.3/firebase-firestore.js";
+import { authorPanelModal } from "./editModal.js";
 
 // import firebaseConfig from "./config.js";
 // import firebaseConfig from "./config/firebaseConfig.js";
@@ -59,6 +60,15 @@ export default async function showRecipe(recipeId) {
     const recipe = recipeDoc.data();
     console.log(recipe);
     const userName = await getUserName(usersRef, recipe.userId);
+
+    const user = auth.currentUser;
+
+    if (user && user.uid === recipe.userId) {
+      document.getElementById("editBtnContainer").style.display = "block";
+      document.getElementById("editRecipeBtn").addEventListener("click", () => {
+        authorPanelModal({ ...recipe, id: recipeId });
+      })
+    }
 
     // Getting ingredient and direction arrays
     const ingredients = recipe.ingredients;

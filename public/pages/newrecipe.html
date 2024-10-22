@@ -94,6 +94,29 @@
             />
             <div class="file-name" id="fileName">No File Choosen</div>
           </div>
+
+          <div class="unsplash-search-wrapper">
+            <label for="unsplashSearchInput">Or Search Unsplash for an Image</label>
+            <div class="unsplash-input-containter">
+              <input type="text" id="unsplashSearchInput" class="input-field" placeholder="Search Unsplash">
+              <button type="button" id="unsplashSearchBtn">Search</button>
+            </div>
+          </div>
+
+          <div class="image-gallery-wrapper">
+            <button type="button" id="scrollLeftBtn" class="scroll-btn left-arrow">&lt;</button>
+            
+            <div id="imageGallery" class="image-gallery" style="display: none;"></div>
+
+            <button type="button" id="scrollRightBtn" class="scroll-btn right-arrow">&gt;</button>
+          </div>
+
+          <div id="selectedImageContainerWrapper" class="selected-image-wrapper" style="display: none;">
+            <h3>Selected Image:</h3>
+            <img src="" alt="Selected Unsplash Image" id="selectedImage" class="selected-image">
+            <input type="hidden" id="selectedImageUrl" name="selectedImageUrl">
+          </div>
+
           <input
             class="submit-btn"
             type="submit"

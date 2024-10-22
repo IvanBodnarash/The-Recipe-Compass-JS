@@ -1,4 +1,5 @@
-.admin-container {
+.admin-container,
+.edit-container {
     width: 80%;
     margin: 0 auto;
     padding: 50px 0;
@@ -90,7 +91,8 @@
 
 /* MODAL */
 
-.modal {
+.modal,
+.edit-modal {
     display: none;
     position: fixed;
     z-index: 1;

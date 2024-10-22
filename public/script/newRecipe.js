@@ -14,48 +14,121 @@ import {
   uploadBytes,
   getDownloadURL,
 } from "https://www.gstatic.com/firebasejs/10.12.3/firebase-storage.js";
-
-// import firebaseConfig from "./config/firebaseConfig.js";
-// import firebaseConfig from "./config.js";
-// import unsplashAPIKey from "./unsplashConfig.js";
-// import unsplashAPIKey from "./unsplashAuth.js";
-// import unsplashAPIKey from "./config/unsplashAuth.js";
-
-
-// const app = initializeApp(firebaseConfig);
-// const auth = getAuth();
-// const db = getFirestore(app);
-// const storage = getStorage(app);
+import { searchImagesOnUnsplash, displayUnsplashImages } from "./unsplash.js";
 
 export default async function postRecipe() {
-  console.log("postRecipe page function called");
+  document
+    .getElementById("uploadImgButton")
+    .addEventListener("change", (event) => {
+      console.log("File input changed");
+      const file = event.target.files[0];
+      const fileNameDisplay = document.getElementById("fileName");
+      document.getElementById("selectedImageContainerWrapper").style.display = "block";
+      console.log(file);
 
-  // const auth = await getFirebaseAuth();
-  // const db = await getFirebaseFirestore();
-  // const storage = await getFirebaseStorage();
-  // const unsplashAPIKey = await getUnsplashApiKey();
+      if (file) {
+        const reader = new FileReader();
 
-  document.getElementById("uploadImgButton").addEventListener("change", (event) => {
-    console.log("File input changed");
-    const fileNameDisplay = document.getElementById("fileName");
-    const file = event.target.files[0].name;
-    console.log(file);
+        const validFileTypes = [
+          "image/jpeg",
+          "image/png",
+          "image/gif",
+          "image/webp",
+          "image/jpg",
+          "image/svg",
+        ];
+        const maxFileSize = 2 * 1024 * 1024; // 2 MB in bytes
 
-    const fileNameParts = file.split(".");
-    const name = fileNameParts.slice(0, -1).join(".");
-    const extension = fileNameParts.pop();
+        if (!validFileTypes.includes(file.type)) {
+          console.log(
+            "Please select a valid image file (JPEG, PNG, GIF, WEBP, JPG, SVG)."
+          );
+          return;
+        }
 
-    if (file.length > 20) {
-      const shortenedFileName = name.substring(0, 22) + "..." + extension;
-      fileNameDisplay.textContent = shortenedFileName;
-      console.log("Shortened file name:", shortenedFileName);
-    } else {
-      fileNameDisplay.textContent = file;
-    }
+        if (file.size > maxFileSize) {
+          console.log("Please select an image smaller than 2 MB.");
+          return;
+        }
+        reader.onload = function (e) {
+          const selectedImageContainer =
+            document.getElementById("selectedImage");
+          selectedImageContainer.src = e.target.result;
 
-    console.log("File name length:", file.length);
+          document.getElementById("selectedImageUrl").value = "";
+          fileNameDisplay.textContent = file.name;
+        };
+
+        reader.readAsDataURL(file);
+      }
+
+      // const fileNameParts = file.split(".");
+      // const name = fileNameParts.slice(0, -1).join(".");
+      // const extension = fileNameParts.pop();
+
+      // if (file.length > 20) {
+      //   const shortenedFileName = name.substring(0, 22) + "..." + extension;
+      //   fileNameDisplay.textContent = shortenedFileName;
+      //   console.log("Shortened file name:", shortenedFileName);
+      // } else {
+      //   fileNameDisplay.textContent = file;
+      // }
+
+      // console.log("File name length:", file.length);
+    });
+
+  document
+    .getElementById("unsplashSearchBtn")
+    .addEventListener("click", async function () {
+      const query = document.getElementById("unsplashSearchInput").value;
+      if (query) {
+        const unsplashResults = await searchImagesOnUnsplash(query);
+        if (unsplashResults.length > 0) {
+          displayUnsplashImages(unsplashResults);
+          checkGalleryOverflow();
+        } else {
+          console.log("No images found on Unsplash for the query");
+        }
+      } else {
+        console.log("Please enter a search query");
+      }
+    });
+
+  // Handle scrolling the gallery with buttons
+  document.getElementById("scrollLeftBtn").addEventListener("click", () => {
+    const gallery = document.getElementById("imageGallery");
+    gallery.scrollBy({
+      left: -gallery.clientWidth / 3,
+      behavior: "smooth",
+    });
+  });
+  3;
+  
+  document.getElementById("scrollRightBtn").addEventListener("click", () => {
+    const gallery = document.getElementById("imageGallery");
+    gallery.scrollBy({
+      left: gallery.clientWidth / 3,
+      behavior: "smooth",
+    });
   });
 
+  // Check if the gallery overflows and hide/show scroll buttons
+  function checkGalleryOverflow() {
+    const gallery = document.getElementById("imageGallery");
+    const scrollLeftBtn = document.getElementById("scrollLeftBtn");
+    const scrollRightBtn = document.getElementById("scrollRightBtn");
+
+    if (gallery.scrollWidth > gallery.clientWidth) {
+      scrollLeftBtn.style.display = "block";
+      scrollRightBtn.style.display = "block";
+    } else {
+      scrollLeftBtn.style.display = "none";
+      scrollRightBtn.style.display = "none";
+    }
+  }
+
+  window.addEventListener("resize", checkGalleryOverflow);
+  checkGalleryOverflow();
 
   // Add new recipe to database and get image URL
   document
@@ -75,20 +148,13 @@ export default async function postRecipe() {
       const directions = Array.from(
         document.querySelectorAll("textarea[name='directions[]']")
       ).map((textarea) => textarea.value);
-      
+
       const fileInput = document.getElementById("uploadImgButton");
       const img = fileInput ? fileInput.files[0] : null;
+      let imageUrl = document.getElementById("selectedImageUrl").value;
 
-      console.log("recipeTitle:", recipeTitle);
-      console.log("shortDescription:", shortDescription);
-      console.log("ingredients:", ingredients);
-      console.log("directions:", directions);
-      console.log("userId:", userId);
-      console.log("img:", img);
-
-      let imageUrl = null;
-
-      if (img) {
+      if (img && !imageUrl) {
+        // If the user has uploaded their own image
         const validFileTypes = [
           "image/jpeg",
           "image/png",
@@ -121,14 +187,9 @@ export default async function postRecipe() {
           console.error("Error uploading image:", error);
           return;
         }
-      } else {
-        console.log("No image selected, searching Unsplash...");
-        imageUrl = await searchImagesOnUnsplash(recipeTitle);
-
-        if (!imageUrl) {
-          console.log("No image found on Unsplash");
-          return;
-        }
+      } else if (!imd && !imageUrl) {
+        console.log("No image found or uploaded!");
+        return;
       }
 
       try {
@@ -150,23 +211,4 @@ export default async function postRecipe() {
 
       window.location.href = "index.html";
     });
-}
-
-// Function for searching image with Unsplash API
-async function searchImagesOnUnsplash(query) {
-  const url = `https://api.unsplash.com/search/photos?query=${query}&client_id=JRHCGjiEKiwH6NJOTS4GxfGm2K0TvJ5gS-ze_6eJJzg`;
-  try {
-    const response = await fetch(url);
-    const data = await response.json();
-    console.log(data);
-    if (data.results && data.results.length > 0) {
-      console.log(data.results[0].urls.regular);
-      return data.results[0].urls.regular; // Return the first image URL
-    } else {
-      return null; // Return null if no image is found
-    }
-  } catch (error) {
-    console.error("Error searching Unsplash:", error);
-    return null;
-  }
 }

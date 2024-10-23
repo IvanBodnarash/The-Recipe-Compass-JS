@@ -4,9 +4,18 @@ import {
   getDownloadURL,
   deleteObject,
 } from "https://www.gstatic.com/firebasejs/10.12.3/firebase-storage.js";
-import { updateDoc, deleteDoc, doc } from "https://www.gstatic.com/firebasejs/10.12.3/firebase-firestore.js";
+import {
+  updateDoc,
+  deleteDoc,
+  doc,
+} from "https://www.gstatic.com/firebasejs/10.12.3/firebase-firestore.js";
 import { storage, db } from "./config/firebaseConfig.js";
-import { searchImagesOnUnsplash, displayUnsplashImages } from "./unsplash.js";
+import {
+  searchImagesOnUnsplash,
+  displayUnsplashImages,
+} from "./utils/unsplash.js";
+import { uploadNewImg } from "./utils/uploadNewImg.js";
+// import { shortenedImgName } from "./utils/imgDisplayShortener.js";
 
 export function authorPanelModal(recipe) {
   const modal = document.getElementById("recipeModal");
@@ -47,6 +56,8 @@ export function authorPanelModal(recipe) {
       displayUnsplashImages(unsplashResults);
     }
   });
+
+  uploadNewImg();
 
   modalForm.onsubmit = async (e) => {
     e.preventDefault();
@@ -95,7 +106,7 @@ export function authorPanelModal(recipe) {
         await deleteDoc(doc(db, "recipes", recipe.id));
 
         // Delete image from Firebase Storage
-        if (recipe.imageUrl && recipe.imageUrl.startsWith("gs://")) {
+        if (recipe.imageUrl && recipe.imageUrl.startWith()) {
           const imageRef = ref(storage, recipe.imageUrl);
           await deleteObject(imageRef);
         }

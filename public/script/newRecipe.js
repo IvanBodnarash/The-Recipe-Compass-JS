@@ -14,7 +14,7 @@ import {
   uploadBytes,
   getDownloadURL,
 } from "https://www.gstatic.com/firebasejs/10.12.3/firebase-storage.js";
-import { searchImagesOnUnsplash, displayUnsplashImages } from "./unsplash.js";
+import { searchImagesOnUnsplash, displayUnsplashImages } from "./utils/unsplash.js";
 
 export default async function postRecipe() {
   document
@@ -23,7 +23,8 @@ export default async function postRecipe() {
       console.log("File input changed");
       const file = event.target.files[0];
       const fileNameDisplay = document.getElementById("fileName");
-      document.getElementById("selectedImageContainerWrapper").style.display = "block";
+      document.getElementById("selectedImageContainerWrapper").style.display =
+        "block";
       console.log(file);
 
       if (file) {
@@ -103,7 +104,7 @@ export default async function postRecipe() {
     });
   });
   3;
-  
+
   document.getElementById("scrollRightBtn").addEventListener("click", () => {
     const gallery = document.getElementById("imageGallery");
     gallery.scrollBy({

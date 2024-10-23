@@ -41,7 +41,6 @@
       </div>
 
       <div class="page-content">
-
         <!-- RECIPE EDITING MODAL -->
         <div class="edit-container">
           <div id="recipeModal" class="edit-modal">
@@ -99,13 +98,18 @@
                 </div>
 
                 <div class="form-cell">
-                  <label for="uploadNewImg">Upload New Image:</label>
+                  <p>Upload New Image:</p>
+                  <label class="uploadNewImgButton" for="uploadNewImg"
+                    >Upload</label
+                  >
                   <input
                     type="file"
                     id="uploadNewImg"
                     name="uploadNewImg"
                     accept="image/jpeg, image/png, image/gif, image/webp, image/jpg, image/svg"
+                    style="display: none"
                   />
+                  <span id="fileName">No file chosen</span>
                 </div>
 
                 <div class="form-cell">
@@ -120,13 +124,40 @@
                     />
                     <button type="button" id="unsplashSearchBtn">Search</button>
                   </div>
+
                   <div id="imageGallery" class="image-gallery"></div>
-                  <img id="selectedImage" src="" alt="Selected Image" />
+
+                  <!-- <img
+                    id="selectedImage"
+                    src=""
+                    alt="Selected Image"
+                    class="selected-image"
+                    style="display: none"
+                  />
                   <input
                     type="hidden"
                     id="selectedImageUrl"
                     name="selectedImageUrl"
-                  />
+                  /> -->
+
+                  <div
+                    id="selectedImageContainerWrapper"
+                    class="selected-image-wrapper"
+                    style="display: none"
+                  >
+                    <h3>Selected Image:</h3>
+                    <img
+                      src=""
+                      alt="Selected Unsplash Image"
+                      id="selectedImage"
+                      class="selected-image"
+                    />
+                    <input
+                      type="hidden"
+                      id="selectedImageUrl"
+                      name="selectedImageUrl"
+                    />
+                  </div>
                 </div>
 
                 <!-- Delete Recipe Button -->
@@ -134,7 +165,6 @@
                   type="button"
                   id="deleteRecipeButton"
                   class="delete-btn"
-                  style="color: red"
                 >
                   Delete Recipe
                 </button>

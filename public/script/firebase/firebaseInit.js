@@ -11,7 +11,6 @@ import {
 } from "https://www.gstatic.com/firebasejs/10.12.3/firebase-firestore.js";
 import { getAuth } from "https://www.gstatic.com/firebasejs/10.12.3/firebase-auth.js";
 import { getStorage } from "https://www.gstatic.com/firebasejs/10.12.3/firebase-storage.js";
-// import unsplashAPIKey from "./config/unsplashConfig";
 
 let firebaseConfigCache = null;
 let appInstance = null;

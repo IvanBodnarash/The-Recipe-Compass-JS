@@ -1179,6 +1179,8 @@ body ._lock {
 .recipe-block-wrapper {
     display: flex;
     flex-direction: row;
+    overflow-wrap: break-word;
+    box-sizing: border-box;
 }
 
 .img-recipe {
@@ -1197,8 +1199,12 @@ body ._lock {
 .sidebar-wrapper {
     display: flex;
     flex-direction: column;
-    width: 100%;
     margin-left: 25px;
+    word-wrap: break-word;
+    overflow-wrap: break-word;
+    white-space: normal;
+    max-width: 90%;
+    overflow: hidden;
 }
 
 .recipe-sidebar {

@@ -9,12 +9,12 @@ import {
   deleteDoc,
   doc,
 } from "https://www.gstatic.com/firebasejs/10.12.3/firebase-firestore.js";
-import { storage, db } from "./config/firebaseConfig.js";
+import { storage, db } from "../config/firebaseConfig.js";
 import {
   searchImagesOnUnsplash,
   displayUnsplashImages,
-} from "./utils/unsplash.js";
-import { uploadNewImg } from "./utils/uploadNewImg.js";
+} from "../utils/unsplash.js";
+import { uploadNewImg } from "../utils/uploadNewImg.js";
 
 export function authorPanelModal(recipe) {
   const modal = document.getElementById("recipeModal");

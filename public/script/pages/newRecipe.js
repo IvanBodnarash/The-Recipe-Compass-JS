@@ -1,4 +1,4 @@
-import { auth, db, storage } from "./config/firebaseConfig.js";
+import { auth, db, storage } from "../config/firebaseConfig.js";
 import {
   collection,
   addDoc,
@@ -9,8 +9,8 @@ import {
   uploadBytes,
   getDownloadURL,
 } from "https://www.gstatic.com/firebasejs/10.12.3/firebase-storage.js";
-import { searchImagesOnUnsplash, displayUnsplashImages } from "./utils/unsplash.js";
-import { uploadNewImg } from "./utils/uploadNewImg.js";
+import { searchImagesOnUnsplash, displayUnsplashImages } from "../utils/unsplash.js";
+import { uploadNewImg } from "../utils/uploadNewImg.js";
 
 export default async function postRecipe() {
 

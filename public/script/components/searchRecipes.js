@@ -1,21 +1,11 @@
-// import { getFirebaseFirestore } from "./firebaseInit.js";
-import { db } from "./config/firebaseConfig.js";
-// import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.3/firebase-app.js";
+import { db } from "../config/firebaseConfig.js";
 import {
-  getFirestore,
   collection,
   query,
-  orderBy,
   getDocs,
   doc,
   getDoc,
 } from "https://www.gstatic.com/firebasejs/10.12.3/firebase-firestore.js";
-
-// import firebaseConfig from "./config.js";
-// import firebaseConfig from "./config/firebaseConfig.js";
-
-// const app = initializeApp(firebaseConfig);
-// const db = getFirestore(app);
 
 // Function to get user name
 async function getUserName(usersRef, userId) {
@@ -31,8 +21,6 @@ async function getUserName(usersRef, userId) {
 // Function to get recipes and their displaying
 export default async function searchRecipes() {
   try {
-    // const db = await getFirebaseFirestore();
-
     const recipesRef = collection(db, "recipes");
     const usersRef = collection(db, "users");
 

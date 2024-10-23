@@ -1,14 +1,14 @@
-import logIn from "./login.js";
-import initRegister from "./register.js";
-import postRecipe from "./newRecipe.js";
-import displayRecipes from "./latestRecipes.js";
-import showRecipe from "./showRecipe.js";
-import loadRecipes from "./showAllRecipes.js";
-import searchRecipes from "./searchRecipes.js";
-import commentLogic from "./submitComment.js";
+import logIn from "./pages/login.js";
+import initRegister from "./pages/register.js";
+import postRecipe from "./pages/newRecipe.js";
+import showRecipe from "./pages/showRecipe.js";
+import loadRecipes from "./pages/showAllRecipes.js";
+import displayRecipes from "./components/latestRecipes.js";
+import searchRecipes from "./components/searchRecipes.js";
+import commentLogic from "./components/submitComment.js";
+import currentYear from "./components/footer.js";
 import adminPanelAuth from "./admin/adminPanelAuth.js";
 import adminPanelLogic from "./admin/adminPanelLogic.js";
-import currentYear from "./footer.js";
 // Function for loading a page
 function loadPage(containerId, url, callback) {
   fetch(url)

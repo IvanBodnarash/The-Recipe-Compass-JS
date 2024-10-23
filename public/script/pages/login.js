@@ -1,23 +1,10 @@
-// import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.3/firebase-app.js";
-import { getFirebaseAuth, getFirebaseFirestore, getUnsplashApiKey } from "./firebaseInit.js";
-import {
-  getAuth,
-  signInWithEmailAndPassword,
-  onAuthStateChanged,
-} from "https://www.gstatic.com/firebasejs/10.12.3/firebase-auth.js";
-import { getFirestore } from "https://www.gstatic.com/firebasejs/10.12.3/firebase-firestore.js";
-
-// import firebaseConfig from "./config.js";
-import { auth } from "./config/firebaseConfig.js";
-
-// const app = initializeApp(firebaseConfig);
-// const auth = getAuth();
-// const db = getFirestore(app);
+import { signInWithEmailAndPassword } from "https://www.gstatic.com/firebasejs/10.12.3/firebase-auth.js";
+import { auth } from "../config/firebaseConfig.js";
 
 // Initialize Login
 export default async function logIn() {
   // Submit Button
-  
+
   try {
     const login = document.getElementById("loginBtn");
     // const auth = await getFirebaseAuth();
@@ -44,4 +31,4 @@ export default async function logIn() {
   } catch (error) {
     console.error("Error in logIn:", error);
   }
-};
+}

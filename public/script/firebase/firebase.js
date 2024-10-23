@@ -1,14 +1,11 @@
-// Import the functions you need from the SDKs you need
-// import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.3/firebase-app.js";
-// import { getFirebaseAuth } from "./firebaseInit.js";
-import { auth } from "./config/firebaseConfig.js";
+import { auth } from "../config/firebaseConfig.js";
 import {
   onAuthStateChanged,
   signOut
 } from "https://www.gstatic.com/firebasejs/10.12.3/firebase-auth.js";
-import displayUsername from "./utils/displayUser.js";
-import initRegister from "./register.js";
-import logIn from "./login.js";
+import displayUsername from "../utils/displayUser.js";
+import initRegister from "../pages/register.js";
+import logIn from "../pages/login.js";
 
 // Check if user is logged in
 window.onload = async function () {

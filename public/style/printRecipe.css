@@ -1,0 +1,109 @@
+@media print {
+    body {
+        font-family: Arial, sans-serif;
+    }
+    .comments-section,
+    .page-banner>nav,
+    .print-item,
+    .author-img>img,
+    .recipe-sidebar>h1,
+    .edit-btn,
+    .ingredients-block-container>i,
+    .directions-block-container>i,
+    .footer-container,
+    hr {
+        display: none;
+    }
+
+    .page-content,
+    .page-banner,
+    .navbar,
+    .recipe-block-single,
+    .recipe-sidebar,
+    .author-inner-block h2 {
+        text-align: left;
+        color: rgb(20, 20, 20);
+        padding: 0;
+        margin: 0;
+    }
+
+    .form-check,
+    .directions-item {
+        margin: 0;
+    }
+
+    .form-check>label,
+    .directions-item,
+    .recipe-sidebar>.description {
+        color: rgb(29, 29, 29);
+    }
+    
+    .recipe-sidebar>span,
+    .ingredients-block-container>h1,
+    .directions-block-container>h1 {
+        color: rgb(0, 0, 0);
+    }
+    
+    .recipe-sidebar>span,
+    .ingredients-block-inner {
+        font-size: 14px;
+    }
+
+    .ingredients-block-container>h1,
+    .directions-block-container>h1 {
+        font-size: 16px;
+    }
+
+    .page-banner {
+        text-align: left;
+        align-items: start;
+    }
+
+    .img-recipe img {
+        width: 300px;
+        height: 150px;
+        object-fit: cover;
+    }
+
+    .recipe-sidebar h1 {
+        font-size: 18px;
+    }
+    /* .spinner-wrapper,
+    .no-user-banner,
+    .comments-section,
+    .comments-block,
+    .print-item-comments {
+        display: none;
+    }
+    .recipe-block-main {
+        width: 100%;
+        margin: 0;
+        padding: 0;
+    }
+    .page-banner,
+    .page-content,
+    .ingredients-block,
+    .directions-block {
+        margin-bottom: 20px;
+        page-break-inside: avoid;
+    }
+    h1 {
+        font-size: 24px;
+        margin-bottom: 10px;
+    }
+    p,
+    span {
+        font-size: 14px;
+    }
+    .ingredients-block-inner .form-check {
+        display: block;
+        margin-bottom: 5px;
+    }
+    .directions-list {
+        list-style-position: inside;
+        padding-left: 0;
+    }
+    .directions-item {
+        margin-bottom: 10px;
+    } */
+}

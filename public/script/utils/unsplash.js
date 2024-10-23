@@ -6,7 +6,6 @@ export async function searchImagesOnUnsplash(query) {
     const data = await response.json();
     console.log(data);
     if (data.results && data.results.length > 0) {
-      console.log(data.results[0].urls.regular);
       return data.results; // Return the first image URL
     } else {
       return []; // Return null if no image is found

@@ -1,8 +1,5 @@
-// import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.3/firebase-app.js";
-// import { getFirebaseFirestore } from "./firebaseInit.js"; 
-import { db } from "./config/firebaseConfig.js";
+import { db } from "../config/firebaseConfig.js";
 import {
-  getFirestore,
   collection,
   query,
   orderBy,
@@ -10,13 +7,6 @@ import {
   doc,
   getDoc,
 } from "https://www.gstatic.com/firebasejs/10.12.3/firebase-firestore.js";
-
-// import firebaseConfig from "./config.js";
-// import firebaseConfig from "./config/firebaseConfig.js";
-
-// const app = initializeApp(firebaseConfig);
-// const db = getFirestore(app);
-
 
 // Function to get user name
 async function getUserName(usersRef, userId) {
@@ -39,10 +29,8 @@ export default async function loadRecipes(
   const pageContent = document.querySelector(".main-recipe-block");
   spinner.style.display = "flex";
   pageContent.style.display = "none";
-  
-  try {
-    // const db = await getFirebaseFirestore();
 
+  try {
     const recipesRef = collection(db, "recipes");
     const usersRef = collection(db, "users");
 
@@ -53,7 +41,6 @@ export default async function loadRecipes(
       recipesQuery = query(recipesRef, orderBy(sortField, sortOrder));
     }
 
-    // const q = query(recipesRef, orderBy(sortField, sortOrder));
     const querySnapshot = await getDocs(recipesQuery);
     const recipesWrapper = document.querySelector(".recipes-wrapper");
     console.log("Query snapshot:", querySnapshot);
@@ -122,20 +109,3 @@ export default async function loadRecipes(
     pageContent.style.display = "block";
   }
 }
-
-// Adding sorting handlers
-// document.addEventListener("DOMContentLoaded", function () {
-//   document
-//     .querySelector(".sort-block")
-//     .addEventListener("click", function (event) {
-//       if (event.target.tagName === "A") {
-//         event.preventDefault();
-//         const sortField = event.target
-//           .getAttribute("href")
-//           .split("sort")[1]
-//           .split("&")[0];
-//         const sortOrder = event.target.getAttribute("href").split("order")[1];
-//         loadRecipes(sortField, sortOrder);
-//       }
-//     });
-// });

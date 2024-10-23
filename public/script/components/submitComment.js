@@ -1,6 +1,6 @@
 // import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.3/firebase-app.js";
 // import { getFirebaseFirestore, getFirebaseAuth } from "./firebaseInit.js";
-import { auth, db } from "./config/firebaseConfig.js";
+import { auth, db } from "../config/firebaseConfig.js";
 import {
   getFirestore,
   collection,

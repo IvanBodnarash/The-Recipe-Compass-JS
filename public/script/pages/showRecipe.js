@@ -1,11 +1,11 @@
-import { auth, db } from "./config/firebaseConfig.js";
+import { auth, db } from "../config/firebaseConfig.js";
 import {
   collection,
   doc,
   getDoc,
 } from "https://www.gstatic.com/firebasejs/10.12.3/firebase-firestore.js";
-import { authorPanelModal } from "./editModal.js";
-import { getUserName } from "./utils/getUserName.js";
+import { authorPanelModal } from "../modals/editModal.js";
+import { getUserName } from "../utils/getUserName.js";
 
 // Function to get the user name from the database
 

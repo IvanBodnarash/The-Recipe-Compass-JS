@@ -1,37 +1,20 @@
-// Import the functions you need from the SDKs you need
-// import { getFirebaseAuth, getFirebaseFirestore } from "./firebaseInit.js";
-// import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.3/firebase-app.js";
+import { createUserWithEmailAndPassword } from "https://www.gstatic.com/firebasejs/10.12.3/firebase-auth.js";
 import {
-  getAuth,
-  createUserWithEmailAndPassword,
-} from "https://www.gstatic.com/firebasejs/10.12.3/firebase-auth.js";
-import {
-  getFirestore,
   setDoc,
   doc,
-  getDoc,
 } from "https://www.gstatic.com/firebasejs/10.12.3/firebase-firestore.js";
-import { auth, db } from "./config/firebaseConfig.js";
-
-// import firebaseConfig from "./config.js";
-// import firebaseConfig from "./config/firebaseConfig.js";
-
-// const app = initializeApp(firebaseConfig);
-// const auth = getAuth();
-// const db = getFirestore(app);
+import { auth, db } from "../config/firebaseConfig.js";
 
 // Initialize Register
 export default async function initRegister() {
   try {
-    // const auth = await getFirebaseAuth();
-    // const db = await getFirebaseFirestore();
     // Submit Button
     const register = document.getElementById("registerBtn");
-  
+
     if (register) {
       register.addEventListener("click", function (event) {
         event.preventDefault();
-  
+
         // Inputs
         const userName = document.getElementById("userName").value;
         const firstName = document.getElementById("firstName").value;
@@ -40,25 +23,33 @@ export default async function initRegister() {
         const password = document.getElementById("password").value;
         const password2 = document.getElementById("password2").value;
         const role = "user";
-  
+
         // Compare Passwords
         if (password != password2) {
           alert("Passwords do not match");
           return;
         }
-  
+
         if (!validateEmail(email)) {
           alert("Please enter a valid email address");
           return;
         }
-  
+
         createUserWithEmailAndPassword(auth, email, password)
           .then((userCredential) => {
             // Signed up
             const user = userCredential.user;
             alert("Account Creating...");
             // Saving user data
-            saveUserData(db, user.uid, userName, firstName, lastName, email, role);
+            saveUserData(
+              db,
+              user.uid,
+              userName,
+              firstName,
+              lastName,
+              email,
+              role
+            );
           })
           .catch((error) => {
             const errorCode = error.code;

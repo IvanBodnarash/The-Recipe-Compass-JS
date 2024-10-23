@@ -6,23 +6,13 @@ import {
   onAuthStateChanged,
   signOut
 } from "https://www.gstatic.com/firebasejs/10.12.3/firebase-auth.js";
-
-// import firebaseConfig from "./config.js";
-// import firebaseConfig from "./config/firebaseConfig.js";
-import displayUsername from "./displayUser.js";
+import displayUsername from "./utils/displayUser.js";
 import initRegister from "./register.js";
 import logIn from "./login.js";
-
-// const app = initializeApp(firebaseConfig);
-// const auth = getAuth();
-// const db = getFirestore(app);
-// const storage = getStorage(app);
 
 // Check if user is logged in
 window.onload = async function () {
   try {
-    // const auth = await getFirebaseAuth();
-
     onAuthStateChanged(auth, async function (user) {
       if (user) {
         await displayUsername(user.uid);
@@ -31,16 +21,6 @@ window.onload = async function () {
         toggleAddRecipeButton(false);
       }
     });
-
-    // Initialize Logout
-    // const logout = document.getElementById("logoutBtn");
-    // if (logout) {
-    //   logout.addEventListener("click", function () {
-    //     handleLogout();
-    //   });
-    // } else {
-    //   console.error("Element with id 'logoutBtn' not found");
-    // }
   } catch (error) {
     console.log("Error getting data from firebase:", error);
   }

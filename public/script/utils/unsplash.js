@@ -44,7 +44,7 @@ function selectImage(imageUrl) {
 
   document.getElementById("selectedImageUrl").value = imageUrl;
   document.getElementById("fileName").textContent = "No File Chosen";
-  document.getElementById("uploadImgButton").value = "";
+  // document.getElementById("uploadImgButton").value = "";
   document.getElementById("selectedImageContainerWrapper").style.display =
     "block";
 }

@@ -1,5 +1,5 @@
 // import { getFirebaseAuth, getFirebaseFirestore } from "./firebaseInit.js";
-import { db } from "./config/firebaseConfig.js";
+import { db } from "../config/firebaseConfig.js";
 import {
   getAuth,
   deleteUser,
@@ -13,6 +13,7 @@ import {
   deleteDoc,
   updateDoc,
 } from "https://www.gstatic.com/firebasejs/10.12.3/firebase-firestore.js";
+import { getUserNameAdminPanel } from "../utils/getUserName.js";
 
 // import firebaseConfig from "./config.js";
 // import firebaseConfig from "./config/firebaseConfig.js";
@@ -45,26 +46,6 @@ function hideSpinner() {
 }
 
 // Function to get user name
-async function getUserName(userId) {
-  // Check if userId exists
-  if (!userId) {
-    console.log("User ID is undefined or null.");
-    return "Unknown";
-  }
-
-  try {
-    const userDoc = await getDoc(doc(db, "users", userId));
-    if (userDoc.exists()) {
-      return userDoc.data().userName;
-    } else {
-      console.log(`User with ID ${userId} not found.`);
-      return "Unknown";
-    }
-  } catch (error) {
-    console.error("Error fetching user name:", error);
-    return "Unknown";
-  }
-}
 
 export default async function adminPanelLogic() {
   // Firestore initialization
@@ -176,7 +157,7 @@ async function renderRecipesTable(recipes) {
   let rows = [];
 
   for (const { id, data } of recipes) {
-    const userName = await getUserName(data.userId);
+    const userName = await getUserNameAdminPanel(data.userId);
     const row = `
       <tr data-id="${id}">
         <td>${data.recipeTitle}</td>
@@ -264,7 +245,7 @@ async function renderCommentsTable(comments) {
   let rows = [];
 
   for (const { id, data } of comments) {
-    const userName = await getUserName(data.userId);
+    const userName = await getUserNameAdminPanel(data.userId);
     const row = `
           <tr data-id="${id}">
           <td>${data.text}</td>

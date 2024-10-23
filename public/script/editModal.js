@@ -15,7 +15,6 @@ import {
   displayUnsplashImages,
 } from "./utils/unsplash.js";
 import { uploadNewImg } from "./utils/uploadNewImg.js";
-// import { shortenedImgName } from "./utils/imgDisplayShortener.js";
 
 export function authorPanelModal(recipe) {
   const modal = document.getElementById("recipeModal");

@@ -1,5 +1,5 @@
 // import { getFirebaseAuth, getFirebaseFirestore } from "./firebaseInit.js";
-import { auth, db } from "./config/firebaseConfig.js";
+import { auth, db } from "../config/firebaseConfig.js";
 import { onAuthStateChanged } from "https://www.gstatic.com/firebasejs/10.12.3/firebase-auth.js";
 import {
   doc,

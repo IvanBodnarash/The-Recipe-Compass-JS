@@ -1,41 +1,13 @@
-// import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.3/firebase-app.js";
-
-// import { getFirebaseFirestore } from "./firebaseInit.js";
 import { auth, db } from "./config/firebaseConfig.js";
 import {
-  getFirestore,
   collection,
-  query,
-  orderBy,
-  limit,
-  getDocs,
   doc,
   getDoc,
 } from "https://www.gstatic.com/firebasejs/10.12.3/firebase-firestore.js";
 import { authorPanelModal } from "./editModal.js";
-
-// import firebaseConfig from "./config.js";
-// import firebaseConfig from "./config/firebaseConfig.js";
-
-// const app = initializeApp(firebaseConfig);
-// const db = getFirestore(app);
-
-// const recipesRef = collection(db, "recipes");
-// const usersRef = collection(db, "users");
-
-// Function to creade full recipe page
-// function createRecipeLayout()
+import { getUserName } from "./utils/getUserName.js";
 
 // Function to get the user name from the database
-async function getUserName(usersRef, userId) {
-  const userDoc = await getDoc(doc(usersRef, userId));
-  if (userDoc.exists()) {
-    return userDoc.data().userName;
-  } else {
-    console.log(`User with ID ${userId} not found.`);
-    return "Unknown";
-  }
-}
 
 export default async function showRecipe(recipeId) {
   const spinner = document.querySelector("#loadingSpinner");
@@ -44,8 +16,6 @@ export default async function showRecipe(recipeId) {
   pageContent.style.display = "none";
 
   try {
-    // const db = await getFirebaseFirestore();
-
     const recipesRef = collection(db, "recipes");
     const usersRef = collection(db, "users");
 

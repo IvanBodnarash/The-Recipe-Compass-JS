@@ -11,23 +11,6 @@ export function uploadNewImg() {
         "block";
       console.log(file);
 
-      //   function shortenedImgName(file) {
-      //     const fileName = file.name;
-      //     const fileNameParts = fileName.split(".");
-      //     const name = fileNameParts.slice(0, -1).join(".");
-      //     const extension = fileNameParts.pop();
-
-      //     if (fileName.length > 20) {
-      //       const shortenedFileName = name.substring(0, 22) + "..." + extension;
-      //       fileNameDisplay.textContent = shortenedFileName;
-      //       console.log("Shortened file name:", shortenedFileName);
-      //     } else {
-      //       fileNameDisplay.textContent = fileName;
-      //     }
-
-      //     console.log("File name length:", fileName.length);
-      //   }
-
       if (file) {
         const reader = new FileReader();
 

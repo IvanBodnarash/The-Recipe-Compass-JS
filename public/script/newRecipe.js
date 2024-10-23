@@ -1,82 +1,20 @@
-// Import the functions you need from the SDKs you need
-// import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.3/firebase-app.js";
-// import { getFirebaseAuth, getFirebaseFirestore, getFirebaseStorage, getUnsplashApiKey } from "./firebaseInit.js";
 import { auth, db, storage } from "./config/firebaseConfig.js";
 import {
-  getFirestore,
   collection,
   addDoc,
   serverTimestamp,
 } from "https://www.gstatic.com/firebasejs/10.12.3/firebase-firestore.js";
 import {
-  getStorage,
   ref,
   uploadBytes,
   getDownloadURL,
 } from "https://www.gstatic.com/firebasejs/10.12.3/firebase-storage.js";
 import { searchImagesOnUnsplash, displayUnsplashImages } from "./utils/unsplash.js";
+import { uploadNewImg } from "./utils/uploadNewImg.js";
 
 export default async function postRecipe() {
-  document
-    .getElementById("uploadImgButton")
-    .addEventListener("change", (event) => {
-      console.log("File input changed");
-      const file = event.target.files[0];
-      const fileNameDisplay = document.getElementById("fileName");
-      document.getElementById("selectedImageContainerWrapper").style.display =
-        "block";
-      console.log(file);
 
-      if (file) {
-        const reader = new FileReader();
-
-        const validFileTypes = [
-          "image/jpeg",
-          "image/png",
-          "image/gif",
-          "image/webp",
-          "image/jpg",
-          "image/svg",
-        ];
-        const maxFileSize = 2 * 1024 * 1024; // 2 MB in bytes
-
-        if (!validFileTypes.includes(file.type)) {
-          console.log(
-            "Please select a valid image file (JPEG, PNG, GIF, WEBP, JPG, SVG)."
-          );
-          return;
-        }
-
-        if (file.size > maxFileSize) {
-          console.log("Please select an image smaller than 2 MB.");
-          return;
-        }
-        reader.onload = function (e) {
-          const selectedImageContainer =
-            document.getElementById("selectedImage");
-          selectedImageContainer.src = e.target.result;
-
-          document.getElementById("selectedImageUrl").value = "";
-          fileNameDisplay.textContent = file.name;
-        };
-
-        reader.readAsDataURL(file);
-      }
-
-      // const fileNameParts = file.split(".");
-      // const name = fileNameParts.slice(0, -1).join(".");
-      // const extension = fileNameParts.pop();
-
-      // if (file.length > 20) {
-      //   const shortenedFileName = name.substring(0, 22) + "..." + extension;
-      //   fileNameDisplay.textContent = shortenedFileName;
-      //   console.log("Shortened file name:", shortenedFileName);
-      // } else {
-      //   fileNameDisplay.textContent = file;
-      // }
-
-      // console.log("File name length:", file.length);
-    });
+  uploadNewImg();
 
   document
     .getElementById("unsplashSearchBtn")

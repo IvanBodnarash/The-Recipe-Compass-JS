@@ -126,7 +126,7 @@ export default async function postRecipe() {
           console.error("Error uploading image:", error);
           return;
         }
-      } else if (!imd && !imageUrl) {
+      } else if (!img && !imageUrl) {
         console.log("No image found or uploaded!");
         return;
       }

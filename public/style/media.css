@@ -46,9 +46,9 @@
         font-size: 20px;
     }
 
-    .latest-recipes-section p {
+    /* .latest-recipes-section p {
         font-size: 20px;
-    }
+    } */
 
     /* SEARCH BLOCK */
 
@@ -260,7 +260,7 @@
     }
 
     .latest-recipes-section p {
-        font-size: 18px;
+        font-size: 16px;
     }
 
     /* SEARCH BLOCK */
@@ -1483,6 +1483,10 @@
 
     .latest-recipes-section h1:first-child {
         padding-top: 50px;
+    }
+
+    .edit-btn {
+        font-size: 10px;
     }
 
     /* RECIPES ALL */

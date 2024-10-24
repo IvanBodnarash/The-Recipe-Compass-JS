@@ -425,7 +425,7 @@ body ._lock {
     display: flex;
     flex-direction: row;
     align-items: center;
-    font-size: 1.2rem;
+    font-size: 16px;
 }
 
 .text-inner span {

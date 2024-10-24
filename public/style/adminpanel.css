@@ -211,6 +211,8 @@
 .uploadNewImgButton {
     color: white;
     text-align: center;
+    display: flex;
+    justify-content: center;
     cursor: pointer;
     border: none;
     width: 120px;

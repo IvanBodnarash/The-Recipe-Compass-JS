@@ -26,16 +26,19 @@ window.onload = async function () {
 
 async function handleLogout() {
   try {
-    localStorage.setItem("logoutAlert", "Logout Successful");
+    // localStorage.setItem("logoutAlert", "Logout Successful");
 
-    console.log("Logout message saved in storage:", localStorage.getItem("logoutAlert"));
+    // console.log("Logout message saved in storage:", localStorage.getItem("logoutAlert"));
 
+    showCustomAlert("Logout Successful", "info");
     await signOut(auth);
 
     localStorage.removeItem("valid_recipe_user");
     localStorage.removeItem("userName");
     localStorage.removeItem("hasSeenWelcomeAlert");
     localStorage.removeItem("hasAdminNavItem");
+
+    document.getElementById("displayUserName").textContent = "";
     
     setTimeout(() => {
       window.location.href = "index.html";

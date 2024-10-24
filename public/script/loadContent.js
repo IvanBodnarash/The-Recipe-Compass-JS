@@ -101,13 +101,11 @@ document.addEventListener("DOMContentLoaded", function () {
     } else if (content === "login") {
       logIn();
     } else if (content === "newrecipe") {
-      console.log("This is new recipe");
       postRecipe();
     } else if (content.startsWith("showrecipe")) {
       const recipeId = new URLSearchParams(window.location.search).get("id");
       if (recipeId) {
         showRecipe(recipeId);
-        console.log(recipeId);
         commentLogic(recipeId);
       }
     } else if (content === "recipes") {
@@ -116,11 +114,9 @@ document.addEventListener("DOMContentLoaded", function () {
       const sortOrder = urlParams.get("order") || "asc";
       loadRecipes(sortField, sortOrder);
     } else if (content === "searchrecipes") {
-      console.log("search recipes page was opened");
       searchRecipes();
       loadNewsletterBlock();
     } else if (content === "adminpanel") {
-      console.log("adminpanel");
       adminPanelLogic();
     }
   });

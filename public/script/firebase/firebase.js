@@ -6,6 +6,7 @@ import {
 import displayUsername from "../utils/displayUser.js";
 import initRegister from "../pages/register.js";
 import logIn from "../pages/login.js";
+import { showCustomAlert } from "../utils/alert.js";
 
 // Check if user is logged in
 window.onload = async function () {
@@ -25,13 +26,20 @@ window.onload = async function () {
 
 async function handleLogout() {
   try {
+    localStorage.setItem("logoutAlert", "Logout Successful");
+
+    console.log("Logout message saved in storage:", localStorage.getItem("logoutAlert"));
+
     await signOut(auth);
-    alert("Logout Successful");
 
     localStorage.removeItem("valid_recipe_user");
+    localStorage.removeItem("userName");
     localStorage.removeItem("hasSeenWelcomeAlert");
-
-    window.location.href = "index.html";
+    localStorage.removeItem("hasAdminNavItem");
+    
+    setTimeout(() => {
+      window.location.href = "index.html";
+    }, 1000);
   } catch (error) {
     console.log("Error logging out:", error);
   }
@@ -51,11 +59,21 @@ function toggleAddRecipeButton(isEnabled) {
 // DOM Content Loaded
 document.addEventListener("DOMContentLoaded", function () {
   const content = new URLSearchParams(window.location.search).get("content");
+
   if (content === "register") {
     initRegister();
   } else if (content === "login") {
     logIn();
   } else if (content === "logout") {
     handleLogout();
+  }
+
+  const logoutMessage = localStorage.getItem("logoutAlert");
+  
+  console.log("Logout message in storage:", logoutMessage);  // Вивести у консоль
+
+  if (logoutMessage) {
+    showCustomAlert(logoutMessage, "info");  // Виклик алерту
+    localStorage.removeItem("logoutAlert");  // Очищення після показу
   }
 });

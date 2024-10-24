@@ -1205,7 +1205,7 @@ body ._lock {
     word-wrap: break-word;
     overflow-wrap: break-word;
     white-space: normal;
-    max-width: 90%;
+    width: 100%;
     overflow: hidden;
 }
 

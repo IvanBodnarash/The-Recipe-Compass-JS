@@ -17,6 +17,7 @@ import {
   getAuth,
   onAuthStateChanged,
 } from "https://www.gstatic.com/firebasejs/10.12.3/firebase-auth.js";
+import { showCustomAlert } from "../utils/alert.js";
 
 // import firebaseConfig from "./config.js";
 // import firebaseConfig from "./config/firebaseConfig.js";
@@ -88,7 +89,7 @@ async function submitComment(usersRef, commentsRef, recipeId, commentText, auth)
     loadComments(usersRef, commentsRef, recipeId);
   } catch (error) {
     console.error("Error while adding a comment");
-    alert("Failed to add comment. Please try again later.");
+    showCustomAlert("Failed to add comment. Please try again later.", "error");
   }
 }
 

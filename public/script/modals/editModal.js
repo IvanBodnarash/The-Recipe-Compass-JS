@@ -15,6 +15,8 @@ import {
   displayUnsplashImages,
 } from "../utils/unsplash.js";
 import { uploadNewImg } from "../utils/uploadNewImg.js";
+import { showCustomAlert } from "../utils/alert.js";
+import { showCustomConfirm } from "../utils/confirm.js";
 
 export function authorPanelModal(recipe) {
   const modal = document.getElementById("recipeModal");
@@ -89,7 +91,7 @@ export function authorPanelModal(recipe) {
     // Update recipe in Firebase
     try {
       await updateDoc(doc(db, "recipes", recipe.id), updateRecipe);
-      alert("Recipe updated successfully!");
+      showCustomAlert("Recipe updated successfully!", "info");
       modal.style.display = "none";
       location.reload();
     } catch (error) {
@@ -98,25 +100,24 @@ export function authorPanelModal(recipe) {
   };
 
   deleteRecipeButton.addEventListener("click", async () => {
-    const confirmed = confirm("Are you sure you want to delete this recipe?");
-    if (confirmed) {
+    showCustomConfirm("Are you sure you want to delete this recipe?", async () => {
       try {
         // Delete recipe from Firestore
         await deleteDoc(doc(db, "recipes", recipe.id));
-
+  
         // Delete image from Firebase Storage
         if (recipe.imageUrl && recipe.imageUrl.startWith()) {
           const imageRef = ref(storage, recipe.imageUrl);
           await deleteObject(imageRef);
         }
-
-        alert("Recipe deleted successfully!");
+  
+        showCustomAlert("Recipe deleted successfully", "info");
         modal.style.display = "block";
         window.location.href = "index.html";
       } catch (error) {
         console.error("Error deleting recipe:", error);
       }
-    }
+    });
   });
 
   // Display the modal

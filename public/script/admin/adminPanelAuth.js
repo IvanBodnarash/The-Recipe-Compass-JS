@@ -20,9 +20,14 @@ export default async function adminPanelAuth() {
     return;
   }
 
+  const hasAdminNavItem = localStorage.getItem("hasAdminNavItem");
+
+  if (hasAdminNavItem === "true") {
+    headerNavContainer.insertAdjacentHTML("afterbegin", adminNavItem);
+  }
+
   try {
     onAuthStateChanged(auth, async (user) => {
-      console.log(user);
       if (user) {
         try {
           const userDocRef = doc(db, "users", user.uid);
@@ -36,7 +41,11 @@ export default async function adminPanelAuth() {
               localStorage.setItem("hasSeenWelcomeAlert", "true");
             }
 
-            headerNavContainer.insertAdjacentHTML("afterbegin", adminNavItem);
+            if (!hasAdminNavItem) {
+              headerNavContainer.insertAdjacentHTML("afterbegin", adminNavItem);
+              localStorage.setItem("hasAdminNavItem", "true");
+            }
+
           } else {
             console.log("Hello user!");
           }

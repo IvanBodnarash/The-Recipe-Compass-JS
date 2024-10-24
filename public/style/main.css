@@ -413,6 +413,8 @@ body ._lock {
 
 .recipe-block .text-block span {
     color: #455e44;
+    overflow-wrap: break-word;
+    white-space: normal;
 }
 
 .text-inner-block {

@@ -5,6 +5,7 @@ import {
   doc,
   getDoc,
 } from "https://www.gstatic.com/firebasejs/10.12.3/firebase-firestore.js";
+import { showCustomAlert } from "../utils/alert.js"
 
 const adminNavItem = `
     <li class="nav-item">
@@ -27,10 +28,14 @@ export default async function adminPanelAuth() {
           const userDocRef = doc(db, "users", user.uid);
           const userDoc = await getDoc(userDocRef);
 
-          console.log(userDoc);
           if (userDoc.exists() && userDoc.data().role === "admin") {
-            console.log("Welcome admin!");
-            console.log(adminNavItem);
+            const hasSeenWelcomeAlert = localStorage.getItem("hasSeenWelcomeAlert");
+
+            if (!hasSeenWelcomeAlert) {
+              showCustomAlert("Welcome admin!", "success");
+              localStorage.setItem("hasSeenWelcomeAlert", "true");
+            }
+
             headerNavContainer.insertAdjacentHTML("afterbegin", adminNavItem);
           } else {
             console.log("Hello user!");

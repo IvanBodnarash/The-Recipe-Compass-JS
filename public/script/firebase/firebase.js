@@ -27,7 +27,10 @@ async function handleLogout() {
   try {
     await signOut(auth);
     alert("Logout Successful");
+
     localStorage.removeItem("valid_recipe_user");
+    localStorage.removeItem("hasSeenWelcomeAlert");
+
     window.location.href = "index.html";
   } catch (error) {
     console.log("Error logging out:", error);

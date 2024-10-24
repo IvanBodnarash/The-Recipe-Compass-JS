@@ -4,6 +4,7 @@ import {
   doc,
 } from "https://www.gstatic.com/firebasejs/10.12.3/firebase-firestore.js";
 import { auth, db } from "../config/firebaseConfig.js";
+import { showCustomAlert } from "../utils/alert.js";
 
 // Initialize Register
 export default async function initRegister() {
@@ -26,12 +27,12 @@ export default async function initRegister() {
 
         // Compare Passwords
         if (password != password2) {
-          alert("Passwords do not match");
+          showCustomAlert("Passwords do not match", "error");
           return;
         }
 
         if (!validateEmail(email)) {
-          alert("Please enter a valid email address");
+          showCustomAlert("Please enter a valid email address", "error");
           return;
         }
 
@@ -39,7 +40,7 @@ export default async function initRegister() {
           .then((userCredential) => {
             // Signed up
             const user = userCredential.user;
-            alert("Account Creating...");
+            showCustomAlert("Account Creating...", "info");
             // Saving user data
             saveUserData(
               db,
@@ -54,7 +55,7 @@ export default async function initRegister() {
           .catch((error) => {
             const errorCode = error.code;
             const errorMessage = error.message;
-            alert("Error: " + errorMessage + " " + errorCode);
+            showCustomAlert(`Error: ${errorMessage} ${errorCode}`, "error");
           });
       });
     } else {

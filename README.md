@@ -1,6 +1,8 @@
 # The Recipe Compass
 
-<img src="./public/img/the-recipe-compass-mockup.png" alt="Project Screenshot" width="600"/>
+<p align="center">
+  <img src="./public/img/the-recipe-compass-mockup.png" alt="Project Screenshot" width="600"/>
+</p>
 
 ## Table of contents
 
